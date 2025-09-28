@@ -47,7 +47,7 @@ def main():
     ap.add_argument("--val", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--batch", type=int, default=1)         # tiny for Mac
-    ap.add_argument("--rollouts", type=int, default=1)      # tiny for Mac
+    ap.add_argument("--rollouts", type=int, default=1)      # unused here, kept for parity
     ap.add_argument("--lr", type=float, default=1e-6)
     ap.add_argument("--lam", type=float, default=0.5)
     ap.add_argument("--sigma", type=float, default=1.0)
@@ -73,12 +73,11 @@ def main():
     model = AutoModelForCausalLMWithValueHead.from_pretrained(base)
 
     cfg = PPOConfig(
-        model_name=args.model,
         learning_rate=args.lr,
         batch_size=args.batch,
         mini_batch_size=1,
         ppo_epochs=1,
-        kl_penalty="none"
+        init_kl_coef=0.0
     )
     trainer = PPOTrainer(config=cfg, model=model, tokenizer=tok)
 
@@ -89,7 +88,7 @@ def main():
             batch = train_rows[i:i+args.batch]
             prompts = collate_texts(batch)
 
-            # deterministic generate
+            # deterministic generate (use trainer.generate in TRL 0.9.x)
             inputs = tok(prompts, return_tensors="pt", padding=True, truncation=True).to(trainer.accelerator.device)
             gen = trainer.generate(
                 inputs["input_ids"],
@@ -108,8 +107,7 @@ def main():
             # PPO step
             q_toks = tok(prompts, return_tensors="pt", padding=True, truncation=True).to(trainer.accelerator.device)
             r_toks = tok(outs,    return_tensors="pt", padding=True, truncation=True).to(trainer.accelerator.device)
-            import torch as _torch
-            rew = _torch.tensor(rewards, dtype=_torch.float32, device=trainer.accelerator.device)
+            rew = torch.tensor(rewards, dtype=torch.float32, device=trainer.accelerator.device)
             trainer.step(list(q_toks["input_ids"]), list(r_toks["input_ids"]), rew)
 
         save_dir = os.path.join(args.out, f"epoch{epoch:02d}")
