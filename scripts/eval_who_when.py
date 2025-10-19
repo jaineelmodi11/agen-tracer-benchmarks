@@ -19,7 +19,6 @@ for k,g in gold.items():
         missing.append(k)
         continue
     total += 1
-    # expected fields: "answer" (string). Adjust here if your schema differs.
     ok += int(pred[k].get("answer") == g.get("answer"))
 
 acc = (100*ok/max(total,1))
