@@ -1,6 +1,22 @@
 {
-  "resolved": 0,
-  "submitted": 0,
-  "pct": 0.0,
-  "runs": []
+  "resolved": 9,
+  "submitted": 10,
+  "pct": 90.0,
+  "runs": [
+    {
+      "file": "swebench/runs/pipeline-check.run-1760747356.json",
+      "resolved": 5,
+      "submitted": 5
+    },
+    {
+      "file": "swebench/runs/sanity-check.run-1760826151.json",
+      "resolved": 3,
+      "submitted": 3
+    },
+    {
+      "file": "swebench/runs/sanity-check.run-1760833921.json",
+      "resolved": 1,
+      "submitted": 2
+    }
+  ]
 }
