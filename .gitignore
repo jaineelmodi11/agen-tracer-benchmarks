@@ -1,0 +1,17 @@
+# python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# logs / artifacts
+logs/
+*.log
+*.tmp
+*.cache
+
+# swebench big logs
+swebench/logs/
