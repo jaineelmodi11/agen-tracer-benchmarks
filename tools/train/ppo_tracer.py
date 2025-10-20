@@ -15,26 +15,58 @@ from datasets import Dataset
 from transformers import AutoTokenizer, LogitsProcessorList, StoppingCriteriaList
 from trl import PPOConfig, PPOTrainer, AutoModelForCausalLMWithValueHead
 
-from src.atracer.rewards import compute_reward
-from src.atracer.prompts import build_eval_prompt
-from src.atracer.logit_tools import (
+from atracer.rewards import compute_reward
+from atracer.prompts import build_eval_prompt
+from atracer.logit_tools import (
     FirstTokenRestrictor,
     StepDigitRestrictor,
     StopOnFirstPair,
     build_agent_token_map,
     PAIR_RE,
-    # safer step gate:
     AgentThenStepRestrictor,
 )
 
 # NEW: tracer head (WHO/WHEN) aux loss
 try:
-    from src.atracer.tracer_head import TracerHead
+    from atracer.models.tracer_head import TracerHead
 except Exception:
-    TracerHead = None  # we'll guard below
+    TracerHead = None
 
 
 # ---------------- small utils ----------------
+
+def _safe_ppo_step(ppo, queries, responses, scores):
+    # 1) align TRL batch size with what we actually have
+    try:
+        n = len(queries)
+        if hasattr(ppo, "config"):
+            ppo.config.batch_size = max(1, n)
+            if hasattr(ppo.config, "mini_batch_size"):
+                ppo.config.mini_batch_size = max(1, min(getattr(ppo.config, "mini_batch_size", 1), n))
+    except Exception:
+        pass
+
+    # 2) try normal step → if TRL empties the batch, fall back to per-example
+    try:
+        return ppo.step(queries, responses, scores)
+    except Exception as e:
+        msg = str(e)
+        if "does not match number of examples" in msg or "expected a non-empty list" in msg:
+            any_ok = False
+            for q, r, s in zip(queries, responses, scores):
+                try:
+                    if hasattr(ppo, "config"):
+                        ppo.config.batch_size = 1
+                        if hasattr(ppo.config, "mini_batch_size"):
+                            ppo.config.mini_batch_size = 1
+                    ppo.step([q], [r], [s])
+                    any_ok = True
+                except Exception:
+                    pass
+            if not any_ok:
+                print("[skip] PPO step produced empty internal batch; continuing.")
+            return
+        raise
 
 def _scrub_gen_cfg(m):
     try:
@@ -148,6 +180,21 @@ class _CSVLogger:
                 self._header_written = True
             w.writerow(kw)
 
+def _get_hidden_size_from_model(base) -> Optional[int]:
+    # Try common config keys first
+    for k in ("hidden_size", "d_model", "n_embd"):
+        v = getattr(getattr(base, "config", object()), k, None)
+        if isinstance(v, int) and v > 0:
+            return v
+    # Fallback to embedding width
+    try:
+        emb = base.get_input_embeddings()
+        if hasattr(emb, "weight"):
+            return int(emb.weight.shape[1])
+    except Exception:
+        pass
+    return None
+
 
 # ---------------- main ----------------
 
@@ -197,7 +244,7 @@ def main():
     ap.add_argument("--enable_tracer", action="store_true",
                     help="enable WHO/WHEN tracer loss as auxiliary objective")
     ap.add_argument("--tracer_hidden", type=int, default=1024)
-    ap.add_argument("--tracer_n_when", type=int, default=33,  # 32 steps + 'no-fail'
+    ap.add_argument("--tracer_n_when", type=int, default=33,
                     help="number of WHEN classes (max steps + 1 for 'no-fail')")
     ap.add_argument("--lambda_tracer", type=float, default=0.1,
                     help="weight on tracer aux loss")
@@ -274,17 +321,24 @@ def main():
         agent = (agent or "").strip().lower()
         if agent == "analyst": return 0
         if agent == "coder":   return 1
-        # default: treat as coder
         return 1
 
     # tracer head + optimizer
     tracer = None
     tracer_optim = None
+    base_for_hidden = getattr(ppo.model, "pretrained_model", ppo.model)
+    inferred_H = _get_hidden_size_from_model(base_for_hidden)
     if args.enable_tracer:
         if TracerHead is None:
-            raise RuntimeError("TracerHead not found. Ensure src/atracer/tracer_head.py is present and importable.")
-        tracer = TracerHead(hidden_size=args.tracer_hidden, n_when_classes=args.tracer_n_when).to(device)
+            raise RuntimeError(
+                "TracerHead not importable. Expected at atracer/models/tracer_head.py and PYTHONPATH to include ./src"
+            )
+        H = inferred_H or args.tracer_hidden
+        if inferred_H and inferred_H != args.tracer_hidden:
+            print(f"[tracer] overriding tracer_hidden={args.tracer_hidden} with model hidden_size={inferred_H}")
+        tracer = TracerHead(hidden_size=H, n_when_classes=args.tracer_n_when).to(device)
         tracer_optim = torch.optim.AdamW(tracer.parameters(), lr=1e-4)
+        print(f"[tracer] initialized TracerHead with hidden_size={H}, n_when={args.tracer_n_when}")
 
     rng = random.Random(42)
 
@@ -394,15 +448,18 @@ def main():
 
             scores_list = [torch.tensor(R, device=device, dtype=torch.float32) for R in rewards]
 
-            # ---------- PPO step ----------
-            try:
-                ppo.step(queries_list, responses_list, scores_list)
-            except Exception as e:
-                msg = str(e)
-                if "expected a non-empty list of Tensors" in msg or "empty internal batch" in msg:
-                    print("[skip] TRL produced an empty internal batch; continuing.")
-                else:
-                    raise
+            # ---------- PPO step (handle micro-batch != cfg.batch_size) ----------
+            B = len(responses_list)
+            if B > 0:
+                orig_bs = ppo.config.batch_size
+                if B != orig_bs:
+                    ppo.config.batch_size = B
+                try:
+                    ppo.step(queries_list, responses_list, scores_list)
+                finally:
+                    ppo.config.batch_size = orig_bs
+            else:
+                print("[skip] TRL produced an empty internal batch; continuing.")
 
             # ---------- tracer aux update (WHO/WHEN) ----------
             tracer_loss_val = None
@@ -411,32 +468,32 @@ def main():
             joint_acc = None
 
             if tracer is not None:
-                # Build a small batch of (q + response) so gradients can flow into the LM
                 full_ids = []
                 full_masks = []
                 who_labels = []
                 when_labels = []
                 for i, (q_ids, r_ids, ga, gs) in enumerate(zip(input_ids, responses_list, gold_agents, gold_steps)):
-                    r_ids = r_ids.detach()  # as tokens chosen
-                    seq = torch.cat([q_ids, r_ids], dim=0)  # [Tq + Tr]
+                    r_ids = r_ids.detach()
+                    seq = torch.cat([q_ids, r_ids], dim=0)  # [T]
                     full_ids.append(seq)
                     full_masks.append(torch.ones_like(seq))
                     who_labels.append(_who_label(ga))
-                    # WHEN: clamp into [0, tracer_n_when-1]
                     when_labels.append(int(gs) if int(gs) < args.tracer_n_when else args.tracer_n_when - 1)
 
-                # pad to max length in the micro-batch
                 maxlen = max(x.shape[0] for x in full_ids)
                 pad_id = tok.pad_token_id
-                full_ids = torch.stack([torch.cat([x, torch.full((maxlen - x.shape[0],), pad_id, device=device, dtype=torch.long)]) for x in full_ids])
-                full_masks = torch.stack([torch.cat([m, torch.zeros((maxlen - m.shape[0],), device=device, dtype=torch.long)]) for m in full_masks])
+                full_ids = torch.stack([
+                    torch.cat([x, torch.full((maxlen - x.shape[0],), pad_id, device=device, dtype=torch.long)])
+                    for x in full_ids
+                ])
+                full_masks = torch.stack([
+                    torch.cat([m, torch.zeros((maxlen - m.shape[0],), device=device, dtype=torch.long)])
+                    for m in full_masks
+                ])
 
-                # forward through base to get hidden states
                 base = getattr(ppo.model, "pretrained_model", ppo.model)
                 out = base(input_ids=full_ids, attention_mask=full_masks, output_hidden_states=True)
                 last_h = out.hidden_states[-1]              # [B, T, H]
-                # pool over the response span ONLY (q_len..end); approximate by masking out left padding + prompt tokens
-                # we don't have per-sample prompt length here, so mean-pool over all unpadded tokens (good enough)
                 mask = full_masks.unsqueeze(-1).float()     # [B, T, 1]
                 denom = mask.sum(dim=1).clamp_min(1.0)      # [B, 1]
                 pooled = (last_h * mask).sum(dim=1) / denom # [B, H]
@@ -447,7 +504,6 @@ def main():
                 t_out = tracer(pooled, who_labels=who_t, when_labels=when_t)
                 tracer_loss = t_out.loss if t_out.loss is not None else None
 
-                # metrics
                 with torch.no_grad():
                     wp = t_out.who_logits.argmax(dim=-1)
                     tp = t_out.when_logits.argmax(dim=-1)
@@ -456,7 +512,6 @@ def main():
                     joint_acc = float(((wp == who_t) & (tp == when_t)).float().mean().item())
 
                 if tracer_loss is not None and math.isfinite(float(tracer_loss)):
-                    # step the same PPO optimizer so LM gets gradients; step tracer head optimizer for head params
                     ppo.optimizer.zero_grad(set_to_none=True)
                     tracer_optim.zero_grad(set_to_none=True)
                     ppo.accelerator.backward(args.lambda_tracer * tracer_loss)
@@ -477,7 +532,6 @@ def main():
                     if pp is not None and gold_ok:
                         pa, ps = pp
                         wrong = not (pa.lower() == str(ga).lower() and int(ps) == int(gs))
-                    # Only replay mistakes with some probability
                     if wrong and rng.random() < args.cfr_prob:
                         tgt = f" {str(ga).capitalize()} {int(gs)}"
                         resp_ids = tok.encode(tgt, add_special_tokens=False)
@@ -488,14 +542,14 @@ def main():
                             added += 1
 
                 if cf_resps:
+                    Bcf = len(cf_resps)
+                    orig_bs = ppo.config.batch_size
+                    if Bcf != orig_bs:
+                        ppo.config.batch_size = Bcf
                     try:
                         ppo.step(cf_queries, cf_resps, cf_scores)
-                    except Exception as e:
-                        msg = str(e)
-                        if "expected a non-empty list of Tensors" in msg or "empty internal batch" in msg:
-                            print("[skip] CFR produced an empty internal batch; continuing.")
-                        else:
-                            raise
+                    finally:
+                        ppo.config.batch_size = orig_bs
             # --------------------------------------------------------
 
             # ---------- logging ----------
