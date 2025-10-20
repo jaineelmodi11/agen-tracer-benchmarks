@@ -1,12 +1,21 @@
-# Python venv and caches
-.venv/
+# Python
 __pycache__/
-*.pyc
-
-# Large training artifacts
-checkpoints/
-*.safetensors
-*.pt
-
-# OS junk
+*.py[cod]
+*.ipynb_checkpoints/
 .DS_Store
+
+# Virtual envs
+.venv/
+.ppoenv/
+venv/
+env/
+
+# Big artifacts
+checkpoints/
+data/
+models/
+node_modules/
+*.pt
+*.bin
+*.ckpt
+*.dylib
