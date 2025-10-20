@@ -2,7 +2,7 @@ from __future__ import annotations
 import os, sys
 os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")
 
-import argparse, json, re, inspect, random
+import argparse, json, re, inspect, random, csv, math
 from typing import List, Dict, Optional, Iterable
 
 THIS_DIR = os.path.dirname(__file__)
@@ -27,7 +27,14 @@ from src.atracer.logit_tools import (
     AgentThenStepRestrictor,
 )
 
-# ---------------- utils ----------------
+# NEW: tracer head (WHO/WHEN) aux loss
+try:
+    from src.atracer.tracer_head import TracerHead
+except Exception:
+    TracerHead = None  # we'll guard below
+
+
+# ---------------- small utils ----------------
 
 def _scrub_gen_cfg(m):
     try:
@@ -123,6 +130,25 @@ def _parse_first_pair(text: str, allowed: Iterable[str]) -> Optional[tuple[str,i
                 return None
     return None
 
+class _CSVLogger:
+    def __init__(self, path: Optional[str]):
+        self.path = path
+        self._header_written = False
+        if path:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            if os.path.exists(path):
+                self._header_written = True
+    def log(self, **kw):
+        if not self.path:
+            return
+        with open(self.path, "a", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=sorted(kw.keys()))
+            if not self._header_written:
+                w.writeheader()
+                self._header_written = True
+            w.writerow(kw)
+
+
 # ---------------- main ----------------
 
 def main():
@@ -159,7 +185,7 @@ def main():
     ap.add_argument("--ratio_threshold", type=float, default=1e5)
     ap.add_argument("--forward_batch_size", type=int, default=1)
 
-    # NEW: gating & CFR
+    # gating & CFR
     ap.add_argument("--step_gate", choices=["off", "eager", "safe"], default="safe",
                     help="off: none; eager: StepDigitRestrictor; safe: AgentThenStepRestrictor")
     ap.add_argument("--cfr_prob", type=float, default=0.0,
@@ -167,10 +193,23 @@ def main():
     ap.add_argument("--cfr_max_per_batch", type=int, default=8)
     ap.add_argument("--cfr_reward", type=float, default=1.0)
 
+    # NEW: tracer aux loss + metrics
+    ap.add_argument("--enable_tracer", action="store_true",
+                    help="enable WHO/WHEN tracer loss as auxiliary objective")
+    ap.add_argument("--tracer_hidden", type=int, default=1024)
+    ap.add_argument("--tracer_n_when", type=int, default=33,  # 32 steps + 'no-fail'
+                    help="number of WHEN classes (max steps + 1 for 'no-fail')")
+    ap.add_argument("--lambda_tracer", type=float, default=0.1,
+                    help="weight on tracer aux loss")
+    ap.add_argument("--log_csv", type=str, default="run/logs/train.csv",
+                    help="optional CSV log path (metrics)")
+
     args = ap.parse_args()
     device = args.device or ("mps" if torch.backends.mps.is_available()
                              else "cuda" if torch.cuda.is_available()
                              else "cpu")
+
+    logger = _CSVLogger(args.log_csv if args.log_csv else None)
 
     tok = AutoTokenizer.from_pretrained(args.tokenizer, trust_remote_code=True)
     tok.truncation_side = "left"
@@ -221,6 +260,7 @@ def main():
     ppo = _build_trainer(ppo_cfg, model, tok, ds_train)
     loader = _make_loader(ds_train, args.batch_size)
 
+    # agent biasing
     allowed = [x.strip().lower() for x in (args.allowed_agents or "").split(",") if x.strip()]
     agent_token_map = build_agent_token_map(tok, allowed) if allowed else {}
     agent_start_ids_union = set()
@@ -228,8 +268,27 @@ def main():
         for tid in agent_token_map.get(a, []):
             agent_start_ids_union.add(tid)
 
+    # WHO label mapping (binary)
+    # 0 => analyst, 1 => coder  (if agent not in set, default to coder)
+    def _who_label(agent: str) -> int:
+        agent = (agent or "").strip().lower()
+        if agent == "analyst": return 0
+        if agent == "coder":   return 1
+        # default: treat as coder
+        return 1
+
+    # tracer head + optimizer
+    tracer = None
+    tracer_optim = None
+    if args.enable_tracer:
+        if TracerHead is None:
+            raise RuntimeError("TracerHead not found. Ensure src/atracer/tracer_head.py is present and importable.")
+        tracer = TracerHead(hidden_size=args.tracer_hidden, n_when_classes=args.tracer_n_when).to(device)
+        tracer_optim = torch.optim.AdamW(tracer.parameters(), lr=1e-4)
+
     rng = random.Random(42)
 
+    step_idx = 0
     for _ in range(max(1, args.passes)):
         for batch in loader:
             prompts: List[str] = batch["prompt"]
@@ -246,6 +305,7 @@ def main():
             responses_list: List[torch.LongTensor] = []
             conts: List[str] = []
 
+            # ---------- generate ----------
             for i in range(input_ids.size(0)):
                 q_ids = input_ids[i].unsqueeze(0)
                 q_mask = attention_mask[i].unsqueeze(0)
@@ -314,6 +374,7 @@ def main():
 
             queries_list = [q for q in input_ids]
 
+            # ---------- reward ----------
             rewards: List[float] = []
             for pred, ga, gs in zip(conts, gold_agents, gold_steps):
                 R = compute_reward(
@@ -333,6 +394,7 @@ def main():
 
             scores_list = [torch.tensor(R, device=device, dtype=torch.float32) for R in rewards]
 
+            # ---------- PPO step ----------
             try:
                 ppo.step(queries_list, responses_list, scores_list)
             except Exception as e:
@@ -341,6 +403,66 @@ def main():
                     print("[skip] TRL produced an empty internal batch; continuing.")
                 else:
                     raise
+
+            # ---------- tracer aux update (WHO/WHEN) ----------
+            tracer_loss_val = None
+            who_acc = None
+            when_acc = None
+            joint_acc = None
+
+            if tracer is not None:
+                # Build a small batch of (q + response) so gradients can flow into the LM
+                full_ids = []
+                full_masks = []
+                who_labels = []
+                when_labels = []
+                for i, (q_ids, r_ids, ga, gs) in enumerate(zip(input_ids, responses_list, gold_agents, gold_steps)):
+                    r_ids = r_ids.detach()  # as tokens chosen
+                    seq = torch.cat([q_ids, r_ids], dim=0)  # [Tq + Tr]
+                    full_ids.append(seq)
+                    full_masks.append(torch.ones_like(seq))
+                    who_labels.append(_who_label(ga))
+                    # WHEN: clamp into [0, tracer_n_when-1]
+                    when_labels.append(int(gs) if int(gs) < args.tracer_n_when else args.tracer_n_when - 1)
+
+                # pad to max length in the micro-batch
+                maxlen = max(x.shape[0] for x in full_ids)
+                pad_id = tok.pad_token_id
+                full_ids = torch.stack([torch.cat([x, torch.full((maxlen - x.shape[0],), pad_id, device=device, dtype=torch.long)]) for x in full_ids])
+                full_masks = torch.stack([torch.cat([m, torch.zeros((maxlen - m.shape[0],), device=device, dtype=torch.long)]) for m in full_masks])
+
+                # forward through base to get hidden states
+                base = getattr(ppo.model, "pretrained_model", ppo.model)
+                out = base(input_ids=full_ids, attention_mask=full_masks, output_hidden_states=True)
+                last_h = out.hidden_states[-1]              # [B, T, H]
+                # pool over the response span ONLY (q_len..end); approximate by masking out left padding + prompt tokens
+                # we don't have per-sample prompt length here, so mean-pool over all unpadded tokens (good enough)
+                mask = full_masks.unsqueeze(-1).float()     # [B, T, 1]
+                denom = mask.sum(dim=1).clamp_min(1.0)      # [B, 1]
+                pooled = (last_h * mask).sum(dim=1) / denom # [B, H]
+
+                who_t = torch.tensor(who_labels, device=device, dtype=torch.long)
+                when_t = torch.tensor(when_labels, device=device, dtype=torch.long)
+
+                t_out = tracer(pooled, who_labels=who_t, when_labels=when_t)
+                tracer_loss = t_out.loss if t_out.loss is not None else None
+
+                # metrics
+                with torch.no_grad():
+                    wp = t_out.who_logits.argmax(dim=-1)
+                    tp = t_out.when_logits.argmax(dim=-1)
+                    who_acc = float((wp == who_t).float().mean().item())
+                    when_acc = float((tp == when_t).float().mean().item())
+                    joint_acc = float(((wp == who_t) & (tp == when_t)).float().mean().item())
+
+                if tracer_loss is not None and math.isfinite(float(tracer_loss)):
+                    # step the same PPO optimizer so LM gets gradients; step tracer head optimizer for head params
+                    ppo.optimizer.zero_grad(set_to_none=True)
+                    tracer_optim.zero_grad(set_to_none=True)
+                    ppo.accelerator.backward(args.lambda_tracer * tracer_loss)
+                    ppo.optimizer.step()
+                    tracer_optim.step()
+                    tracer_loss_val = float(tracer_loss.detach().item())
 
             # -------- Counterfactual Replay (fast, optional) --------
             if args.cfr_prob > 0.0 and args.cfr_max_per_batch > 0:
@@ -375,6 +497,19 @@ def main():
                         else:
                             raise
             # --------------------------------------------------------
+
+            # ---------- logging ----------
+            step_idx += 1
+            log_row = {
+                "step": step_idx,
+                "reward_mean": float(sum(rewards) / max(1, len(rewards))),
+            }
+            if tracer is not None:
+                if tracer_loss_val is not None: log_row["tracer_loss"] = tracer_loss_val
+                if who_acc is not None:        log_row["who_acc"] = who_acc
+                if when_acc is not None:       log_row["when_acc"] = when_acc
+                if joint_acc is not None:      log_row["joint_acc"] = joint_acc
+            logger.log(**log_row)
 
     os.makedirs(args.save_dir, exist_ok=True)
     ppo.model.save_pretrained(args.save_dir)
