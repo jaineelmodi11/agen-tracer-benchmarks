@@ -1,0 +1,14 @@
+transformers>=4.43
+accelerate>=0.33
+peft>=0.12
+datasets>=2.20
+scikit-learn>=1.4
+numpy>=1.26
+ujson>=5.9
+rich>=13.7
+pydantic>=2.7
+# optional serving on Linux; skip on Mac for now
+# vllm>=0.5
+# sglang>=0.3.7
+# fastapi>=0.115
+# uvicorn>=0.30

@@ -1,0 +1,164 @@
+{"task_id": "HumanEval/0", "completion": "def has_close_elements(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/1", "completion": "def separate_paren_groups(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/10", "completion": "def make_palindrome(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/100", "completion": "def make_a_pile(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/101", "completion": "def words_string(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/102", "completion": "def choose_num(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/103", "completion": "def rounded_avg(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/104", "completion": "def unique_digits(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/105", "completion": "def by_length(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/106", "completion": "def f(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/107", "completion": "def even_odd_palindrome(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/108", "completion": "def count_nums(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/109", "completion": "def move_one_ball(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/11", "completion": "def string_xor(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/110", "completion": "def exchange(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/111", "completion": "def histogram(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/112", "completion": "def reverse_delete(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/113", "completion": "def odd_count(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/114", "completion": "def minSubArraySum(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/115", "completion": "def max_fill(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/116", "completion": "def sort_array(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/117", "completion": "def select_words(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/118", "completion": "def get_closest_vowel(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/119", "completion": "def match_parens(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/12", "completion": "def longest(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/120", "completion": "def maximum(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/121", "completion": "def solution(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/122", "completion": "def add_elements(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/123", "completion": "def get_odd_collatz(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/124", "completion": "def valid_date(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/125", "completion": "def split_words(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/126", "completion": "def is_sorted(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/127", "completion": "def intersection(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/128", "completion": "def prod_signs(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/129", "completion": "def minPath(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/13", "completion": "def greatest_common_divisor(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/130", "completion": "def tri(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/131", "completion": "def digits(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/132", "completion": "def is_nested(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/133", "completion": "def sum_squares(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/134", "completion": "def check_if_last_char_is_a_letter(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/135", "completion": "def can_arrange(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/136", "completion": "def largest_smallest_integers(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/137", "completion": "def compare_one(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/138", "completion": "def is_equal_to_sum_even(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/139", "completion": "def special_factorial(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/14", "completion": "def all_prefixes(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/140", "completion": "def fix_spaces(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/141", "completion": "def file_name_check(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/142", "completion": "def sum_squares(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/143", "completion": "def words_in_sentence(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/144", "completion": "def simplify(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/145", "completion": "def order_by_points(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/146", "completion": "def specialFilter(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/147", "completion": "def get_max_triples(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/148", "completion": "def bf(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/149", "completion": "def sorted_list_sum(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/15", "completion": "def string_sequence(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/150", "completion": "def x_or_y(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/151", "completion": "def double_the_difference(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/152", "completion": "def compare(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/153", "completion": "def Strongest_Extension(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/154", "completion": "def cycpattern_check(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/155", "completion": "def even_odd_count(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/156", "completion": "def int_to_mini_roman(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/157", "completion": "def right_angle_triangle(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/158", "completion": "def find_max(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/159", "completion": "def eat(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/16", "completion": "def count_distinct_characters(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/160", "completion": "def do_algebra(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/161", "completion": "def solve(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/162", "completion": "def string_to_md5(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/163", "completion": "def generate_integers(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/17", "completion": "def parse_music(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/18", "completion": "def how_many_times(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/19", "completion": "def sort_numbers(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/2", "completion": "def truncate_number(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/20", "completion": "def find_closest_elements(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/21", "completion": "def rescale_to_unit(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/22", "completion": "def filter_integers(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/23", "completion": "def strlen(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/24", "completion": "def largest_divisor(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/25", "completion": "    Here's the complete implementation:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/26", "completion": "    To solve this problem, we can use a dictionary to keep track of the numbers we've seen so far. This way, we only need to check each number against the dictionary for duplicates. Here's how you can implement it:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/27", "completion": "        result.append(char.upper())\n    elif char.isupper():\n        result.append(char.lower())\n    else:\n        result.append(char)\n    return ''.join(result)\n"}
+{"task_id": "HumanEval/28", "completion": "    To complete the given function, you need to ensure that the input is a list of strings and then concatenate them into a single string. Here's how you can do it:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/29", "completion": "        result.append(string)\n    return result\n"}
+{"task_id": "HumanEval/3", "completion": "    To solve this problem, we need to keep track of the balance of the bank account during each operation. If at any point the balance falls below zero, we return `True`. Here's how you can implement this:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/30", "completion": "    return [num for num in l if num > 0]\n"}
+{"task_id": "HumanEval/31", "completion": "    \"\"\"Return true if a given number is prime, and false otherwise.\"\"\"\n    if n <= 1:\n    return False\n    if n == 2:\n    return True\n    if n % 2 == 0:\n    return False\n    for i in range(3, int(n**0.5) + 1, 2):\n    if n % i == 0:\n        return False\n    return True\n"}
+{"task_id": "HumanEval/32", "completion": "    \"\"\" \n    Finds the root of the polynomial poly(x) = 0.\n"}
+{"task_id": "HumanEval/33", "completion": "    # Replace the current element with the one at the next multiple of 3\n    l_prime[i] = l[i + 1]\n"}
+{"task_id": "HumanEval/34", "completion": "    # Use set to remove duplicates while preserving order\n    unique_elements = sorted(list(set(l)))\n\n    # Return the sorted unique elements as a list\n    return unique_elements\n"}
+{"task_id": "HumanEval/35", "completion": "    return max(l)\n"}
+{"task_id": "HumanEval/36", "completion": "    if i % 11 == 0 or i % 13 == 0:\n        num_str = str(i)\n        for digit in num_str:\n            if digit == '7':\n                count += 1\n    return count\n"}
+{"task_id": "HumanEval/37", "completion": "    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6,\n"}
+{"task_id": "HumanEval/38", "completion": "    Here's how you can implement this:\n\n    ```python\n"}
+{"task_id": "HumanEval/39", "completion": "        if num % i == 0:\n            return False\n    return True\n\n    # Generate Fibonacci numbers up to n-1\n    fibs = [0, 1]\n    while len(fibs) < n:\n    next_num = fibs[-1] + fibs[-2\n"}
+{"task_id": "HumanEval/4", "completion": "    To complete the `mean_absolute_deviation` function, we need to follow these steps:\n\n    1. Calculate the mean of the given list of numbers.\n    2. Compute the absolute differences from the mean for all elements in the list.\n    3. Find the maximum absolute deviation by comparing these differences.\n    4. Divide the maximum absolute deviation by the number of elements minus one to get the mean absolute deviation.\n\n    Here's how you can implement this:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/40", "completion": "    for i in range(len(l) - 2):\n    for j in range(i + 1, len(l) - 1):\n        k = j + 1\n        while k < len(l):\n            if l[i] + l[j] + l[k] == 0:\n                return True\n            k += 1\n    return False\n"}
+{"task_id": "HumanEval/41", "completion": "    # Move the left side car\n    if i % 2 == 0:\n        cars_left.append(i)\n    else:\n        cars_right.append(i)\n\n    # Count the number of collisions\n    return len(cars_left) - len(cars_right)\n"}
+{"task_id": "HumanEval/42", "completion": "    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n    return [x + 1 for x in l]\n"}
+{"task_id": "HumanEval/43", "completion": "    \"\"\"\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    \"\"\"\n    seen = set()\n    for num in l:\n    complement = -num\n    if complement in seen:\n        return True\n    seen.add(num)\n    return False\n"}
+{"task_id": "HumanEval/44", "completion": "    Here's how you can implement this:\n\n    ```python\n"}
+{"task_id": "HumanEval/45", "completion": "    # Calculate the area of the triangle\n    area = (1/2) * a * h\n    return area\n"}
+{"task_id": "HumanEval/46", "completion": "    # Initialize a list to store previously computed fib4 numbers\n    fib = [0] * (n + 1)\n\n    # Base cases for the first few terms\n    if n == 0:\n    return 0\n    elif n == 1 or n == 2:\n    return 0\n\n    # Store the previous two terms in the list\n    fib[1], fib[2] = 0, 0\n\n    # Compute the rest of the sequence up to n\n    for i in range(\n"}
+{"task_id": "HumanEval/47", "completion": "    To find the median of a list, you can sort the list first and then take the middle element if the list has an odd number of elements or the average of the two middle elements if the list has an even number of elements. Here's how you can implement this:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/48", "completion": "    return text == text[::-1]\n"}
+{"task_id": "HumanEval/49", "completion": "    raise ValueError(\"Both n and p must be integers.\")\n\n    # Handle special cases where n is zero or p is one\n    if n == 0:\n    return 1\n    elif p == 1:\n    return n\n\n    # Calculate 2^n % p using modular exponentiation\n    result = 1\n    base = n\n    power = p\n"}
+{"task_id": "HumanEval/5", "completion": "    To solve this problem, you need to iterate through the list and insert the `delimeter` between each pair of consecutive elements. Here's how you can implement the `intersperse` function:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/50", "completion": "    \"\"\"\n    returns decoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    # Create a mapping from each letter to its ASCII value\n    ascii_map = {chr(i): i + 5 for i in range(26)}\n\n    # Decode the shifted characters\n    return ''.join(chr((ascii_map[ord(c)] - ord(\"a\") + 1) % 26 + ord(\"a\"))) if s else \"\"\n"}
+{"task_id": "HumanEval/51", "completion": "    vowels = {'a', 'e', 'i', 'o', 'u'}\n    result = []\n\n    for char in text:\n    if char.lower() not in vowels:\n        result.append(char)\n\n    return ''.join(result)\n"}
+{"task_id": "HumanEval/52", "completion": "    To complete the function `below_threshold`, you need to iterate through each number in the list and check if it is less than the given threshold `t`. If any number in the list is not below the threshold, return `False`. Here's how you can implement this:\n\n    ```python\n"}
+{"task_id": "HumanEval/53", "completion": "    raise TypeError(\"Both inputs must be integers.\")\n\n    return x + y\n"}
+{"task_id": "HumanEval/54", "completion": "    # Compare the current characters of both strings\n    if s0[i] != s1[i]:\n        return False\n    # If all characters matched, return True\n    return True\n"}
+{"task_id": "HumanEval/55", "completion": "    next_fib = fib_sequence[-1] + fib_sequence[-2]\n"}
+{"task_id": "HumanEval/56", "completion": "    Here's how you can implement this:\n\n    ```python\n"}
+{"task_id": "HumanEval/57", "completion": "    \"\"\"Return True if the list is monotonically increasing or decreasing.\"\"\"\n    return all(x <= y for x, y in zip(l, l[1:]))\n"}
+{"task_id": "HumanEval/58", "completion": "    To solve this problem, we need to find the common elements between two lists while ensuring that each element is only included once in the result. Here's a corrected version of the function:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/59", "completion": "    # While i divides n, update largest and divide n\n"}
+{"task_id": "HumanEval/6", "completion": "    To solve this problem, we need to iterate through the input string and count the depth of nesting for each group of parentheses. Here's how you can implement the `parse_nested_parens` function:\n\n    ```python\n    from typing import List\n"}
+{"task_id": "HumanEval/60", "completion": "    total_sum += i\n\n    return total_sum\n"}
+{"task_id": "HumanEval/61", "completion": "    stack = []\n\n    for char in brackets:\n    if char == '(':\n        stack.append(char)\n    elif char == ')':\n        if not stack:\n            return False\n        stack.pop()\n\n    return len(stack) == 0\n"}
+{"task_id": "HumanEval/62", "completion": "def derivative(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/63", "completion": "def fibfib(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/64", "completion": "def vowels_count(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/65", "completion": "def circular_shift(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/66", "completion": "def digitSum(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/67", "completion": "def fruit_distribution(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/68", "completion": "def pluck(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/69", "completion": "def search(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/7", "completion": "def filter_by_substring(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/70", "completion": "def strange_sort_list(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/71", "completion": "def triangle_area(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/72", "completion": "def will_it_fly(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/73", "completion": "def smallest_change(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/74", "completion": "def total_match(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/75", "completion": "def is_multiply_prime(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/76", "completion": "def is_simple_power(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/77", "completion": "def iscube(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/78", "completion": "def hex_key(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/79", "completion": "def decimal_to_binary(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/8", "completion": "def sum_product(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/80", "completion": "def is_happy(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/81", "completion": "def numerical_letter_grade(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/82", "completion": "def prime_length(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/83", "completion": "def starts_one_ends(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/84", "completion": "def solve(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/85", "completion": "def add(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/86", "completion": "def anti_shuffle(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/87", "completion": "def get_row(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/88", "completion": "def sort_array(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/89", "completion": "def encrypt(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/9", "completion": "def rolling_max(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/90", "completion": "def next_smallest(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/91", "completion": "def is_bored(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/92", "completion": "def any_int(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/93", "completion": "def encode(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/94", "completion": "def skjkasdkd(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/95", "completion": "def check_dict_case(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/96", "completion": "def count_up_to(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/97", "completion": "def multiply(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/98", "completion": "def count_upper(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}
+{"task_id": "HumanEval/99", "completion": "def closest_integer(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"}

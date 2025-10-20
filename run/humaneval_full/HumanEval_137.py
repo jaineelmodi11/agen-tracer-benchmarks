@@ -1,0 +1,24 @@
+
+def compare_one(a, b):
+    """
+    Create a function that takes integers, floats, or strings representing
+    real numbers, and returns the larger variable in its given variable type.
+    Return None if the values are equal.
+    Note: If a real number is represented as a string, the floating point might be . or ,
+
+    compare_one(1, 2.5) ➞ 2.5
+    compare_one(1, "2,3") ➞ "2,3"
+    compare_one("5,1", "6") ➞ "6"
+    compare_one("1", 1) ➞ None
+    """
+    # Convert all inputs to strings for comparison
+    str_a = str(a)
+    str_b = str(b)
+
+    # Compare the strings directly
+    if str_a > str_b:
+    return int(str_a)
+    elif str_a < str_b:
+    return int(str_b)
+    else:
+    return None

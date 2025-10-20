@@ -1,0 +1,323 @@
+# src/atracer/eval.py
+import json
+import argparse
+import time
+import re
+from typing import Optional, Tuple
+
+import torch
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    StoppingCriteria,
+    StoppingCriteriaList,
+    LogitsProcessor,
+    LogitsProcessorList,
+)
+
+# ----- Prompting -----
+PROMPT_USER = "<|user|>\n{}\n<|assistant|>\n"  # fallback if no chat template
+FORMAT_INSTR = (
+    "You are an attribution checker. Output a SINGLE LINE of strict JSON only.\n"
+    "Schema: {\"who\": \"<AGENT_NAME_OR_UNKNOWN>\", \"when\": \"<STEP_OR_UNKNOWN>\"}\n"
+    "Use EXACTLY these keys (lowercase). Use \"unknown\" if unsure.\n"
+    "Example: {\"who\": \"planner\", \"when\": \"step 3\"}\n"
+    "Now answer for the given case, JSON ONLY:"
+)
+
+# ----- Device selection -----
+def pick_device(arg: str) -> str:
+    arg = (arg or "auto").lower()
+    if arg == "auto":
+        if torch.backends.mps.is_available():
+            return "mps"
+        return "cpu"
+    if arg in {"mps", "cpu"}:
+        if arg == "mps" and not torch.backends.mps.is_available():
+            print("MPS requested but not available; falling back to CPU.")
+            return "cpu"
+        return arg
+    print("Unknown --device; falling back to CPU.")
+    return "cpu"
+
+# ----- Prompt construction -----
+def build_prompt_from_record(rec: dict, tok=None, no_chat_template: bool=False) -> str:
+    # 1) canonical schema
+    if "prompt" in rec and isinstance(rec["prompt"], str):
+        body = rec["prompt"]
+    # 2) already-rendered input_text (use as-is)
+    elif "input_text" in rec and isinstance(rec["input_text"], str):
+        body = rec["input_text"]
+    # 3) minimal fallback from Agent/Steps style records
+    elif "query" in rec:
+        q = rec.get("query") or ""
+        steps = rec.get("steps") or []
+        steps_txt = ""
+        if isinstance(steps, list) and steps:
+            steps_txt = "\n".join(f"Step {i+1}: {s}" for i, s in enumerate(steps))
+        body = (q.strip() + (("\n\n" + steps_txt) if steps_txt else "")).strip()
+    else:
+        # 4) last resort: stringify whole record
+        body = json.dumps(rec, ensure_ascii=False)
+
+    if not no_chat_template and tok is not None and hasattr(tok, "apply_chat_template"):
+        messages = [
+            {"role": "system", "content": FORMAT_INSTR},
+            {"role": "user",   "content": body},
+        ]
+        return tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+
+    return PROMPT_USER.format(FORMAT_INSTR + "\n\n" + body)
+
+# ----- Targets & parsing -----
+def get_target_from_record(rec: dict) -> Optional[str]:
+    for k in ("target", "labels", "label"):
+        v = rec.get(k)
+        if isinstance(v, str) and v.strip():
+            return v
+    return None
+
+def extract_answer(text: str) -> Tuple[Optional[str], Optional[str]]:
+    # Try strict JSON first: take the first {...} block
+    m = re.search(r"\{.*?\}", text, flags=re.DOTALL)
+    if m:
+        frag = m.group(0)
+        try:
+            j = json.loads(frag)
+            who = (j.get("who") or "").strip().lower()
+            when = (j.get("when") or "").strip().lower()
+            return (who or None, when or None)
+        except Exception:
+            pass
+    # Heuristic fallback
+    who = when = None
+    low = text.lower()
+    if "who:" in low:
+        who = low.split("who:", 1)[1].splitlines()[0].strip()
+    if "when:" in low:
+        when = low.split("when:", 1)[1].splitlines()[0].strip()
+    return who, when
+
+# ----- Early stop on '}' -----
+class StopOnJSONClose(StoppingCriteria):
+    def __init__(self, tokenizer):
+        super().__init__()
+        self.tokenizer = tokenizer
+        self.started = False
+    def __call__(self, input_ids, scores, **kwargs):
+        snippet = self.tokenizer.decode(input_ids[0][-48:], skip_special_tokens=True)
+        if "{" in snippet:
+            self.started = True
+        if self.started and "}" in snippet:
+            return True
+        return False
+
+# ----- Block EOS until '}' appears -----
+class BlockEOSTillJSONClose(LogitsProcessor):
+    def __init__(self, tokenizer, eos_token_id: Optional[int]):
+        self.tokenizer = tokenizer
+        self.eos = eos_token_id
+    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor) -> torch.FloatTensor:
+        if self.eos is None:
+            return scores
+        tail = self.tokenizer.decode(input_ids[0][-64:], skip_special_tokens=True)
+        if "{" in tail and "}" not in tail:
+            scores[:, self.eos] = float("-inf")
+        return scores
+
+# ----- Generation -----
+def infer_one(
+    model,
+    tok,
+    prompt,
+    *,
+    device="cpu",
+    max_input_tokens: Optional[int] = None,
+    max_new_tokens: int = 24,
+    temperature: float = 0.0,
+    top_p: float = 1.0,
+    no_chat_template: bool=False,
+, strict_json: bool = True):
+    model.eval()
+    with torch.inference_mode():
+        enc = tok(
+            prompt,
+            return_tensors="pt",
+            truncation=True,
+            max_length=max_input_tokens if max_input_tokens is not None else tok.model_max_length,
+        )
+        enc = {k: v.to(device) for k, v in enc.items()}
+        in_len = enc["input_ids"].shape[1]
+
+        stops = StoppingCriteriaList([StopOnJSONClose(tok)])
+        logits_processors = LogitsProcessorList([BlockEOSTillJSONClose(tok, tok.eos_token_id)])
+
+        gen_kwargs = dict(
+            **enc,
+            max_new_tokens=max_new_tokens,
+            do_sample=bool(temperature and temperature > 0.0),
+            temperature=max(1e-6, temperature),
+            top_p=top_p,
+            num_beams=1,
+            repetition_penalty=1.05,
+            use_cache=True,
+            pad_token_id=tok.pad_token_id,
+        )
+        if strict_json:
+            gen_kwargs.update(stopping_criteria=stops, logits_processor=logits_processors)
+        out = model.generate(**gen_kwargs
+            **enc,
+            max_new_tokens=max_new_tokens,
+            do_sample=bool(temperature and temperature > 0.0),
+            temperature=max(1e-6, temperature),
+            top_p=top_p,
+            num_beams=1,
+            repetition_penalty=1.05,
+            use_cache=True,
+            pad_token_id=tok.pad_token_id,
+            logits_processor=logits_processors,
+            stopping_criteria=stops,
+        )
+        cont = out[0, in_len:]
+        return tok.decode(cont, skip_special_tokens=True)
+
+# ----- IO utils -----
+def line_count(path: str) -> int:
+    n = 0
+    with open(path, "r", encoding="utf-8") as f:
+        for _ in f:
+            n += 1
+    return n
+
+# ----- Main -----
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", required=True)
+    ap.add_argument("--data", type=str)
+    ap.add_argument("--limit", type=int, default=0, help="only evaluate first N records")
+    ap.add_argument("--max-new-tokens", type=int, default=32, help="short JSON is enough")
+    ap.add_argument("--max-input-tokens", type=int, default=512, help="truncate prompts to this many tokens")
+    ap.add_argument("--progress-every", type=int, default=5, help="print progress every N items")
+    ap.add_argument("--temperature", type=float, default=0.0, help="0.0 => greedy")
+    ap.add_argument("--top_p", type=float, default=1.0)
+    ap.add_argument("--threads", type=int, default=4, help="torch.set_num_threads")
+    ap.add_argument("--device", type=str, default="auto", help="auto|mps|cpu")
+    ap.add_argument("--debug", type=int, default=0, help="print first N prompts/outputs")
+    ap.add_argument("--no-chat-template", action="store_true", help="force non-chat prompt format")
+    ap.add_argument("--selftest", action="store_true", help="run a synthetic 1-sample test")
+    args = ap.parse_args()
+
+    torch.set_num_threads(max(1, args.threads))
+    torch.set_num_interop_threads(1)
+
+    device = pick_device(args.device)
+    print(f"-> Using device: {device}")
+
+    tok = AutoTokenizer.from_pretrained(args.model, use_fast=True)
+    if tok.pad_token_id is None:
+        tok.pad_token = tok.eos_token
+
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model,
+        torch_dtype=torch.float32,
+        low_cpu_mem_usage=False,
+    ).to(device)
+    model.eval()
+    model.config.use_cache = True
+
+    if args.selftest:
+        rec = {
+            "query": "Sum list with a string item",
+            "steps": [
+                {"t": 0, "agent": "Planner", "action": "Plan steps", "obs": "ok", "error": None},
+                {"t": 1, "agent": "Coder",   "action": "sum([1,2,'x'])", "obs": "TypeError: unsupported operand", "error": "TypeError"},
+            ],
+            "label": {"agent": "Coder", "step": 1},
+        }
+        prompt = build_prompt_from_record(rec, tok=tok, no_chat_template=args.no_chat_template)
+        print("\n[SELFTEST] Prompt (first 300 chars):\n", prompt[:300])
+        text = infer_one(
+            model, tok, prompt,
+            device=device,
+            max_new_tokens=64,
+            temperature=0.5,
+            top_p=0.95,
+            max_input_tokens=384,
+            strict_json=False,
+        )
+        print("\n[SELFTEST] Model raw output:\n", text[:300])
+        who, when = extract_answer(text)
+        print("\n[SELFTEST] Parsed who/when:", who, when)
+        ok = (who == "coder") and ("2" in (when or ""))  # accept "step 2" variants
+        print("[SELFTEST] OK:", bool(ok))
+        return
+
+    if not args.data:
+        raise SystemExit("--data is required unless --selftest is passed")
+
+    total_lines = line_count(args.data)
+    total = min(args.limit, total_lines) if args.limit else total_lines
+
+    n = 0
+    agent_ok = 0
+    step_ok  = 0
+
+    start = time.time()
+    with open(args.data, "r", encoding="utf-8") as f:
+        for i, line in enumerate(f, 1):
+            rec = json.loads(line)
+            prompt = build_prompt_from_record(rec, tok=tok, no_chat_template=args.no_chat_template)
+
+            if args.debug and i <= args.debug:
+                print("\n--- DEBUG SAMPLE", i, "---")
+                print("PROMPT (first 300 chars):\n", prompt[:300])
+
+            try:
+                text = infer_one(
+                    model, tok, prompt,
+                    device=device,
+                    max_new_tokens=args.max_new_tokens,
+                    temperature=args.temperature,
+                    top_p=args.top_p,
+                    max_input_tokens=args.max_input_tokens,
+                    no_chat_template=args.no_chat_template,
+                )
+            except KeyboardInterrupt:
+                raise
+            except Exception as e:
+                print(f"Generation error at item {i}: {e}")
+                text = ""
+
+            if args.debug and i <= args.debug:
+                print("\nMODEL RAW OUTPUT:\n", text[:300])
+
+            who, when = extract_answer(text)
+            tgt = get_target_from_record(rec)
+            if isinstance(tgt, str):
+                lowt = tgt.lower()
+                if who  and who  in lowt: agent_ok += 1
+                if when and when in lowt: step_ok  += 1
+
+            n += 1
+            if i % max(1, args.progress_every) == 0:
+                elapsed = time.time() - start
+                ips = i / max(1e-6, elapsed)
+                remaining = max(0, total - i)
+                eta = remaining / max(1e-6, ips)
+                print(
+                    f"...processed {i}/{total} items | elapsed={elapsed:.1f}s | "
+                    f"items/sec={ips:.3f} | ETA~{eta:.1f}s",
+                    flush=True,
+                )
+            if args.limit and n >= args.limit:
+                break
+
+    print({
+        "samples": n,
+        "agent_acc": round(agent_ok / max(1, n), 3),
+        "step_acc":  round(step_ok  / max(1, n), 3),
+        "both_acc":  round((min(agent_ok, step_ok)) / max(1, n), 3),
+    })
+
+if __name__ == "__main__":
+    main()
