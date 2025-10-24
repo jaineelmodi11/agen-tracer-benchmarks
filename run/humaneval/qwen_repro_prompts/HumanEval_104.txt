@@ -1,0 +1,21 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+You will receive a function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no extra text). Indent with 4 spaces. Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+
+def unique_digits(x):
+    """Given a list of positive integers x. return a sorted list of all 
+    elements that hasn't any even digit.
+
+    Note: Returned list should be sorted in increasing order.
+    
+    For example:
+    >>> unique_digits([15, 33, 1422, 1])
+    [1, 15, 33]
+    >>> unique_digits([152, 323, 1422, 10])
+    []
+    """
+
+
+Return ONLY the 4-space-indented function body.<|im_end|>
+<|im_start|>assistant

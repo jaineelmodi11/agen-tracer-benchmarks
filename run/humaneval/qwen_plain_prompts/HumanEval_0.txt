@@ -1,0 +1,17 @@
+You will receive a Python function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no print). The body must be 4-space indented, valid, and handle edge cases. Do not reference variables that you have not defined.
+Return just the indented body with nothing else.
+
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """ Check if in given list of numbers, are any two numbers closer to each other than
+    given threshold.
+    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)
+    False
+    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)
+    True
+    """
+
+
+# Return only the body below:

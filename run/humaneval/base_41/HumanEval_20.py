@@ -9,15 +9,7 @@ def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
     >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
     (2.0, 2.0)
     """
-    if len(numbers) < 2:
-        raise ValueError("List must contain at least two elements")
+    To solve this problem, we need to find the two closest elements in the list. We can do this by sorting the list and then selecting the two closest elements. Here's how you can implement this:
 
-    # Find min and max values
-    min_value = min(numbers)
-    max_value = max(numbers)
-
-    # Calculate difference between min and max value
-    diff = abs(max_value - min_value)
-
-    # Return tuple with smaller and larger element
-    return (min_value, max_value)
+    ```python
+    from typing import List, Tuple

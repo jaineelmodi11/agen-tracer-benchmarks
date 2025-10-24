@@ -9,12 +9,7 @@ def sum_product(numbers: List[int]) -> Tuple[int, int]:
     >>> sum_product([1, 2, 3, 4])
     (10, 24)
     """
-    if not numbers:
-        return (0, 1)
+    To solve this problem, we need to calculate the sum and product of the given list of integers. Here's the correct implementation:
 
-    total = sum(numbers)
-    prod = 1
-    for num in numbers:
-        prod *= num
-
-    return (total, prod)
+    ```python
+    from typing import List, Tuple

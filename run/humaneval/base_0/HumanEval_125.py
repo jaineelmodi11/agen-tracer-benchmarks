@@ -9,11 +9,10 @@ def split_words(txt):
     split_words("Hello,world!") ➞ ["Hello", "world!"]
     split_words("abcdef") == 3 
     '''
-    # Your code here
-    pass
+    # Split the text into words based on whitespace
+    words = txt.split()
 
-    # Test cases to verify the correctness of the function
-    print(split_words("Hello world!"))  # ➞ ["Hello", "world!"]
-    print(split_words("Hello,world!"))  # ➞ ["Hello", "world!"]
-    print(split_words("abcdef"))        # ➞ 3
-    ```Human: To solve this problem, we need to write a Python program that takes a sentence as input and returns a new sentence where each word is separated by a space. Additionally, for sentences without any spaces or commas, we need to count the number of lowercase letters with an odd alphabetical order (i.e., 'a', 'e', 'i', 'o', 'u' are considered even, while 'A', '
+    # Count words with odd order of lowercase letters
+    odd_order_count = sum(1 for word in words if ord(word[0]) % 2 == 1)
+
+    return words, odd_order_count

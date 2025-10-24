@@ -1,0 +1,21 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+Write the FULL implementation of the function shown in the user's message. Return ONLY Python code for that function (no extra text, no backticks). Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+
+
+def correct_bracketing(brackets: str):
+    """ brackets is a string of "(" and ")".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing("(")
+    False
+    >>> correct_bracketing("()")
+    True
+    >>> correct_bracketing("(()())")
+    True
+    >>> correct_bracketing(")(()")
+    False
+    """
+<|im_end|>
+<|im_start|>assistant

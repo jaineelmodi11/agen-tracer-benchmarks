@@ -1,0 +1,19 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+You will receive a function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no extra text). Indent with 4 spaces. Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+
+
+def derivative(xs: list):
+    """ xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 + ....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    [1, 4, 12, 20]
+    >>> derivative([1, 2, 3])
+    [2, 6]
+    """
+
+
+Return ONLY the 4-space-indented function body.<|im_end|>
+<|im_start|>assistant

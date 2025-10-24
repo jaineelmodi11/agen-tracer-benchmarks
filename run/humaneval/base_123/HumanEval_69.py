@@ -10,22 +10,20 @@ def search(lst):
         search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3
         search([5, 5, 4, 4, 4]) == -1
     '''
-    # Your code here
-    count = {}
-    for i in lst:
-        if i not in count:
-            count[i] = 0
-        count[i] += 1
+    # Dictionary to store the frequency of each integer
+    frequency = {}
 
-    max_val = -1
-    for key, val in count.items():
-        if val >= key and val > max_val:
-            max_val = val
+    # Count the frequency of each integer
+    for num in lst:
+    if num in frequency:
+        frequency[num] += 1
+    else:
+        frequency[num] = 1
 
-    return max_val
+    # Find the greatest integer with frequency >= its value
+    for num in lst:
+    if num >= frequency[num] and num in frequency:
+        return num
 
-
-    # Test cases
-    print(search([4, 1, 2, 2, 3, 1]))  # Expected output: 2
-    print(search([1, 2, 2, 3, 3, 3, 4, 4, 4]))  # Expected output: 3
-    print(search([5, 5, 4, 4,
+    # Return -1 if no such integer exists
+    return -1

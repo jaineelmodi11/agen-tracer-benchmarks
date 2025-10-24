@@ -1,0 +1,14 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+Write the FULL implementation of the function shown in the user's message. Return ONLY Python code for that function (no extra text, no backticks). Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+
+def string_to_md5(text):
+    """
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    """
+<|im_end|>
+<|im_start|>assistant

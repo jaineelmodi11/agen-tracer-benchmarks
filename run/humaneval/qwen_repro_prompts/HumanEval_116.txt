@@ -1,0 +1,20 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+You will receive a function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no extra text). Indent with 4 spaces. Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+
+def sort_array(arr):
+    """
+    In this Kata, you have to sort an array of non-negative integers according to
+    number of ones in their binary representation in ascending order.
+    For similar number of ones, sort based on decimal value.
+
+    It must be implemented like this:
+    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]
+    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]
+    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]
+    """
+
+
+Return ONLY the 4-space-indented function body.<|im_end|>
+<|im_start|>assistant

@@ -1,0 +1,23 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+You will receive a function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no extra text).
+Rules:
+1) The body must be 4-space indented, syntactically valid, and executable with the given signature.
+2) Do not use names you didn't define. Do not print/read input.
+3) Prefer simple, correct solutions over clever ones. Handle edge cases.
+4) Output just the body.
+<|im_end|>
+<|im_start|>user
+from typing import List
+
+
+def rescale_to_unit(numbers: List[float]) -> List[float]:
+    """ Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1
+    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
+    [0.0, 0.25, 0.5, 0.75, 1.0]
+    """
+
+
+Return ONLY the 4-space-indented function body.<|im_end|>
+<|im_start|>assistant

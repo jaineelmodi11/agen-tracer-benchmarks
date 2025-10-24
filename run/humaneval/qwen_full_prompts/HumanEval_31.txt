@@ -1,0 +1,25 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+Write the FULL implementation of the function shown in the user's message. Return ONLY Python code for that function (no extra text, no backticks). Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+
+
+def is_prime(n):
+    """Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False
+    """
+<|im_end|>
+<|im_start|>assistant

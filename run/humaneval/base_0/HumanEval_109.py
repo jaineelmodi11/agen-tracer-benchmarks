@@ -26,23 +26,28 @@ def move_one_ball(arr):
                 array by performing any number of right shift operations.
                 
     """
-    # Write your code here
-    n = len(arr)
-    if n == 0:
-        return True
+    """
+    Determines if it is possible to sort the array in non-decreasing order by performing
+    right shifts on the given array.
 
-    left = 0
-    right = n - 1
-    while left < right:
-        if arr[left] > arr[right]:
-            return False
-        left += 1
-        right -= 1
+    :param arr: List[int] - The input array of integers.
+    :return: bool - True if the array can be sorted in non-decreasing order by performing right shifts, False otherwise.
+    """
+    # If the array is empty, it is always sorted
+    if not arr:
     return True
 
+    # If the array has only one element, it is sorted
+    if len(arr) == 1:
+    return True
 
-    # Test cases
-    print(move_one_ball([3, 4, 5, 1, 2]))  # Expected output: True
-    print(move_one_ball([3, 5, 4, 1, 2]))  # Expected output: False
-    print(move_one_ball([]))               # Expected output: True
-    print(move_one_ball([1, 2, 3]))         # Expected output:
+    # Check if the array is already sorted
+    if arr == sorted(arr):
+    return True
+
+    # Check if the array can be sorted by performing right shifts
+    for i in range(len(arr)):
+    if arr[i] > arr[i + 1]:
+        # Perform a right shift
+        arr[i + 1:] = arr[i + 1:][::-1]
+        # Check if the array is still sorted

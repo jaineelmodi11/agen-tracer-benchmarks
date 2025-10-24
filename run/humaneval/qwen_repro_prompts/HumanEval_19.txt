@@ -1,0 +1,18 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+You will receive a function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no extra text). Indent with 4 spaces. Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+from typing import List
+
+
+def sort_numbers(numbers: str) -> str:
+    """ Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sort_numbers('three one five')
+    'one three five'
+    """
+
+
+Return ONLY the 4-space-indented function body.<|im_end|>
+<|im_start|>assistant

@@ -7,10 +7,7 @@ def rolling_max(numbers: List[int]) -> List[int]:
     >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
     [1, 2, 3, 3, 3, 4, 4]
     """
-    max_so_far = numbers[0]
-    result = []
-    for number in numbers:
-        if number > max_so_far:
-            max_so_far = number
-        result.append(max_so_far)
-    return result
+    To solve this problem, you can use a list to keep track of the maximum values seen so far. Here's how you can implement it:
+
+    ```python
+    from typing import List, Tuple

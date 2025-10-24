@@ -16,6 +16,10 @@ def same_chars(s0: str, s1: str):
     >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
     False
     """
-    return sorted(s0) == sorted(s1)
+    # Count the occurrences of each character in s0
+    counter0 = Counter(s0)
+    # Count the occurrences of each character in s1
+    counter1 = Counter(s1)
 
-    # Example usage:
+    # Compare the two counters
+    return counter0 == counter1

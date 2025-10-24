@@ -1,0 +1,20 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+Write the FULL implementation of the function shown in the user's message. Return ONLY Python code for that function (no extra text, no backticks). Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+
+
+def is_palindrome(text: str):
+    """
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """
+<|im_end|>
+<|im_start|>assistant

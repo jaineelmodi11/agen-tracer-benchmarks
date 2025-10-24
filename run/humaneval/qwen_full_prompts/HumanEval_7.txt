@@ -1,0 +1,16 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+Write the FULL implementation of the function shown in the user's message. Return ONLY Python code for that function (no extra text, no backticks). Do not reference variables you have not defined. Prefer simple, correct solutions.<|im_end|>
+<|im_start|>user
+from typing import List
+
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """ Filter an input list of strings only for ones that contain given substring
+    >>> filter_by_substring([], 'a')
+    []
+    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')
+    ['abc', 'bacd', 'array']
+    """
+<|im_end|>
+<|im_start|>assistant

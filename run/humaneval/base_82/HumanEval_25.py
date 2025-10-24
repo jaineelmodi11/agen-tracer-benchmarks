@@ -12,16 +12,4 @@ def factorize(n: int) -> List[int]:
     >>> factorize(70)
     [2, 5, 7]
     """
-    if n == 1:
-        return []
-    res = []
-    while n % 2 == 0:
-        res.append(2)
-        n //= 2
-    for i in range(3, int(n**0.5)+1, 2):
-        while n % i == 0:
-            res.append(i)
-            n //= i
-    if n > 2:
-        res.append(n)
-    return res[::-1]
+    # While i divides n

@@ -11,20 +11,8 @@ def simplify(x, n):
     simplify("1/6", "2/1") = False
     simplify("7/10", "10/2") = False
     """
-    # Convert the strings into integers for easier manipulation
-    num_x = int(x)
-    den_x = int(n)
+    # Convert the fraction to a decimal
+    decimal = float(x) * float(n)
 
-    # Simplify the fraction by dividing the numerator and denominator by their greatest common divisor (GCD)
-    gcd = math.gcd(num_x, den_x)
-    simplified_num = num_x // gcd
-    simplified_den = den_x // gcd
-
-    # Check if the simplified fraction evaluates to a whole number
-    return simplified_num == 0 or simplified_den == 1
-
-
-    # Test cases
-    print(simplify("1/5", "5/1"))  # Expected output: True
-    print(simplify("1/6", "2/1"))  # Expected output: False
-    print(simplify("7/10", "10/
+    # Check if the decimal is an integer
+    return decimal.is_integer()

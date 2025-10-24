@@ -9,19 +9,16 @@ def find_max(words):
     find_max(["name", "enam", "game"]) == "enam"
     find_max(["aaaaaaa", "bb" ,"cc"]) == ""aaaaaaa"
     """
-    # Your code here
-    max_word = ""
-    for word in words:
-        if len(set(word)) > len(max_word):
-            max_word = word
+    from collections import Counter
 
+    # Count the unique characters in each word
+    unique_chars = [len(set(word)) for word in words]
+
+    # Find the maximum number of unique characters
+    max_unique_chars = max(unique_chars)
+
+    # Find the word with the maximum number of unique characters
+    max_word = words[unique_chars.index(max_unique_chars)]
+
+    # Return the word with the maximum number of unique characters
     return max_word
-
-
-    # Test cases
-    print(find_max(["name", "of", "string"]))  # Should print "string"
-    print(find_max(["name", "enam", "game"]))  # Should print "enam"
-    print(find_max(["aaaaaaa", "bb", "cc"]))  # Should print "" (empty string)
-    ```
-
-    This solution iterates through each word in the input list, converts it to a set of its characters, and compares the length of this set against the current maximum word's length. It keeps track of the longest word found so far. If two words have the same

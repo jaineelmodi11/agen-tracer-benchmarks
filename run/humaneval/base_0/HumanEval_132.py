@@ -12,15 +12,22 @@ def is_nested(string):
     is_nested('[[][]]') ➞ True
     is_nested('[[]][[') ➞ True
     '''
-    # Your code here
+    # Check if the string is empty or contains only one '['
+    if not string or string[0] == '[':
+    return False
 
-    # Test cases to verify the correctness of your function
-    print(is_nested('[[]]'))  # ➞ True
-    print(is_nested('[]]]]]]][[[[[]'))  # ➞ False
-    print(is_nested('[][]'))  # ➞ False
-    print(is_nested('[]'))  # ➞ False
-    print(is_nested('[[][]]'))  # ➞ True
-    print(is_nested('[[]][['))  # ➞ True
-    ```
+    # Initialize the depth of the current nested bracket
+    depth = 0
 
-    This solution uses recursion to traverse through the string, checking for nested brackets. It keeps track of the depth of each level of nesting by using a counter variable `depth`. If the current character is an opening bracket, it increments the depth; otherwise, it decrements. When the depth reaches zero
+    # Iterate through the string
+    for char in string:
+    if char == '[':
+        depth += 1
+    elif char == ']':
+        depth -= 1
+    if depth < 0:
+        # If the depth goes below zero, there is no nested bracket
+        return False
+
+    # If the depth is zero, there is at least one nested bracket
+    return depth == 0

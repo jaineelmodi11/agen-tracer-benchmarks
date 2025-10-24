@@ -9,16 +9,7 @@ def parse_nested_parens(paren_string: str) -> List[int]:
     >>> parse_nested_parens('(()()) ((())) () ((())()())')
     [2, 3, 1, 3]
     """
-    result = []
-    current_level = 0
-    for char in paren_string:
-        if char == '(':
-            current_level += 1
-        elif char == ')':
-            current_level -= 1
-        else:
-            # If we encounter an opening parenthesis, add it to our list and reset the current level
-            result.append(current_level)
-            current_level = 0
+    To solve the problem of parsing nested parentheses and returning the maximum depth of nesting for each group, you can use a recursive approach. Here's a Python implementation that addresses the requirements:
 
-    return result
+    ```python
+    from typing import List

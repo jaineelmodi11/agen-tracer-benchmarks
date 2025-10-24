@@ -28,23 +28,11 @@ def eat(number, need, remaining):
 
     Have fun :)
     """
-    # Your code here
-    if number >= need:
-        return [number + remaining - need, remaining]
-    else:
-        return [number + remaining - need, remaining]# Write your code below this line
-    # print(eat(5, 6, 10))
-    # print(eat(4, 8, 9))
-    # print(eat(1, 10, 10))
-    # print(eat(2, 11, 5))
+    # Calculate the total number of carrots eaten
+    total_eaten = number + need
 
+    # Calculate the number of carrots left after the meals
+    remaining_after_meals = remaining - number
 
-
-    # Write your code above this line
-    # TODO: Uncomment these import statements at the end of your script
-    import sys
-    sys.path.append('..')  # Add the parent directory path to the Python path for relative imports
-    from helper_functions import eat
-
-
-    print(eat(5
+    # Return the result
+    return [total_eaten, remaining_after_meals]

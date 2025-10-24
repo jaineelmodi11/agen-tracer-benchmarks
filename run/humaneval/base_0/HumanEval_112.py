@@ -10,20 +10,10 @@ def reverse_delete(s,c):
     For s = "abcdef", c = "b"  the result should be ('acdef',False)
     For s = "abcdedcba", c = "ab", the result should be ('cdedc',True)
     """
-    # Your code here
-    l1 = list(s)
-    l2 = []
-    for i in range(len(l1)):
-        if l1[i] not in c:
-            l2.append(l1[i])
-    l3 = ''.join(l2)
-    print(l3)
-    if l3 == l3[::-1]:
-        return (l3, True)
-    else:
-        return (l3, False)# Write your code here
+    # Reverse the string s
+    reversed_s = s[::-1]
 
-    # Test cases
-    print(reverse_delete("abcde", "ae"))  # Expected output: ('bcd', False)
-    print(reverse_delete("abcdef", "b"))  # Expected output: ('acdef', False)
-    print(reverse_delete("abcdedcba", "ab"))  # Expected output: ('cdedc',
+    # Check if the reversed string is a palindrome
+    is_palindrome = reversed_s == reversed_s[::-1]
+
+    return reversed_s, is_palindrome

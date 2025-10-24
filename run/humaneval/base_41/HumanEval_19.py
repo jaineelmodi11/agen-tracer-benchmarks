@@ -8,11 +8,13 @@ def sort_numbers(numbers: str) -> str:
     >>> sort_numbers('three one five')
     'one three five'
     """
-    # Convert input into list of strings
-    nums = [num for num in numbers.split()]
+    To sort the numbers from smallest to largest based on their values in the input string, you can follow these steps:
 
-    # Sort the list of strings
-    nums.sort()
+    1. Split the input string into individual numbers.
+    2. Sort the numbers based on their values.
+    3. Join the sorted numbers back into a single string.
 
-    # Join back into string
-    return ''.join(nums)
+    Here's the complete implementation:
+
+    ```python
+    from typing import List

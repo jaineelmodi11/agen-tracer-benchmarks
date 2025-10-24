@@ -13,14 +13,16 @@ def file_name_check(file_name):
     file_name_check("example.txt") # => 'Yes'
     file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    # Your code here
-    return True if len(file_name) <= 3 else False if file_name.find('.') == -1 or file_name[0] != file_name[1:] else True if file_name[:2].isalpha() and file_name[-4:] in ['txt', 'exe', 'dll'] else False
+    # Check if the file name contains more than three digits
+    if any(char.isdigit() for char in file_name) > 3:
+    return 'No'
 
-    # Test cases
-    print(file_name_check("example.txt")) # => 'Yes'
-    print(file_name_check("1example.dll")) # => 'No'
-    print(file_name_check("example.txt.txt")) # => 'Yes'
-    print(file_name_check("example.txt.exe")) # => 'No'
-    print(file_name_check("example.txt.dll")) # => 'No'
-    print(file_name_check("example.txt.txt.txt")) # => 'Yes'
-    print(file_name
+    # Check if the file name contains exactly one dot
+    if file_name.count('.') != 1:
+    return 'No'
+
+    # Check if the substring before the dot is not empty and starts with a letter from the Latin alphabet
+    if not file_name.startswith('a') and not file_name.startswith('A') and not file_name.startswith('Aa') and not file_name.startswith('aa') and not file_name.startswith('aaa') and not file_name.startswith('aaaa'):
+    return 'No'
+
+    return 'Yes'

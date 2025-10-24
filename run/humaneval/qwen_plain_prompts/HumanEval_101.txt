@@ -1,0 +1,16 @@
+You will receive a Python function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no print). The body must be 4-space indented, valid, and handle edge cases. Do not reference variables that you have not defined.
+Return just the indented body with nothing else.
+
+
+def words_string(s):
+    """
+    You will be given a string of words separated by commas or spaces. Your task is
+    to split the string into words and return an array of the words.
+    
+    For example:
+    words_string("Hi, my name is John") == ["Hi", "my", "name", "is", "John"]
+    words_string("One, two, three, four, five, six") == ["One", "two", "three", "four", "five", "six"]
+    """
+
+
+# Return only the body below:

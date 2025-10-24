@@ -14,12 +14,17 @@ def parse_music(music_string: str) -> List[int]:
     >>> parse_music('o o| .| o| o| .| .| .| .| o o')
     [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
     """
-    result = []
-    for i in range(len(music_string)):
-        if music_string[i] == '|':
-            result.append(0)
-        elif music_string[i] == '.':
-            result[-1] += 1
-        else:
-            result.append(result[-1])
-    return result
+        # Convert note to integer and add to beats list
+        beats.append(int(note))
+    else:
+        # If note is not a digit, it's a note, so add its duration to beats list
+        duration = 0
+        for char in note:
+            if char == '|':
+                duration += 2
+            elif char == '.':
+                duration += 1
+            else:
+                break
+        beats.append(duration)
+    return beats

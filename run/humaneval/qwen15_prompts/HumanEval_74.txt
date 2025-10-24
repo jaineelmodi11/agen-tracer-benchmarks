@@ -1,0 +1,29 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+You will receive a function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no extra text).
+Rules:
+1) The body must be 4-space indented, syntactically valid, and executable with the given signature.
+2) Do not use names you didn't define. Do not print/read input.
+3) Prefer simple, correct solutions over clever ones. Handle edge cases.
+4) Output just the body.
+<|im_end|>
+<|im_start|>user
+
+def total_match(lst1, lst2):
+    '''
+    Write a function that accepts two lists of strings and returns the list that has 
+    total number of chars in the all strings of the list less than the other list.
+
+    if the two lists have the same number of chars, return the first list.
+
+    Examples
+    total_match([], []) ➞ []
+    total_match(['hi', 'admin'], ['hI', 'Hi']) ➞ ['hI', 'Hi']
+    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) ➞ ['hi', 'admin']
+    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) ➞ ['hI', 'hi', 'hi']
+    total_match(['4'], ['1', '2', '3', '4', '5']) ➞ ['4']
+    '''
+
+
+Return ONLY the 4-space-indented function body.<|im_end|>
+<|im_start|>assistant

@@ -33,23 +33,23 @@ def pluck(arr):
         * 1 <= nodes.length <= 10000
         * 0 <= node.value
     """
-    # Your code here
-    if not arr:
-        return []
+    """
+    Given an array representing a branch of a tree that has non-negative integer nodes,
+    your task is to pluck one of the nodes and return it.
+    The plucked node should be the node with the smallest even value.
+    If multiple nodes with the same smallest even value are found return the node that has smallest index.
 
-    min_even = float('inf')
-    min_index = -1
+    The plucked node should be returned in a list, [ smallest_value, its index ],
+    If there are no even values or the given array is empty, return [].
 
-    for i, num in enumerate(arr):
-        if num % 2 == 0 and num < min_even:
-            min_even = num
-            min_index = i
+    Example 1:
+    Input: [4, 2, 3]
+    Output: [2, 1]
+    Explanation: 2 has the smallest even value, and 2 has the smallest index.
 
-    return [min_even, min_index] if min_even != float('inf') else []
+    Example 2:
+    Input: [1, 2, 3]
+    Output: [2, 1]
+    Explanation: 2 has the smallest even value, and 2 has the smallest index. 
 
-
-
-    # Test cases
-    print(pluck([4,2,3]))  # Expected output: [2, 1]
-    print(pluck([1,2,3]))  # Expected output: [2, 1]
-    print(pluck([5, 0, 3, 0, 4, 2]))  # Expected output: [0,
+    Example

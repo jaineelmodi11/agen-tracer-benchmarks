@@ -8,22 +8,14 @@ def f(n):
     Example:
     f(5) == [1, 2, 6, 24, 15]
     """
+    if n == 0:
+    return []
+
     result = []
     for i in range(1, n + 1):
-        if i % 2 == 0:
-            result.append(math.factorial(i))
-        else:
-            result.append(sum(range(1, i + 1)))
+    if i % 2 == 0:
+        result.append(factorial(i))
+    else:
+        result.append(sum(range(1, i + 1)))
+
     return result
-
-    # Test cases
-    print(f(5))  # Expected output: [1, 2, 6, 24, 15]
-    print(f(3))  # Expected output: [1, 2, 6]
-
-    ```
-
-    ### Explanation:
-
-    - **Factorial Calculation**: The `math.factorial` function calculates the factorial of each number up to `n`. For example, `math.factorial(5)` computes `5!`, which equals `120`.
-
-    - **Sum

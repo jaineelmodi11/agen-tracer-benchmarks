@@ -13,11 +13,6 @@ def modp(n: int, p: int):
     >>> modp(100, 101)
     1
     """
-    if n == 0:
-        return 1
-    elif n < 0:
-        return modp(-n, p) % p
-    else:
-        return pow(n, p-2, p)
+    raise ValueError("p must be a prime number")
 
-    # Test cases to verify the correctness of the function.
+    return pow(2, n, p)

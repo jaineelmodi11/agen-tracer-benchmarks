@@ -10,13 +10,17 @@ def mean_absolute_deviation(numbers: List[float]) -> float:
     >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
     1.0
     """
-    # Calculate the mean of the dataset
+    MAD = average | x - x_mean |
+    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
+    1.0
+    """
+    if not numbers:
+    return 0.0
+
     mean = sum(numbers) / len(numbers)
+    mad = 0.0
 
-    # Calculate the absolute differences from the mean for all elements
-    abs_diffs = [abs(x - mean) for x in numbers]
+    for num in numbers:
+    mad += abs(num - mean)
 
-    # Calculate the mean of these absolute differences
-    mad = sum(abs_diffs) / len(numbers)
-
-    return mad
+    return mad / len(numbers)

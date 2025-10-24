@@ -10,19 +10,11 @@ def encrypt(s):
     encrypt('gf') returns 'kj'
     encrypt('et') returns 'ix'
     """
-    # Create a dictionary of all the characters in the alphabet
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
-    # Create a new list of the same length as the original string, but shifted by 2
-    shifted_alphabet = alphabet[1:] + alphabet[:1]
-    # Initialize a variable to hold the result
-    result = ""
-    # Loop through each character in the input string
-    for char in s:
-        if char in alphabet:
-            index = alphabet.index(char)
-            # Shift the index by 2
-            new_index = (index + 2) % len(alphabet)
-            # Add the new index to the result string
-            result += shifted_alphabet[new_index]
-        else:
-            # If the character is not in the alphabet, add it to
+    # Create a mapping of each letter to its rotated counterpart
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    rotated_alphabet = alphabet[2:] + alphabet[:2]
+
+    # Encrypt each character in the input string
+    encrypted_string = ''.join(rotated_alphabet[ord(char) - ord('a')] for char in s)
+
+    return encrypted_string

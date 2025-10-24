@@ -1,0 +1,23 @@
+<|im_start|>system
+You are a senior Python coding assistant.
+You will receive a function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no extra text).
+Rules:
+1) The body must be 4-space indented, syntactically valid, and executable with the given signature.
+2) Do not use names you didn't define. Do not print/read input.
+3) Prefer simple, correct solutions over clever ones. Handle edge cases.
+4) Output just the body.
+<|im_end|>
+<|im_start|>user
+from typing import List
+
+
+def string_xor(a: str, b: str) -> str:
+    """ Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.
+    >>> string_xor('010', '110')
+    '100'
+    """
+
+
+Return ONLY the 4-space-indented function body.<|im_end|>
+<|im_start|>assistant

@@ -14,25 +14,23 @@ def match_parens(lst):
     match_parens(['()(', ')']) == 'Yes'
     match_parens([')', ')']) == 'No'
     '''
-    # Write your code here
-    stack = []
-    for i in lst:
-        if i == '(':
-            stack.append(i)
-        else:
-            if len(stack) > 0:
-                stack.pop()
-            else:
-                return 'No'
+    # Initialize a counter for the balance of parentheses
+    balance = 0
 
-    if len(stack) == 0:
-        return 'Yes'
+    # Iterate through each character in the list
+    for char in lst:
+    # Increment balance if it's an opening parenthesis
+    if char == '(':
+        balance += 1
+    # Decrement balance if it's a closing parenthesis
+    elif char == ')':
+        balance -= 1
     else:
-        return 'No'
+        # If balance is negative, it means there's a closing parenthesis before an opening one
+        if balance < 0:
+            return 'No'
+        # Otherwise, it means there's a missing opening parenthesis
+        balance += 1
 
-
-    # Test cases
-    print(match_parens(['()(', ')']))  # Should return 'Yes'
-    print(match_parens([')', ')']))   # Should return 'No'
-    print(match_parens(['((', ')'))     # Should return 'Yes'
-    print(match_parens([')', ')(']))   # Should return 'No')import re
+    # If balance is zero, it means all parentheses are balanced
+    return 'Yes' if balance == 0 else 'No'

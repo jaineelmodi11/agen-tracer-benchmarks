@@ -9,21 +9,7 @@ def separate_paren_groups(paren_string: str) -> List[str]:
     >>> separate_paren_groups('( ) (( )) (( )( ))')
     ['()', '(())', '(()())']
     """
-    result = []
-    stack = []
+    Here's the implementation:
 
-    for char in paren_string:
-        if char == '(':
-            stack.append(char)
-        elif char == ')':
-            if len(stack) > 0:
-                stack.pop()
-            else:
-                # print("stack empty")
-                break
-
-    while len(stack) != 0:
-        result.append(''.join(stack))
-        stack.pop()
-
-    return result
+    ```python
+    from typing import List

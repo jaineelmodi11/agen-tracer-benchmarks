@@ -9,17 +9,12 @@ def cycpattern_check(a , b):
     cycpattern_check("himenss","simen") => True
 
     """
-    # Your code here
+    """Check if any rotation of the second word is a substring of the first word."""
+    # Check if the second word is a substring of the first word
+    if b in a:
+    return True
+    # Check if any rotation of the second word is a substring of the first word
+    for i in range(len(b)):
+    if b[i:] in a and b[:i] in a:
+        return True
     return False
-
-
-    # Test cases
-    print(cycpattern_check("abcd", "abd"))  # Expected output: False
-    print(cycpattern_check("hello", "ell"))  # Expected output: True
-    print(cycpattern_check("whassup", "psus"))  # Expected output: False
-    print(cycpattern_check("abab", "baa"))  # Expected output: True
-    print(cycpattern_check("efef", "eeff"))  # Expected output: False
-    print(cycpattern_check("himenss", "simen"))  # Expected output: True
-    ```
-
-    This solution uses string manipulation techniques to check for rotations and substrings, ensuring that the function correctly identifies whether one word or any of

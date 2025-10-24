@@ -19,24 +19,31 @@ def valid_date(date):
 
     valid_date('06/04/2020') => False
     """
-    # Your code here
-    try:
-        year = int(date[0:4])
-        month = int(date[5:7])
-        day = int(date[8:])
-        if month < 1 or month > 12:
-            return False
-        elif day < 1 or day > 31:
-            return False
-        elif month == 2 and (day <= 29 or day >= 30):
-            return False
-        else:
-            return True
-    except ValueError:
-        return False
+    # Check if the date string is not empty
+    if not date:
+    return False
 
+    # Check if the date is in the correct format
+    if len(date) != 10:
+    return False
 
-    # Test cases
-    print(valid_date('03-11-2000'))  # Expected output: True
-    print(valid_date('15-01-2012'))  # Expected output: False
-    print(valid
+    # Extract the month, day, and year from the date string
+    month, day, year = date.split('-')
+
+    # Check if the month is valid (1-12)
+    if not (1 <= int(month) <= 12):
+    return False
+
+    # Check if the day is valid (1-31)
+    if not (1 <= int(day) <= 31):
+    return False
+
+    # Check if the year is valid (2000-2099)
+    if not (2000 <= int(year) <= 2099):
+    return False
+
+    # Check if the month is valid (1-12)
+    if not (1 <= int(month) <= 12):
+    return False
+
+    # Check if the day is valid (1-3

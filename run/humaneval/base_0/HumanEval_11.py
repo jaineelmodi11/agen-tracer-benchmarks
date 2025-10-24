@@ -7,10 +7,6 @@ def string_xor(a: str, b: str) -> str:
     >>> string_xor('010', '110')
     '100'
     """
-    xor = ''
-    for i in range(len(a)):
-        if a[i] == b[i]:
-            xor += '0'
-        else:
-            xor += '1'
-    return xor[::-1]
+    if a[i] != b[i]:
+        xor_result += '1'
+    return xor_result

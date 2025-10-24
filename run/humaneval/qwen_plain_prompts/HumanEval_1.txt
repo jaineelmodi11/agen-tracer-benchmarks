@@ -1,0 +1,17 @@
+You will receive a Python function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no print). The body must be 4-space indented, valid, and handle edge cases. Do not reference variables that you have not defined.
+Return just the indented body with nothing else.
+
+from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.
+    >>> separate_paren_groups('( ) (( )) (( )( ))')
+    ['()', '(())', '(()())']
+    """
+
+
+# Return only the body below:

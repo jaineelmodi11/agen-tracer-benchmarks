@@ -6,22 +6,11 @@ def is_equal_to_sum_even(n):
     is_equal_to_sum_even(6) == False
     is_equal_to_sum_even(8) == True
     """
-    # Check if the number is odd and not divisible by 2
-    if n % 2 != 0:
-        return False
-
-    # Check if the sum of any three consecutive even numbers equals the fourth one
-    for i in range(1, len(str(n)) - 3):
-        if (n + int(str(n)[i]) + int(str(n)[i+1]) + int(str(n)[i+2])) % 2 == 0:
-            return True
-
+    # Iterate over possible combinations of 4 even numbers
+    for a in range(2, n // 2 + 1):
+    for b in range(a, n // 2 + 1):
+        for c in range(b, n // 2 + 1):
+            d = n - a - b - c
+            if d % 2 == 0:
+                return True
     return False
-
-
-    # Test cases to verify the correctness of the function
-    assert is_equal_to_sum_even(4) == False
-    assert is_equal_to_sum_even(6) == False
-    assert is_equal_to_sum_even(8) == True
-    ```
-
-    This code snippet defines a

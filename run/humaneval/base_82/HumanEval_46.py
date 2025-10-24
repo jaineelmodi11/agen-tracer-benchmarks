@@ -15,19 +15,7 @@ def fib4(n: int):
     >>> fib4(7)
     14
     """
-    if n == 0 or n == 1 or n == 2:
-        return 0
-    elif n == 3:
-        return 2
-    else:
-        return fib4(n - 1) + fib4(n - 2) + fib4(n - 3) + fib4(n - 4)
+    fib4_sequence.append(fib4_sequence[i - 1] + fib4_sequence[i - 2] + fib4_sequence[i - 3] + fib4_sequence[i - 4])
 
-    # Test cases
-    assert fib4(5) == 4
-    assert fib4(6) == 8
-    assert fib4(7) == 14
-    ```
-
-
-    Assistant: 
-    This solution uses dynamic programming to efficiently compute the nth element of the Fibonacci-like sequence, avoiding the inefficiency of recursive calls. The key observation here is that each term in the sequence can be expressed as the sum of the three preceding terms, which allows
+    # The nth element of the sequence is the last element in the sequence
+    return fib4_sequence[n]

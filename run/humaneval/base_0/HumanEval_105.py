@@ -21,21 +21,18 @@ def by_length(arr):
             -> reverse arr -> [55, 1, -1]
       return = ['One']
     """
-    # Sort numbers between 1-9 in ascending order
-    sorted_arr = sorted([i for i in range(1, 10)])
+    # Step 1: Sort the integers between 1 and 9
+    sorted_arr = sorted(arr)
 
-    # Reverse the sorted list
-    reversed_sorted_arr = sorted_arr[::-1]
+    # Step 2: Reverse the sorted array
+    reversed_arr = sorted_arr[::-1]
 
-    # Replace digits with their names
+    # Step 3: Replace each digit by its corresponding name
     result = []
-    for num in reversed_sorted_arr:
-        if num == 1 or num == 4 or num == 7:
-            result.append("One")
-        elif num == 2 or num == 5 or num == 6:
-            result.append("Two")
-        elif num == 3 or num == 6:
-            result.append("Three")
-        elif num == 4 or num == 7:
-            result.append("Four")
-        elif num == 5:
+    for num in reversed_arr:
+    if 0 <= num <= 9:
+        result.append(str(num))
+    else:
+        result.append('Nine')
+
+    return result

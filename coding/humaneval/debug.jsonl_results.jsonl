@@ -1,0 +1,1 @@
+{"task_id": "HumanEval/0", "completion": "    for j in range(i + 1, len(numbers)):\n        if abs(numbers[i] - numbers[j]) < threshold:\n            return True\n    return False\n", "result": "failed: name 'i' is not defined", "passed": false}

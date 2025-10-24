@@ -11,16 +11,12 @@ def largest_smallest_integers(lst):
     largest_smallest_integers([]) == (None, None)
     largest_smallest_integers([0]) == (None, None)
     '''
-    # Filter out negative numbers and sort the remaining ones
-    filtered_negatives = sorted(filter(lambda x: x < 0, lst))
+    # Filter out negative and positive integers
+    negative_integers = [x for x in lst if x < 0]
+    positive_integers = [x for x in lst if x >= 0]
 
-    # Filter out positive numbers and sort the remaining ones
-    filtered_positives = sorted(filter(lambda x: x >= 0, lst))
+    # Find the largest and smallest integers
+    largest = max(negative_integers) if negative_integers else None
+    smallest = min(positive_integers) if positive_integers else None
 
-    # Return the maximum of the two lists
-    return max(filtered_negatives, filtered_positives)
-
-    # Test cases to verify the correctness of the solution
-    assert largest_smallest_integers([-1, -2, -3, 0, 2, 3]) == (2, 3)
-    assert largest_smallest_integers([1, 2, 3, 4, 5]) == (5, 1)
-    assert largest_smallest_integers([0,
+    return (largest, smallest)

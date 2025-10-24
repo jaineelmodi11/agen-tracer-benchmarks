@@ -16,13 +16,11 @@ def Strongest_Extension(class_name, extensions):
     Example:
     for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'
     """
-    # Your code here
-    pass
+    # Calculate the strength of each extension
+    strength = [len(ext) - len(ext.lower()) for ext in extensions]
 
-    # Test cases
-    print(Strongest_Extension("MyClass", ["AA", "Be", "CC"]))  # Should print "MyClass.AA"
-    print(Strongest_Extension("MyClass", ["BB", "CC", "DD"]))  # Should print "MyClass.BB"
-    print(Strongest_Extension("MyClass", []))  # Should print "MyClass"
-    print(Strongest_Extension("MyClass", ["AA", "BB", "CC"]))  # Should print "MyClass.AA"
-    print(Strongest_Extension("MyClass", ["AB", "BC", "CD"]))  # Should print "MyClass.BC"
-    print(Strongest_Extension("MyClass", ["
+    # Find the maximum strength and the corresponding extension
+    strongest_extension = max(strength, key=lambda x: (x, class_name))
+
+    # Return the class name and the strongest extension
+    return f"{class_name}.{strongest_extension}"

@@ -7,5 +7,8 @@ def specialFilter(nums):
     specialFilter([15, -73, 14, -15]) => 1 
     specialFilter([33, -2, -3, 45, 21, 109]) => 2
     """
-    """Write a function that takes an array of numbers as input and returns 
-    the number of elements in the array that are greater than
+    count = 0
+    for num in nums:
+    if num > 10 and is_odd(num):
+        count += 1
+    return count

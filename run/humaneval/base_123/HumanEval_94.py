@@ -12,4 +12,14 @@ def skjkasdkd(lst):
     For lst = [0,81,12,3,1,21] the output should be 3
     For lst = [0,8,1,2,1,7] the output should be 7
     """
+    def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
+    prime_numbers = [num for num in lst if is_prime(num)]
+    sum_of_digits = sum(int(digit) for num in prime_numbers for digit in str(num))
+    return sum_of_digits

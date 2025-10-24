@@ -10,21 +10,19 @@ def triangle_area(a, b, c):
     triangle_area(3, 4, 5) == 6.00
     triangle_area(1, 2, 10) == -1
     '''
-    # Check for invalid input
-    if not (a > 0 and b > 0 and c > 0): 
-        return -1
-
-    # Calculate semi-perimeter
+    # Check if the sides form a valid triangle
+    if a + b > c and a + c > b and b + c > a:
+    # Calculate the semi-perimeter
     s = (a + b + c) / 2
 
-    # Calculate area using Heron's formula
-    area = (s * (s-a) * (s-b) * (s-c)) ** 0.5
+    # Calculate the area using Heron's formula
+    area = math.sqrt(s * (s - a) * (s - b) * (s - c))
 
-    # Round the result to 2 decimal places
-    return round(area, 2)
+    # Round the area to 2 decimal points
+    area = round(area, 2)
 
-    # Test cases
-    print(triangle_area(3, 4, 5))
-    print(triangle_area(1, 2, 10))
-    print(triangle_area(-1, 2, 3))
-    print(triangle_area(0,
+    return area
+
+    else:
+    # Return -1 if the sides do not form a valid triangle
+    return -1

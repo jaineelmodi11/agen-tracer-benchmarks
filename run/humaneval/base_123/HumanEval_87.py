@@ -20,7 +20,21 @@ def get_row(lst, x):
     get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
     """
     """
-    You are given a 2 dimensional data, as a nested lists,
-    which is similar to matrix, however, unlike matrices,
-    each row may contain a different number of columns.
-    Given lst, and integer x, find integers x in the
+    Given a 2-dimensional list, find all coordinates (row, column) that match the value x.
+    Return a list of tuples, [(row, column), ...] such that each tuple is a coordinate.
+    Sort the coordinates by rows in ascending order and then by columns in descending order.
+
+    Examples:
+    >>> get_row([
+  [1,2,3,4,5,6],
+  [1,2,3,4,1,6],
+  [1,2,3,4,5,1]
+    ], 1)
+    [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    >>> get_row([], 1)
+    []
+    >>> get_row([[], [1], [1, 2, 3]], 3)
+    [(2, 2)]
+    """
+    result = []
+    for

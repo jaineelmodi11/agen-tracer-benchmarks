@@ -14,17 +14,7 @@ def fibfib(n: int):
     >>> fibfib(8)
     24
     """
-    if n <= 2:
-        return n - 1
-    else:
-        # Initialize the first three values of the sequence
-        fibs = [0, 0, 1]
-        for i in range(3, n + 1):
-            fibs.append(fibs[-1] + fibs[-2] + fibs[-3])
-        return fibs[n]
+    fibfib_values.append(fibfib_values[i - 1] + fibfib_values[i - 2] + fibfib_values[i - 3])
 
-    # Check function with provided data points
-    assert fibfib(1) == 0
-    assert fibfib(5) == 4
-    assert fibfib(8) == 24
-    print("All tests passed.")import math
+    # The n-th element is the last value in the sequence
+    return fibfib_values[n]

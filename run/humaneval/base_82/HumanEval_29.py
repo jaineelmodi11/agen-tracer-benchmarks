@@ -8,4 +8,7 @@ def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
     >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
     ['abc', 'array']
     """
-    return [s for s in strings if s.startswith(prefix)]
+    To filter the input list of strings based on a given prefix, you can use Python's built-in `filter` function. The `filter` function takes a function and an iterable as arguments. The function should return `True` for strings that match the prefix and `False` otherwise. Here's how you can implement the `filter_by_prefix` function:
+
+    ```python
+    from typing import List

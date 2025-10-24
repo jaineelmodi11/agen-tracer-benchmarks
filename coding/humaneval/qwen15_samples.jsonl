@@ -1,0 +1,835 @@
+{"task_id": "HumanEval/1", "completion": "    import re\n"}
+{"task_id": "HumanEval/1", "completion": "    import re\n"}
+{"task_id": "HumanEval/1", "completion": "    import re\n"}
+{"task_id": "HumanEval/1", "completion": "    import re\n"}
+{"task_id": "HumanEval/1", "completion": "    import re\n"}
+{"task_id": "HumanEval/1", "completion": "    import re\n"}
+{"task_id": "HumanEval/10", "completion": "    return string + string[:len(string)-1][::-1]\n"}
+{"task_id": "HumanEval/10", "completion": "    return string + string[:len(string)-1][::-1]\n"}
+{"task_id": "HumanEval/10", "completion": "    return string + string[:len(string)-1][::-1]\n"}
+{"task_id": "HumanEval/10", "completion": "    return string + string[:len(string)-1][::-1]\n"}
+{"task_id": "HumanEval/10", "completion": "    return string + string[:len(string)-1][::-1]\n"}
+{"task_id": "HumanEval/10", "completion": "    return string + string[:len(string)-palindrome_length][::-1]\n"}
+{"task_id": "HumanEval/100", "completion": "    return [n + 2*i for i in range(n)]\n"}
+{"task_id": "HumanEval/100", "completion": "    return [n + 2 * i for i in range(n)]\n"}
+{"task_id": "HumanEval/100", "completion": "    return [n + 2 * i for i in range(n)]\n"}
+{"task_id": "HumanEval/100", "completion": "    return [n + 2*i for i in range(n)]\n"}
+{"task_id": "HumanEval/100", "completion": "    return [n + 2 * i for i in range(n)]\n"}
+{"task_id": "HumanEval/100", "completion": "    return [n + 2*i for i in range(n)]\n"}
+{"task_id": "HumanEval/101", "completion": "    return s.split(', ')\n"}
+{"task_id": "HumanEval/101", "completion": "    return s.split(', ')\n"}
+{"task_id": "HumanEval/101", "completion": "    return s.split(', ')\n"}
+{"task_id": "HumanEval/101", "completion": "    return s.split(', ')\n"}
+{"task_id": "HumanEval/101", "completion": "    return s.split(', ')\n"}
+{"task_id": "HumanEval/101", "completion": "    return s.split(', ')\n"}
+{"task_id": "HumanEval/102", "completion": "    return max(i for i in range(x, y + 1) if i % 2 == 0)\n"}
+{"task_id": "HumanEval/102", "completion": "    return max(i for i in range(x, y + 1) if i % 2 == 0)\n"}
+{"task_id": "HumanEval/102", "completion": "    return max(i for i in range(x, y + 1) if i % 2 == 0)\n"}
+{"task_id": "HumanEval/102", "completion": "    return max(i for i in range(x, y + 1) if i % 2 == 0)\n"}
+{"task_id": "HumanEval/102", "completion": "    return max(i for i in range(x, y + 1) if i % 2 == 0)\n"}
+{"task_id": "HumanEval/102", "completion": "    return max(x, y) if max(x, y) % 2 == 0 else -1\n"}
+{"task_id": "HumanEval/103", "completion": "    return bin(round((n + m) / 2))[2:]\n"}
+{"task_id": "HumanEval/103", "completion": "    return bin(round((n + m) / 2))[2:]\n"}
+{"task_id": "HumanEval/103", "completion": "    return bin(round((n + m) / 2))[2:]\n"}
+{"task_id": "HumanEval/103", "completion": "    return bin(round((n + m) / 2))[2:]\n"}
+{"task_id": "HumanEval/103", "completion": "    return bin(round((n + m) / 2))[2:]\n"}
+{"task_id": "HumanEval/103", "completion": "    return bin(round((n + m) / 2))[2:]\n"}
+{"task_id": "HumanEval/104", "completion": "    while n > 0:\n        if n % 2 == 0:\n            return True\n        n //= 10\n    return False\n\n    return sorted(set(filter(lambda num: not has_even_digit(num), x)))\n"}
+{"task_id": "HumanEval/104", "completion": "    return sorted({d for d in x if all(int(d) % 2 != 0 for d in str(d))})\n"}
+{"task_id": "HumanEval/104", "completion": "    return sorted(set(x) - {d for d in str(x) if int(d) % 2 == 0})\n"}
+{"task_id": "HumanEval/104", "completion": "    return sorted(set(x) - {i for i in x if i % 2 == 0})\n"}
+{"task_id": "HumanEval/104", "completion": "    return sorted({d for d in x if all(int(d) % 2 != 0 for d in str(d))})\n"}
+{"task_id": "HumanEval/104", "completion": "    return sorted(set(x) - {d for d in str(max(x)) if d % 2 == 0})\n"}
+{"task_id": "HumanEval/105", "completion": "    return sorted([str(i) for i in arr if 1 <= i <= 9], reverse=True)\n"}
+{"task_id": "HumanEval/105", "completion": "    return sorted([str(i) for i in arr if 1 <= i <= 9], reverse=True)\n"}
+{"task_id": "HumanEval/105", "completion": "    return sorted([str(i) for i in arr if 1 <= i <= 9], reverse=True)\n"}
+{"task_id": "HumanEval/105", "completion": "    return sorted([str(i) for i in arr if 1 <= i <= 9])[::-1]\n"}
+{"task_id": "HumanEval/105", "completion": "    return sorted([str(x) for x in arr if 1 <= x <= 9])[::-1]\n"}
+{"task_id": "HumanEval/105", "completion": "    return sorted([str(i) for i in arr if 1 <= i <= 9])[::-1]\n"}
+{"task_id": "HumanEval/106", "completion": "    return [i * (i + 1) // 2 if i % 2 else i for i in range(1, n + 1)]\n"}
+{"task_id": "HumanEval/106", "completion": "    return [i * (i + 1) // 2 if i % 2 else i for i in range(1, n + 1)]\n"}
+{"task_id": "HumanEval/106", "completion": "    return [i * (i + 1) // 2 if i % 2 else i for i in range(1, n + 1)]\n"}
+{"task_id": "HumanEval/106", "completion": "    return [i * (i + 1) // 2 if i % 2 else i for i in range(1, n + 1)]\n"}
+{"task_id": "HumanEval/106", "completion": "    return [i * (i + 1) // 2 if i % 2 else i for i in range(1, n + 1)]\n"}
+{"task_id": "HumanEval/106", "completion": "    return [i * (i + 1) // 2 if i % 2 else i for i in range(1, n + 1)]\n"}
+{"task_id": "HumanEval/107", "completion": "    return sum(int(str(i)[::-1]) % 2 == i % 2 for i in range(1, n + 1)), len([i for i in range(1, n + 1) if int(str(i)[::-1]) % 2 != i % 2])\n"}
+{"task_id": "HumanEval/107", "completion": "    return sum(int(str(i)[::-1]) % 2 == i % 2 for i in range(1, n + 1)), len([i for i in range(1, n + 1) if int(str(i)[::-1]) % 2 != i % 2])\n"}
+{"task_id": "HumanEval/107", "completion": "    return sum(int(str(i)[::-1]) % 2 == i % 2 for i in range(1, n + 1)), len(range(1, n + 1)) - sum(int(str(i)[::-1]) % 2 == i % 2 for i in range(1, n + 1))\n"}
+{"task_id": "HumanEval/108", "completion": "    return len([x for x in arr if sum(int(digit) for digit in str(abs(x))) > 0])\n"}
+{"task_id": "HumanEval/108", "completion": "    return len([x for x in arr if sum(int(digit) for digit in str(abs(x))) > 0])\n"}
+{"task_id": "HumanEval/108", "completion": "    return len([x for x in arr if sum(int(digit) for digit in str(abs(x))) > 0])\n"}
+{"task_id": "HumanEval/108", "completion": "    return sum(1 for num in arr if sum(int(digit) for digit in str(abs(num))) > 0)\n"}
+{"task_id": "HumanEval/108", "completion": "    return sum(1 for num in arr if sum(int(digit) for digit in str(abs(num))) > 0)\n"}
+{"task_id": "HumanEval/108", "completion": "    return len([x for x in arr if sum(int(digit) for digit in str(abs(x))) > 0])\n"}
+{"task_id": "HumanEval/109", "completion": "    return all(arr[i] <= arr[(i + 1) % len(arr)] for i in range(len(arr)))\n"}
+{"task_id": "HumanEval/109", "completion": "    return arr == sorted(arr)\n"}
+{"task_id": "HumanEval/109", "completion": "    return arr == sorted(arr)\n"}
+{"task_id": "HumanEval/109", "completion": "    return arr == sorted(arr)\n"}
+{"task_id": "HumanEval/109", "completion": "    return arr == sorted(arr)\n"}
+{"task_id": "HumanEval/109", "completion": "    return arr == sorted(arr)\n"}
+{"task_id": "HumanEval/11", "completion": "    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))\n"}
+{"task_id": "HumanEval/11", "completion": "    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))\n"}
+{"task_id": "HumanEval/11", "completion": "    return ''.join([str(int(x) ^ int(y)) for x, y in zip(a, b)])\n"}
+{"task_id": "HumanEval/11", "completion": "    return ''.join([str(int(x) ^ int(y)) for x, y in zip(a, b)])\n"}
+{"task_id": "HumanEval/11", "completion": "    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))\n"}
+{"task_id": "HumanEval/11", "completion": "    return ''.join(str(int(x) ^ int(y)) for x, y in zip(a, b))\n"}
+{"task_id": "HumanEval/110", "completion": "    even_count = sum(1 for x in lst1 if x % 2 == 0)\n    odd_count = len(lst1) - even_count\n    return \"YES\" if even_count >= len(lst2) else \"NO\"\n"}
+{"task_id": "HumanEval/110", "completion": "    odd_count_lst1 = sum(1 for x in lst1 if x % 2 != 0)\n    even_count_lst2 = sum(1 for x in lst2 if x % 2 == 0)\n\n    return \"YES\" if even_count_lst2 >= odd_count_lst1 else \"NO\"\n"}
+{"task_id": "HumanEval/110", "completion": "    return \"YES\" if all(x % 2 == 0 for x in lst1) else \"NO\"\n"}
+{"task_id": "HumanEval/110", "completion": "    return \"YES\" if sum(x % 2 for x in lst1) <= len(lst2) else \"NO\"\n"}
+{"task_id": "HumanEval/110", "completion": "    return \"YES\" if all(x % 2 == 0 for x in lst1) else \"NO\"\n"}
+{"task_id": "HumanEval/110", "completion": "    return \"YES\" if len(set(lst1)) == len({x for x in lst1 if x % 2 == 0}) else \"NO\"\n"}
+{"task_id": "HumanEval/111", "completion": "    counts = Counter(test.split())\n    max_count = max(counts.values(), default=0)\n    return {letter: count for letter, count in counts.items() if count == max_count}\n"}
+{"task_id": "HumanEval/111", "completion": "    counts = Counter(test.split())\n    max_count = max(counts.values(), default=0)\n    return {letter: count for letter, count in counts.items() if count == max_count}\n"}
+{"task_id": "HumanEval/111", "completion": "    counts = Counter(test.split())\n    max_count = max(counts.values(), default=0)\n    return {letter: count for letter, count in counts.items() if count == max_count}\n"}
+{"task_id": "HumanEval/111", "completion": "    counts = Counter(test.split())\n    max_count = max(counts.values(), default=0)\n    return {letter: count for letter, count in counts.items() if count == max_count}\n"}
+{"task_id": "HumanEval/111", "completion": "    counts = Counter(test)\n    max_count = max(counts.values())\n    return {letter: count for letter, count in counts.items() if count == max_count}\n"}
+{"task_id": "HumanEval/111", "completion": "    counts = Counter(test.split())\n    max_count = max(counts.values(), default=0)\n    return {letter: count for letter, count in counts.items() if count == max_count}\n"}
+{"task_id": "HumanEval/112", "completion": "    return ''.join([char for char in s if char not in c]), s == s[::-1]\n"}
+{"task_id": "HumanEval/112", "completion": "    return ''.join([char for char in s if char not in c]), s == s[::-1]\n"}
+{"task_id": "HumanEval/112", "completion": "    return ''.join([char for char in s if char not in c]), s == s[::-1]\n"}
+{"task_id": "HumanEval/112", "completion": "    return ''.join([char for char in s if char not in c]), s == s[::-1]\n"}
+{"task_id": "HumanEval/112", "completion": "    return ''.join([char for char in s if char not in c]), s == s[::-1]\n"}
+{"task_id": "HumanEval/112", "completion": "    return ''.join([char for char in s if char not in c]), s == s[::-1]\n"}
+{"task_id": "HumanEval/113", "completion": "    return [f\"the number of odd elements {len([int(digit) for digit in s if int(digit) % 2 != 0])}n the str{n+1} of the {n+1}nput.\"] * len(lst)\n"}
+{"task_id": "HumanEval/113", "completion": "    return [f\"the number of odd elements {sum(1 for c in s if int(c) % 2 != 0)}n the str{n} of the {n}nput.\"] * len(lst)\n"}
+{"task_id": "HumanEval/113", "completion": "    return [f\"the number of odd elements {sum(1 for c in s if int(c) % 2 != 0)}n the str{n} of the {n+1}nput.\"] * len(lst)\n"}
+{"task_id": "HumanEval/113", "completion": "    return [f\"the number of odd elements {sum(1 for c in s if int(c) % 2 != 0)}n the str{n+1} of the {n+1}nput.\"] * len(lst)\n"}
+{"task_id": "HumanEval/113", "completion": "    return [f\"the number of odd elements {len([int(digit) for digit in s if int(digit) % 2 != 0])}n the str{n+1} of the {n+1}nput.\"] * len(lst)\n"}
+{"task_id": "HumanEval/113", "completion": "    return [f\"the number of odd elements {sum(1 for c in s if int(c) % 2 != 0)}n the str{n} of the {n}nput.\"] * len(lst)\n"}
+{"task_id": "HumanEval/114", "completion": "    return min(sum(nums[i:j+1] for i in range(len(nums)) for j in range(i, len(nums))))\n"}
+{"task_id": "HumanEval/114", "completion": "    return min(sum(nums[i:j+1] for i in range(len(nums)) for j in range(i, len(nums))))\n"}
+{"task_id": "HumanEval/114", "completion": "    return min(sum(nums[i:j+1] for i in range(len(nums)) for j in range(i, len(nums))))\n"}
+{"task_id": "HumanEval/114", "completion": "    return min(sum(nums[i:j+1] for i in range(len(nums)) for j in range(i, len(nums))))\n"}
+{"task_id": "HumanEval/114", "completion": "    return min(sum(nums[i:j+1] for i in range(len(nums)) for j in range(i, len(nums))))\n"}
+{"task_id": "HumanEval/114", "completion": "    return min(sum(nums[:i+1]) for i in range(len(nums)))\n"}
+{"task_id": "HumanEval/115", "completion": "    total_water = sum(sum(row) for row in grid)\n    return math.ceil(total_water / capacity)\n"}
+{"task_id": "HumanEval/115", "completion": "    total_water = sum(sum(row) for row in grid)\n    return math.ceil(total_water / capacity)\n"}
+{"task_id": "HumanEval/115", "completion": "    total_water = sum(sum(row) for row in grid)\n    return math.ceil(total_water / capacity)\n"}
+{"task_id": "HumanEval/115", "completion": "    total_water = sum(sum(row) for row in grid)\n    return math.ceil(total_water / capacity)\n"}
+{"task_id": "HumanEval/115", "completion": "    total_water = sum(sum(row) for row in grid)\n    return math.ceil(total_water / capacity)\n"}
+{"task_id": "HumanEval/115", "completion": "    return sum(sum(row) // capacity for row in grid)\n"}
+{"task_id": "HumanEval/116", "completion": "    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n"}
+{"task_id": "HumanEval/116", "completion": "    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n"}
+{"task_id": "HumanEval/116", "completion": "    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n"}
+{"task_id": "HumanEval/116", "completion": "    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n"}
+{"task_id": "HumanEval/116", "completion": "    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n"}
+{"task_id": "HumanEval/116", "completion": "    arr.sort(key=lambda x: (bin(x).count('1'), x))\n"}
+{"task_id": "HumanEval/119", "completion": "    for j in range(i + 1, len(lst)):\n        result = lst[i] + lst[j]\n        if is_balanced(result):\n            return 'Yes'\n    return 'No'\n"}
+{"task_id": "HumanEval/119", "completion": "    for j in range(i + 1, len(lst)):\n        if is_balanced(lst[i] + lst[j]):\n            return 'Yes'\n    return 'No'\n"}
+{"task_id": "HumanEval/119", "completion": "    for j in range(i + 1, len(lst)):\n        if is_balanced(lst[i] + lst[j]):\n            return 'Yes'\n    return 'No'\n"}
+{"task_id": "HumanEval/119", "completion": "    count = Counter(lst[0] + lst[1])\n    return 'Yes' if count['('] == count[')'] else 'No'\n"}
+{"task_id": "HumanEval/119", "completion": "    cnt = Counter(lst[0] + lst[1])\n    return 'Yes' if cnt['('] == cnt[')'] else 'No'\n"}
+{"task_id": "HumanEval/119", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/12", "completion": "    return max(strings, default=None)\n"}
+{"task_id": "HumanEval/12", "completion": "    return max(strings, default=None)\n"}
+{"task_id": "HumanEval/12", "completion": "    return max(strings, default=None)\n"}
+{"task_id": "HumanEval/12", "completion": "    return max(strings, default=None)\n"}
+{"task_id": "HumanEval/12", "completion": "    return max(strings, default=None)\n"}
+{"task_id": "HumanEval/12", "completion": "    return max(strings, default=None)\n"}
+{"task_id": "HumanEval/120", "completion": "    return heapq.nlargest(k, arr)\n"}
+{"task_id": "HumanEval/120", "completion": "    return heapq.nlargest(k, arr)\n"}
+{"task_id": "HumanEval/120", "completion": "    return heapq.nlargest(k, arr)\n"}
+{"task_id": "HumanEval/120", "completion": "    return heapq.nlargest(k, arr)\n"}
+{"task_id": "HumanEval/120", "completion": "    return heapq.nlargest(k, arr)\n"}
+{"task_id": "HumanEval/120", "completion": "    return heapq.nlargest(k, arr)\n"}
+{"task_id": "HumanEval/121", "completion": "    return sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)\n"}
+{"task_id": "HumanEval/121", "completion": "    return sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)\n"}
+{"task_id": "HumanEval/121", "completion": "    return sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)\n"}
+{"task_id": "HumanEval/121", "completion": "    return sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)\n"}
+{"task_id": "HumanEval/121", "completion": "    return sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)\n"}
+{"task_id": "HumanEval/121", "completion": "    return sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)\n"}
+{"task_id": "HumanEval/122", "completion": "    return sum(x for x in arr[:k] if -99 < x < 100)\n"}
+{"task_id": "HumanEval/122", "completion": "    return sum(x for x in arr[:k] if -99 < x < 100)\n"}
+{"task_id": "HumanEval/122", "completion": "    return sum(x for x in arr[:k] if -99 < x < 100)\n"}
+{"task_id": "HumanEval/122", "completion": "    return sum(x for x in arr[:k] if -99 < x < 100)\n"}
+{"task_id": "HumanEval/122", "completion": "    return sum(x for x in arr[:k] if -99 < x < 100)\n"}
+{"task_id": "HumanEval/122", "completion": "    return sum(x for x in arr[:k] if -99 < x < 100)\n"}
+{"task_id": "HumanEval/123", "completion": "    return sorted([i for i in range(1, n+1) if i % 2 != 0])\n"}
+{"task_id": "HumanEval/123", "completion": "    return sorted([i for i in range(1, n+1) if i % 2 != 0])\n"}
+{"task_id": "HumanEval/123", "completion": "    return sorted([i for i in range(1, n+1) if i % 2 != 0])\n"}
+{"task_id": "HumanEval/123", "completion": "    return sorted([i for i in range(1, n+1) if i % 2 != 0])\n"}
+{"task_id": "HumanEval/123", "completion": "    return sorted([i for i in range(1, n+1) if i % 2 != 0])\n"}
+{"task_id": "HumanEval/123", "completion": "    return sorted([i for i in range(1, n+1) if i % 2 != 0])\n"}
+{"task_id": "HumanEval/125", "completion": "    return txt.split() if ' ' in txt else txt.replace(',', '').count(c for c in txt if c.islower() and (ord(c) - ord('a')) % 2 == 0)\n"}
+{"task_id": "HumanEval/125", "completion": "    return txt.split() if ' ' in txt else txt.replace(',', '').count(c for c in txt if c.islower() and (ord(c) - ord('a')) % 2 == 1)\n"}
+{"task_id": "HumanEval/125", "completion": "    return txt.split() if ' ' in txt else txt.replace(',', '').count(chr(i) for i in range(97, 123) if i % 2 != 0)\n"}
+{"task_id": "HumanEval/125", "completion": "    return txt.split() if ' ' in txt else txt.replace(',', '').count(c for c in txt if c.islower() and (ord(c) - ord('a')) % 2 == 1)\n"}
+{"task_id": "HumanEval/125", "completion": "    return txt.split() if ' ' in txt else txt.replace(',', '').count(chr(i) for i in range(97, 123) if i % 2 != 0)\n"}
+{"task_id": "HumanEval/125", "completion": "    return txt.split() if ' ' in txt else txt.replace(',', '').count(chr(i) for i in range(97, 123) if i % 2 != 0)\n"}
+{"task_id": "HumanEval/126", "completion": "    return all(lst[i] <= lst[i + 1] for i in range(len(lst) - 1))\n"}
+{"task_id": "HumanEval/126", "completion": "    return all(x <= y for x, y in zip(lst, lst[1:]))\n"}
+{"task_id": "HumanEval/126", "completion": "    return all(x <= y for x, y in zip(lst, lst[1:]))\n"}
+{"task_id": "HumanEval/126", "completion": "    return all(x <= y for x, y in zip(lst, lst[1:]))\n"}
+{"task_id": "HumanEval/126", "completion": "    return all(x <= y for x, y in zip(lst, lst[1:]))\n"}
+{"task_id": "HumanEval/126", "completion": "    return all(x <= y for x, y in zip(lst, lst[1:]))\n"}
+{"task_id": "HumanEval/128", "completion": "    return sum(abs(x) * (-1 if x < 0 else 1) for x in arr)\n"}
+{"task_id": "HumanEval/128", "completion": "    return sum(abs(x) * (-1 if x < 0 else 1) for x in arr)\n"}
+{"task_id": "HumanEval/128", "completion": "    return sum(abs(x) * (-1)**sum(y < 0 for y in arr) for x in arr)\n"}
+{"task_id": "HumanEval/128", "completion": "    return sum(abs(x) * (-1)**sum(y < 0 for y in arr) for x in arr)\n"}
+{"task_id": "HumanEval/128", "completion": "    return sum(abs(x) * (-1)**sum(y < 0 for y in arr) for x in arr)\n"}
+{"task_id": "HumanEval/128", "completion": "    return sum(abs(x) * (-1)**sum(y < 0 for y in arr) for x in arr)\n"}
+{"task_id": "HumanEval/129", "completion": "    if steps == k:\n        return path\n\n    min_path = []\n\n    for dx, dy in directions:\n        nx, ny = x + dx, y + dy\n        if 0 <= nx < n and 0 <= ny < n:\n            new_path = dfs(nx, ny, path + [grid[nx][ny]], steps + 1)\n            if new_path:\n                min_path = min(min_path, new_path)\n\n    return min_path\n\n    min_path = dfs(0, 0, [grid[0][0]], 1)\n    return min_path\n"}
+{"task_id": "HumanEval/129", "completion": "    if steps == k:\n        return path\n\n    min_path = None\n    for dx, dy in directions:\n        nx, ny = x + dx, y + dy\n        if 0 <= nx < n and 0 <= ny < n:\n            new_path = dfs(nx, ny, path + [grid[nx][ny]], steps + 1)\n            if min_path is None or new_path < min_path:\n                min_path = new_path\n\n    return min_path\n\n    min_path = dfs(0, 0, [grid[0][0]], 1)\n    return min_path\n"}
+{"task_id": "HumanEval/129", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/129", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/129", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/129", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/130", "completion": "    return [3] + [int((n+1)/2) if n%2==0 else sum([tri(i) for i in range(n-1,n+2)]) for n in range(1,5)]\n"}
+{"task_id": "HumanEval/130", "completion": "    return [3] + [1 + n // 2 if n % 2 == 0 else tri(n - 1) + tri(n - 2) + tri(n + 1) for n in range(1, n + 1)]\n"}
+{"task_id": "HumanEval/130", "completion": "    return [3] + [1 + n // 2 for n in range(2, n + 1)] + [tri(n - 1) + tri(n - 2) + tri(n + 1) for n in range(3, n + 1)]\n"}
+{"task_id": "HumanEval/130", "completion": "    return [3] + [1 + i // 2 for i in range(2, n + 1)] + [sum(tri(i)) for i in range(2, n)]\n"}
+{"task_id": "HumanEval/130", "completion": "    return [3] + [1 + n // 2 for n in range(2, n + 1)] + [tri(n - 1) + tri(n - 2) + tri(n + 1) for n in range(3, n + 1)]\n"}
+{"task_id": "HumanEval/130", "completion": "    return [3] + [1 + i // 2 for i in range(2, n + 1)] + [sum(tri(i)) for i in range(3, n + 1)]\n"}
+{"task_id": "HumanEval/131", "completion": "    return n * sum(int(digit) for digit in str(n) if int(digit) % 2 != 0)\n"}
+{"task_id": "HumanEval/131", "completion": "    return n * sum(int(digit) for digit in str(n) if int(digit) % 2 != 0)\n"}
+{"task_id": "HumanEval/131", "completion": "    return n * sum(int(digit) for digit in str(n) if int(digit) % 2 != 0)\n"}
+{"task_id": "HumanEval/131", "completion": "    return n * sum(int(digit) for digit in str(n) if int(digit) % 2 != 0)\n"}
+{"task_id": "HumanEval/131", "completion": "    return n * sum(int(digit) for digit in str(n) if int(digit) % 2 != 0)\n"}
+{"task_id": "HumanEval/131", "completion": "    return n * sum(int(digit) for digit in str(n) if int(digit) % 2 != 0)\n"}
+{"task_id": "HumanEval/133", "completion": "    return sum(math.ceil(x**2) for x in lst)\n"}
+{"task_id": "HumanEval/133", "completion": "    return sum(math.ceil(x)**2 for x in lst)\n"}
+{"task_id": "HumanEval/133", "completion": "    return sum(math.ceil(x**2) for x in lst)\n"}
+{"task_id": "HumanEval/133", "completion": "    return sum(math.ceil(x)**2 for x in lst)\n"}
+{"task_id": "HumanEval/133", "completion": "    return sum(math.ceil(x)**2 for x in lst)\n"}
+{"task_id": "HumanEval/133", "completion": "    return sum(math.ceil(x)**2 for x in lst)\n"}
+{"task_id": "HumanEval/134", "completion": "    return txt[-1].isalpha() and not txt.endswith(' ')\n"}
+{"task_id": "HumanEval/134", "completion": "    return txt[-1].isalpha() and not txt.endswith(' ')\n"}
+{"task_id": "HumanEval/134", "completion": "    return txt[-1].isalpha() and not txt.endswith(' ')\n"}
+{"task_id": "HumanEval/134", "completion": "    return txt[-1].isalpha() and not txt.endswith(' ')\n"}
+{"task_id": "HumanEval/134", "completion": "    return txt[-1].isalpha() and not txt.endswith(' ')\n"}
+{"task_id": "HumanEval/134", "completion": "    return txt[-1].isalpha() and not txt.endswith(' ')\n"}
+{"task_id": "HumanEval/135", "completion": "    return arr.index(max(arr[:arr.index(max(arr))])) if max(arr[:arr.index(max(arr))]) != arr[arr.index(max(arr))] else -1\n"}
+{"task_id": "HumanEval/136", "completion": "    return max(filter(lambda x: x < 0, lst), default=None), min(filter(lambda x: x > 0, lst), default=None)\n"}
+{"task_id": "HumanEval/136", "completion": "    return max(filter(lambda x: x < 0, lst), default=None), min(filter(lambda x: x > 0, lst), default=None)\n"}
+{"task_id": "HumanEval/136", "completion": "    return max(filter(lambda x: x < 0, lst), default=None), min(filter(lambda x: x > 0, lst), default=None)\n"}
+{"task_id": "HumanEval/136", "completion": "    return max(filter(lambda x: x < 0, lst), default=None), min(filter(lambda x: x > 0, lst), default=None)\n"}
+{"task_id": "HumanEval/136", "completion": "    return max(filter(lambda x: x < 0, lst), default=None), min(filter(lambda x: x > 0, lst), default=None)\n"}
+{"task_id": "HumanEval/136", "completion": "    return max(filter(lambda x: x < 0, lst), default=None), min(filter(lambda x: x > 0, lst), default=None)\n"}
+{"task_id": "HumanEval/137", "completion": "    if isinstance(a, str): a = float(a.replace(',', '.'))\n    if isinstance(b, str): b = float(b.replace(',', '.'))\n\n    if a > b: return a\n    elif b > a: return b\n    else: return None\n"}
+{"task_id": "HumanEval/137", "completion": "    if isinstance(a, str): a = float(a.replace(',', '.'))\n    if isinstance(b, str): b = float(b.replace(',', '.'))\n\n    return a if a > b else b if b > a else None\n"}
+{"task_id": "HumanEval/137", "completion": "    return max(a, b)\n"}
+{"task_id": "HumanEval/137", "completion": "    return max(a, b)\n"}
+{"task_id": "HumanEval/137", "completion": "    return max(a, b)\n"}
+{"task_id": "HumanEval/137", "completion": "    return max(a, b)\n"}
+{"task_id": "HumanEval/138", "completion": "    return n % 2 != 0 or n < 8 or n > 20\n"}
+{"task_id": "HumanEval/138", "completion": "    return n % 2 == 0 and n >= 8\n"}
+{"task_id": "HumanEval/138", "completion": "    return n % 2 == 0 and n >= 8\n"}
+{"task_id": "HumanEval/138", "completion": "    return n % 2 == 0 and n >= 8\n"}
+{"task_id": "HumanEval/138", "completion": "    return n % 2 != 0 or n < 8 or n > 20\n"}
+{"task_id": "HumanEval/138", "completion": "    return n % 2 != 0 or n < 8 or n > 20\n"}
+{"task_id": "HumanEval/14", "completion": "    return [string[:i] for i in range(1, len(string)+1)]\n"}
+{"task_id": "HumanEval/14", "completion": "    return [string[:i] for i in range(1, len(string)+1)]\n"}
+{"task_id": "HumanEval/14", "completion": "    return [string[:i] for i in range(1, len(string)+1)]\n"}
+{"task_id": "HumanEval/14", "completion": "    return [string[:i] for i in range(1, len(string)+1)]\n"}
+{"task_id": "HumanEval/14", "completion": "    return [string[:i] for i in range(1, len(string)+1)]\n"}
+{"task_id": "HumanEval/14", "completion": "    return [string[:i] for i in range(1, len(string)+1)]\n"}
+{"task_id": "HumanEval/140", "completion": "    return re.sub(r'\\s{2,}', '-', re.sub(r'\\s', '_', text))\n"}
+{"task_id": "HumanEval/140", "completion": "    return re.sub(r'\\s{3,}', '-', re.sub(r'\\s', '_', text))\n"}
+{"task_id": "HumanEval/140", "completion": "    return re.sub(r'\\s{2,}', '-', re.sub(r'\\s', '_', text))\n"}
+{"task_id": "HumanEval/140", "completion": "    return re.sub(r'\\s{2,}', '-', re.sub(r'\\s', '_', text))\n"}
+{"task_id": "HumanEval/140", "completion": "    return re.sub(r'\\s{2,}', '-', re.sub(r'\\s', '_', text))\n"}
+{"task_id": "HumanEval/140", "completion": "    return re.sub(r'\\s+', lambda m: '_' * len(m.group()), text)\n"}
+{"task_id": "HumanEval/141", "completion": "    pattern = r'^[a-zA-Z][a-zA-Z0-9]{0,2}\\.[txt|exe|dll]$'\n    return 'Yes' if re.match(pattern, file_name) else 'No'\n"}
+{"task_id": "HumanEval/141", "completion": "    pattern = r'^[a-zA-Z][a-zA-Z0-9]{0,2}\\.[txt|exe|dll]$'\n    return 'Yes' if re.match(pattern, file_name) else 'No'\n"}
+{"task_id": "HumanEval/141", "completion": "    pattern = r'^[a-zA-Z][a-zA-Z0-9]{0,2}\\.[txt|exe|dll]$'\n    return 'Yes' if re.match(pattern, file_name) else 'No'\n"}
+{"task_id": "HumanEval/141", "completion": "    pattern = r'^[a-zA-Z][a-zA-Z0-9]{0,2}\\.(txt|exe|dll)$'\n    return 'Yes' if re.match(pattern, file_name) else 'No'\n"}
+{"task_id": "HumanEval/141", "completion": "    pattern = r'^[a-zA-Z][a-zA-Z0-9]{0,2}\\.(txt|exe|dll)$'\n    return 'Yes' if re.match(pattern, file_name) else 'No'\n"}
+{"task_id": "HumanEval/141", "completion": "    pattern = r'^[a-zA-Z][a-zA-Z0-9]{0,2}\\.[txt|exe|dll]$'\n    return 'Yes' if re.match(pattern, file_name) else 'No'\n"}
+{"task_id": "HumanEval/142", "completion": "    return sum(x**2 if i % 3 == 0 else x**3 if i % 4 == 0 else x for i, x in enumerate(lst))\n"}
+{"task_id": "HumanEval/142", "completion": "    return sum(x**2 if i % 3 == 0 else x**3 if i % 4 == 0 else x for i, x in enumerate(lst))\n"}
+{"task_id": "HumanEval/142", "completion": "    return sum(x**2 if i % 3 == 0 else x**3 if i % 4 == 0 else x for i, x in enumerate(lst))\n"}
+{"task_id": "HumanEval/142", "completion": "    return sum(x**2 if i % 3 == 0 else x**3 if i % 4 == 0 else x for i, x in enumerate(lst))\n"}
+{"task_id": "HumanEval/142", "completion": "    return sum(x**2 if i % 3 == 0 else x**3 if i % 4 == 0 else x for i, x in enumerate(lst))\n"}
+{"task_id": "HumanEval/142", "completion": "    return sum(x**2 if i % 3 == 0 else x**3 if i % 4 == 0 else x for i, x in enumerate(lst))\n"}
+{"task_id": "HumanEval/144", "completion": "    return Fraction(x).limit_denominator() == Fraction(n)\n"}
+{"task_id": "HumanEval/144", "completion": "    return Fraction(x).limit_denominator() == Fraction(n)\n"}
+{"task_id": "HumanEval/144", "completion": "    return Fraction(x).limit_denominator() == Fraction(n)\n"}
+{"task_id": "HumanEval/144", "completion": "    return Fraction(x).limit_denominator() == Fraction(n)\n"}
+{"task_id": "HumanEval/144", "completion": "    return Fraction(x).limit_denominator() == Fraction(n)\n"}
+{"task_id": "HumanEval/144", "completion": "    return Fraction(x).limit_denominator() == Fraction(n)\n"}
+{"task_id": "HumanEval/145", "completion": "    sorted_nums = sorted(nums, key=lambda x: (sum(int(digit) for digit in str(abs(x))), nums.index))\n    return sorted_nums\n"}
+{"task_id": "HumanEval/145", "completion": "    sorted_nums = sorted(nums, key=lambda x: (sum(int(digit) for digit in str(abs(x))), nums.index))\n    return sorted_nums\n"}
+{"task_id": "HumanEval/145", "completion": "    sorted_nums = sorted(nums, key=lambda x: (sum(int(digit) for digit in str(abs(x))), nums.index))\n    return sorted_nums\n"}
+{"task_id": "HumanEval/145", "completion": "    sorted_nums = sorted(nums, key=lambda x: (sum(int(digit) for digit in str(abs(x))), nums.index))\n    return sorted_nums\n"}
+{"task_id": "HumanEval/146", "completion": "    return sum(1 for num in nums if abs(num) > 10 and int(str(abs(num))[0]) % 2 != 0 and int(str(abs(num))[-1]) % 2 != 0)\n"}
+{"task_id": "HumanEval/146", "completion": "    return sum(1 for num in nums if abs(num) > 10 and int(str(abs(num))[0]) % 2 != 0 and int(str(abs(num))[-1]) % 2 != 0)\n"}
+{"task_id": "HumanEval/146", "completion": "    return sum(1 for num in nums if abs(num) > 10 and int(str(abs(num))[0]) % 2 != 0 and int(str(abs(num))[-1]) % 2 != 0)\n"}
+{"task_id": "HumanEval/146", "completion": "    return sum(1 for num in nums if abs(num) > 10 and int(str(abs(num))[0]) % 2 != 0 and int(str(abs(num))[-1]) % 2 != 0)\n"}
+{"task_id": "HumanEval/146", "completion": "    return sum(1 for num in nums if abs(num) > 10 and int(str(abs(num))[0]) % 2 != 0 and int(str(abs(num))[-1]) % 2 != 0)\n"}
+{"task_id": "HumanEval/146", "completion": "    return sum(1 for num in nums if abs(num) > 10 and int(str(abs(num))[0]) % 2 != 0 and int(str(abs(num))[-1]) % 2 != 0)\n"}
+{"task_id": "HumanEval/147", "completion": "    return sum(1 for i in range(n) for j in range(i+1, n) for k in range(j+1, n) if (i*i - i + 1 + j*j - j + 1 + k*k - k + 1) % 3 == 0)\n"}
+{"task_id": "HumanEval/147", "completion": "    return sum(1 for i in range(n) for j in range(i+1, n) for k in range(j+1, n) if (i*i - i + 1 + j*j - j + 1 + k*k - k + 1) % 3 == 0)\n"}
+{"task_id": "HumanEval/147", "completion": "    return sum((i+j+k)%3==0 for i in range(1,n) for j in range(i+1,n) for k in range(j+1,n))\n"}
+{"task_id": "HumanEval/147", "completion": "    return sum((i+j+k)%3==0 for i in range(1,n) for j in range(i+1,n) for k in range(j+1,n))\n"}
+{"task_id": "HumanEval/147", "completion": "    return sum((i+j+k)%3==0 for i in range(1,n) for j in range(i+1,n) for k in range(j+1,n))\n"}
+{"task_id": "HumanEval/147", "completion": "    return sum((i+j+k)%3==0 for i in range(1,n) for j in range(i+1,n) for k in range(j+1,n))\n"}
+{"task_id": "HumanEval/148", "completion": "    return ('Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn')\n"}
+{"task_id": "HumanEval/148", "completion": "    return ('Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn')\n"}
+{"task_id": "HumanEval/148", "completion": "    return tuple(filter(lambda x: x != planet1 and x != planet2, [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]))\n"}
+{"task_id": "HumanEval/148", "completion": "    return tuple(filter(lambda p: p != planet1 and p != planet2 and p > planet1 and p < planet2, [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]))\n"}
+{"task_id": "HumanEval/148", "completion": "    return ('Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn')\n"}
+{"task_id": "HumanEval/148", "completion": "    return ('Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn')\n"}
+{"task_id": "HumanEval/149", "completion": "    return sorted([word for word in lst if len(word) % 2 == 0])\n"}
+{"task_id": "HumanEval/149", "completion": "    return sorted([s for s in lst if len(s) % 2 == 0])\n"}
+{"task_id": "HumanEval/149", "completion": "    return sorted([s for s in lst if len(s) % 2 == 0])\n"}
+{"task_id": "HumanEval/149", "completion": "    return sorted([word for word in lst if len(word) % 2 == 0])\n"}
+{"task_id": "HumanEval/149", "completion": "    return sorted([s for s in lst if len(s) % 2 == 0])\n"}
+{"task_id": "HumanEval/149", "completion": "    return sorted([s for s in lst if len(s) % 2 == 0])\n"}
+{"task_id": "HumanEval/15", "completion": "    return ' '.join(map(str, range(n + 1)))\n"}
+{"task_id": "HumanEval/15", "completion": "    return \" \".join(map(str, range(n + 1)))\n"}
+{"task_id": "HumanEval/15", "completion": "    return ' '.join(map(str, range(n + 1)))\n"}
+{"task_id": "HumanEval/15", "completion": "    return \" \".join(map(str, range(n + 1)))\n"}
+{"task_id": "HumanEval/15", "completion": "    return \" \".join(map(str, range(n + 1)))\n"}
+{"task_id": "HumanEval/15", "completion": "    return ' '.join(map(str, range(n + 1)))\n"}
+{"task_id": "HumanEval/150", "completion": "    return x if n in [2, 3] else y\n"}
+{"task_id": "HumanEval/150", "completion": "    return x if n in [2, 3] else y\n"}
+{"task_id": "HumanEval/150", "completion": "    return x if n in [2, 3] else y\n"}
+{"task_id": "HumanEval/150", "completion": "    return x if n in [2, 3] else y\n"}
+{"task_id": "HumanEval/150", "completion": "    return x if n in [2, 3] else y\n"}
+{"task_id": "HumanEval/150", "completion": "    return x if n in [2, 3] else y\n"}
+{"task_id": "HumanEval/151", "completion": "    return sum(x**2 for x in lst if isinstance(x, int) and x > 0)\n"}
+{"task_id": "HumanEval/151", "completion": "    return sum(x**2 for x in lst if isinstance(x, int) and x > 0)\n"}
+{"task_id": "HumanEval/151", "completion": "    return sum(x**2 for x in lst if isinstance(x, int) and x > 0)\n"}
+{"task_id": "HumanEval/151", "completion": "    return sum(x**2 for x in lst if isinstance(x, int) and x > 0)\n"}
+{"task_id": "HumanEval/151", "completion": "    return sum(x**2 for x in lst if isinstance(x, int) and x > 0)\n"}
+{"task_id": "HumanEval/151", "completion": "    return sum(x**2 for x in lst if isinstance(x, int) and x > 0)\n"}
+{"task_id": "HumanEval/152", "completion": "    return [abs(g - s) for g, s in zip(guess, game)]\n"}
+{"task_id": "HumanEval/152", "completion": "    return [abs(a - b) for a, b in zip(game, guess)]\n"}
+{"task_id": "HumanEval/152", "completion": "    return [abs(g - s) for g, s in zip(guess, game)]\n"}
+{"task_id": "HumanEval/152", "completion": "    return [abs(a - b) for a, b in zip(game, guess)]\n"}
+{"task_id": "HumanEval/152", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/152", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/153", "completion": "    return max(extensions, key=lambda x: sum(1 for c in x if c.isupper()) - sum(1 for c in x if c.islower()))\n"}
+{"task_id": "HumanEval/153", "completion": "    return max(extensions, key=lambda x: sum(1 for c in x if c.isupper()) - sum(1 for c in x if c.islower()))\n"}
+{"task_id": "HumanEval/153", "completion": "    return f\"{class_name}.{max(extensions, key=lambda x: sum(1 for c in x if c.isupper()) - sum(1 for c in x if c.islower()))}\"\n"}
+{"task_id": "HumanEval/153", "completion": "    return max(extensions, key=lambda x: sum(1 for c in x if c.isupper()) - sum(1 for c in x if c.islower()))\n"}
+{"task_id": "HumanEval/153", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/153", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/154", "completion": "    return any(b[i:] + b[:i] in a for i in range(len(b)))\n"}
+{"task_id": "HumanEval/154", "completion": "    return any(b[i:] + b[:i] in a for i in range(len(b)))\n"}
+{"task_id": "HumanEval/154", "completion": "    return any(b[i:] + b[:i] in a for i in range(len(b)))\n"}
+{"task_id": "HumanEval/154", "completion": "    return any(b[i:] + b[:i] in a for i in range(len(b)))\n"}
+{"task_id": "HumanEval/154", "completion": "    return b in a + b\n"}
+{"task_id": "HumanEval/154", "completion": "    return b in a + b\n"}
+{"task_id": "HumanEval/155", "completion": "    return (sum(int(digit) % 2 == 0 for digit in str(abs(num))), sum(int(digit) % 2 != 0 for digit in str(abs(num))))\n"}
+{"task_id": "HumanEval/155", "completion": "    return sum(int(digit) % 2 == 0 for digit in str(abs(num))), sum(int(digit) % 2 != 0 for digit in str(abs(num)))\n"}
+{"task_id": "HumanEval/155", "completion": "    return sum(int(digit) % 2 == 0 for digit in str(abs(num))), sum(int(digit) % 2 != 0 for digit in str(abs(num)))\n"}
+{"task_id": "HumanEval/155", "completion": "    return sum(int(digit) % 2 == 0 for digit in str(abs(num))), sum(int(digit) % 2 != 0 for digit in str(abs(num)))\n"}
+{"task_id": "HumanEval/155", "completion": "    return sum(int(digit) % 2 == 0 for digit in str(abs(num))), sum(int(digit) % 2 != 0 for digit in str(abs(num)))\n"}
+{"task_id": "HumanEval/155", "completion": "    return (sum(int(digit) % 2 == 0 for digit in str(abs(num))), sum(int(digit) % 2 != 0 for digit in str(abs(num))))\n"}
+{"task_id": "HumanEval/156", "completion": "    return {\n    1000: \"m\", 900: \"cm\", 500: \"d\", 400: \"cd\",\n    100: \"c\", 90: \"xc\", 50: \"l\", 40: \"xl\",\n    10: \"x\", 9: \"ix\", 5: \"v\", 4: \"iv\", 1: \"i\"\n    }[number]\n"}
+{"task_id": "HumanEval/156", "completion": "    return {\n    1000: \"m\", 900: \"cm\", 500: \"d\", 400: \"cd\",\n    100: \"c\", 90: \"xc\", 50: \"l\", 40: \"xl\",\n    10: \"x\", 9: \"ix\", 5: \"v\", 4: \"iv\", 1: \"i\"\n    }[number]\n"}
+{"task_id": "HumanEval/156", "completion": "    return {\n    1000: \"m\", 900: \"cm\", 500: \"d\", 400: \"cd\",\n    100: \"c\", 90: \"xc\", 50: \"l\", 40: \"xl\",\n    10: \"x\", 9: \"ix\", 5: \"v\", 4: \"iv\", 1: \"i\"\n    }.get(number, \"\")\n"}
+{"task_id": "HumanEval/156", "completion": "    return {\n    1000: \"m\", 900: \"cm\", 500: \"d\", 400: \"cd\",\n    100: \"c\", 90: \"xc\", 50: \"l\", 40: \"xl\",\n    10: \"x\", 9: \"ix\", 5: \"v\", 4: \"iv\", 1: \"i\"\n    }[number]\n"}
+{"task_id": "HumanEval/156", "completion": "    return {\n    1000: \"m\", 900: \"cm\", 500: \"d\", 400: \"cd\",\n    100: \"c\", 90: \"xc\", 50: \"l\", 40: \"xl\",\n    10: \"x\", 9: \"ix\", 5: \"v\", 4: \"iv\", 1: \"i\"\n    }.get(number, \"\")\n"}
+{"task_id": "HumanEval/156", "completion": "    return f\"{number // 1000}m{number // 100 % 10}c{(number // 10 % 10) % 5}d{(number % 10) % 5}v{i}\"\n"}
+{"task_id": "HumanEval/157", "completion": "    return a**2 + b**2 == c**2\n"}
+{"task_id": "HumanEval/157", "completion": "    return a**2 + b**2 == c**2\n"}
+{"task_id": "HumanEval/157", "completion": "    return a**2 + b**2 == c**2\n"}
+{"task_id": "HumanEval/157", "completion": "    return a**2 + b**2 == c**2\n"}
+{"task_id": "HumanEval/157", "completion": "    return a**2 + b**2 == c**2\n"}
+{"task_id": "HumanEval/157", "completion": "    return a**2 + b**2 == c**2\n"}
+{"task_id": "HumanEval/158", "completion": "    return max(words, key=lambda x: (-len(set(x)), x))\n"}
+{"task_id": "HumanEval/158", "completion": "    return max(words, key=lambda x: (-len(set(x)), x))\n"}
+{"task_id": "HumanEval/158", "completion": "    return max(words, key=lambda x: (-len(set(x)), x))\n"}
+{"task_id": "HumanEval/158", "completion": "    return max(words, key=lambda x: (-len(set(x)), x))\n"}
+{"task_id": "HumanEval/158", "completion": "    return max(words, key=lambda x: (-len(set(x)), x))\n"}
+{"task_id": "HumanEval/158", "completion": "    return max(words, key=lambda x: (-len(set(x)), x))\n"}
+{"task_id": "HumanEval/159", "completion": "    return [number + min(need, remaining), max(0, remaining - need)]\n"}
+{"task_id": "HumanEval/159", "completion": "    return [number + min(need, remaining), max(0, remaining - need)]\n"}
+{"task_id": "HumanEval/159", "completion": "    return [number + min(need, remaining), max(0, remaining - need)]\n"}
+{"task_id": "HumanEval/159", "completion": "    return [number + min(need, remaining), max(0, remaining - need)]\n"}
+{"task_id": "HumanEval/159", "completion": "    return [number + min(need, remaining), max(0, remaining - need)]\n"}
+{"task_id": "HumanEval/159", "completion": "    return [number + min(need, remaining), max(0, remaining - need)]\n"}
+{"task_id": "HumanEval/16", "completion": "    return len(set(string.lower()))\n"}
+{"task_id": "HumanEval/16", "completion": "    return len(set(string.lower()))\n"}
+{"task_id": "HumanEval/16", "completion": "    return len(set(string.lower()))\n"}
+{"task_id": "HumanEval/16", "completion": "    return len(set(string.lower()))\n"}
+{"task_id": "HumanEval/16", "completion": "    return len(set(string.lower()))\n"}
+{"task_id": "HumanEval/16", "completion": "    return len(set(string.lower()))\n"}
+{"task_id": "HumanEval/160", "completion": "    if operator[i] == '+':\n        result += operand[i+1]\n    elif operator[i] == '-':\n        result -= operand[i+1]\n    elif operator[i] == '*':\n        result *= operand[i+1]\n    elif operator[i] == '//':\n        result //= operand[i+1]\n    elif operator[i] == '**':\n        result **= operand[i+1]\n    return result\n"}
+{"task_id": "HumanEval/160", "completion": "    if operator[i] == '+':\n        result += operand[i+1]\n    elif operator[i] == '-':\n        result -= operand[i+1]\n    elif operator[i] == '*':\n        result *= operand[i+1]\n    elif operator[i] == '//':\n        result //= operand[i+1]\n    elif operator[i] == '**':\n        result **= operand[i+1]\n    return result\n"}
+{"task_id": "HumanEval/160", "completion": "    if operator[i] == '+':\n        result += operand[i+1]\n    elif operator[i] == '-':\n        result -= operand[i+1]\n    elif operator[i] == '*':\n        result *= operand[i+1]\n    elif operator[i] == '//':\n        result //= operand[i+1]\n    elif operator[i] == '**':\n        result **= operand[i+1]\n    return result\n"}
+{"task_id": "HumanEval/160", "completion": "    if operator[i] == '+':\n        result += operand[i+1]\n    elif operator[i] == '-':\n        result -= operand[i+1]\n    elif operator[i] == '*':\n        result *= operand[i+1]\n    elif operator[i] == '//':\n        result //= operand[i+1]\n    elif operator[i] == '**':\n        result **= operand[i+1]\n    return result\n"}
+{"task_id": "HumanEval/160", "completion": "    if operator[i] == '+':\n        result += operand[i+1]\n    elif operator[i] == '-':\n        result -= operand[i+1]\n    elif operator[i] == '*':\n        result *= operand[i+1]\n    elif operator[i] == '//':\n        result //= operand[i+1]\n    elif operator[i] == '**':\n        result **= operand[i+1]\n    return result\n"}
+{"task_id": "HumanEval/160", "completion": "    result = eval(' '.join(map(str, zip(operator, operand))))\n"}
+{"task_id": "HumanEval/161", "completion": "    return ''.join(c.swapcase() if c.isalpha() else c for c in s[::-1])\n"}
+{"task_id": "HumanEval/161", "completion": "    return ''.join(c.swapcase() if c.isalpha() else c for c in s[::-1]) if any(c.isalpha() for c in s) else s[::-1]\n"}
+{"task_id": "HumanEval/161", "completion": "    return ''.join(c.swapcase() if c.isalpha() else c for c in s[::-1]) if any(c.isalpha() for c in s) else s[::-1]\n"}
+{"task_id": "HumanEval/161", "completion": "    return ''.join(c.swapcase() if c.isalpha() else c for c in s[::-1]) if any(c.isalpha() for c in s) else s[::-1]\n"}
+{"task_id": "HumanEval/161", "completion": "    return ''.join(c.swapcase() if c.isalpha() else c for c in s[::-1]) if any(c.isalpha() for c in s) else s[::-1]\n"}
+{"task_id": "HumanEval/161", "completion": "    return ''.join(c.swapcase() if c.isalpha() else c for c in s[::-1])\n"}
+{"task_id": "HumanEval/163", "completion": "    return sorted([i for i in range(a, b+1) if i % 2 == 0])\n"}
+{"task_id": "HumanEval/163", "completion": "    return sorted([i for i in range(a, b+1) if i % 2 == 0])\n"}
+{"task_id": "HumanEval/163", "completion": "    return sorted([i for i in range(a, b+1) if i % 2 == 0])\n"}
+{"task_id": "HumanEval/163", "completion": "    return sorted(set(range(a, b + 1)) & set(filter(lambda x: x % 2 == 0, range(a, b + 1))))\n"}
+{"task_id": "HumanEval/163", "completion": "    return list(filter(lambda x: x % 2 == 0, range(min(a, b), max(a, b) + 1)))\n"}
+{"task_id": "HumanEval/163", "completion": "    return sorted(set(range(min(a, b), max(a, b) + 1)) & set(range(0, 10, 2)))\n"}
+{"task_id": "HumanEval/17", "completion": "    return [int(note[0]) for note in music_string.split()]\n"}
+{"task_id": "HumanEval/17", "completion": "    return [int(note[0]) * int(note[1:]) for note in music_string.split()]\n"}
+{"task_id": "HumanEval/17", "completion": "    import re\n"}
+{"task_id": "HumanEval/17", "completion": "    import re\n"}
+{"task_id": "HumanEval/17", "completion": "    import re\n"}
+{"task_id": "HumanEval/17", "completion": "    import re\n"}
+{"task_id": "HumanEval/18", "completion": "    return sum(1 for i in range(len(string)) if string[i:i+len(substring)] == substring)\n"}
+{"task_id": "HumanEval/18", "completion": "    return sum(1 for i in range(len(string)) if string[i:i+len(substring)] == substring)\n"}
+{"task_id": "HumanEval/18", "completion": "    return sum(1 for i in range(len(string)) if string[i:i+len(substring)] == substring)\n"}
+{"task_id": "HumanEval/18", "completion": "    return string.count(substring)\n"}
+{"task_id": "HumanEval/18", "completion": "    return string.count(substring)\n"}
+{"task_id": "HumanEval/18", "completion": "    return string.count(substring)\n"}
+{"task_id": "HumanEval/19", "completion": "    return ' '.join(sorted(numbers.split()))\n"}
+{"task_id": "HumanEval/19", "completion": "    return ' '.join(sorted(numbers.split()))\n"}
+{"task_id": "HumanEval/19", "completion": "    return ' '.join(sorted(numbers.split()))\n"}
+{"task_id": "HumanEval/19", "completion": "    return ' '.join(sorted(numbers.split()))\n"}
+{"task_id": "HumanEval/19", "completion": "    return ' '.join(sorted(numbers.split()))\n"}
+{"task_id": "HumanEval/19", "completion": "    return ' '.join(sorted(numbers.split()))\n"}
+{"task_id": "HumanEval/2", "completion": "    return number - int(number)\n"}
+{"task_id": "HumanEval/2", "completion": "    return number - int(number)\n"}
+{"task_id": "HumanEval/2", "completion": "    return number % 1\n"}
+{"task_id": "HumanEval/2", "completion": "    return number - int(number)\n"}
+{"task_id": "HumanEval/2", "completion": "    return number - int(number)\n"}
+{"task_id": "HumanEval/2", "completion": "    return number - int(number)\n"}
+{"task_id": "HumanEval/20", "completion": "    for j in range(i + 1, len(numbers)):\n        diff = abs(numbers[i] - numbers[j])\n        if diff < min_diff:\n            min_diff = diff\n            closest_pair = (min(numbers[i], numbers[j]), max(numbers[i], numbers[j]))\n\n    return closest_pair\n"}
+{"task_id": "HumanEval/20", "completion": "    for j in range(i + 1, len(numbers)):\n        diff = abs(numbers[i] - numbers[j])\n        if diff < min_diff:\n            min_diff = diff\n            closest_pair = (min(numbers[i], numbers[j]), max(numbers[i], numbers[j]))\n\n    return closest_pair\n"}
+{"task_id": "HumanEval/20", "completion": "    for j in range(i + 1, len(numbers)):\n        diff = abs(numbers[i] - numbers[j])\n        if diff < min_diff:\n            min_diff = diff\n            closest_pair = (min(numbers[i], numbers[j]), max(numbers[i], numbers[j]))\n\n    return closest_pair\n"}
+{"task_id": "HumanEval/20", "completion": "    return min(numbers), max(numbers)\n"}
+{"task_id": "HumanEval/20", "completion": "    return min(numbers), max(numbers)\n"}
+{"task_id": "HumanEval/20", "completion": "    return min(numbers), max(numbers)\n"}
+{"task_id": "HumanEval/21", "completion": "    return [(x - min(numbers)) / (max(numbers) - min(numbers)) for x in numbers]\n"}
+{"task_id": "HumanEval/21", "completion": "    return [(x - min(numbers)) / (max(numbers) - min(numbers)) for x in numbers]\n"}
+{"task_id": "HumanEval/21", "completion": "    return [(num - min(numbers)) / (max(numbers) - min(numbers)) for num in numbers]\n"}
+{"task_id": "HumanEval/21", "completion": "    return [(x - min(numbers)) / (max(numbers) - min(numbers)) for x in numbers]\n"}
+{"task_id": "HumanEval/21", "completion": "    return [(x - min(numbers)) / (max(numbers) - min(numbers)) for x in numbers]\n"}
+{"task_id": "HumanEval/21", "completion": "    return [(x - min(numbers)) / (max(numbers) - min(numbers)) for x in numbers]\n"}
+{"task_id": "HumanEval/22", "completion": "    return [x for x in values if isinstance(x, int)]\n"}
+{"task_id": "HumanEval/22", "completion": "    return [x for x in values if isinstance(x, int)]\n"}
+{"task_id": "HumanEval/22", "completion": "    return [x for x in values if isinstance(x, int)]\n"}
+{"task_id": "HumanEval/22", "completion": "    return [x for x in values if isinstance(x, int)]\n"}
+{"task_id": "HumanEval/22", "completion": "    return [x for x in values if isinstance(x, int)]\n"}
+{"task_id": "HumanEval/22", "completion": "    return [x for x in values if isinstance(x, int)]\n"}
+{"task_id": "HumanEval/23", "completion": "    return len(string)\n"}
+{"task_id": "HumanEval/23", "completion": "    return len(string)\n"}
+{"task_id": "HumanEval/23", "completion": "    return len(string)\n"}
+{"task_id": "HumanEval/23", "completion": "    return len(string)\n"}
+{"task_id": "HumanEval/23", "completion": "    return len(string)\n"}
+{"task_id": "HumanEval/23", "completion": "    return len(string)\n"}
+{"task_id": "HumanEval/26", "completion": "    return [num for num in numbers if numbers.count(num) == 1]\n"}
+{"task_id": "HumanEval/26", "completion": "    return [num for num in numbers if numbers.count(num) == 1]\n"}
+{"task_id": "HumanEval/26", "completion": "    return list(set(numbers))\n"}
+{"task_id": "HumanEval/26", "completion": "    return list(set(numbers))\n"}
+{"task_id": "HumanEval/26", "completion": "    return list(dict.fromkeys(numbers))\n"}
+{"task_id": "HumanEval/26", "completion": "    return list(set(numbers))\n"}
+{"task_id": "HumanEval/27", "completion": "    return ''.join(c.lower() if c.isupper() else c.upper() for c in string)\n"}
+{"task_id": "HumanEval/27", "completion": "    return ''.join(c.lower() if c.isupper() else c.upper() for c in string)\n"}
+{"task_id": "HumanEval/27", "completion": "    return ''.join(c.lower() if c.isupper() else c.upper() for c in string)\n"}
+{"task_id": "HumanEval/27", "completion": "    return ''.join(c.lower() if c.isupper() else c.upper() for c in string)\n"}
+{"task_id": "HumanEval/27", "completion": "    return ''.join(c.swapcase() for c in string)\n"}
+{"task_id": "HumanEval/27", "completion": "    s = s.swapcase()\n"}
+{"task_id": "HumanEval/28", "completion": "    return ''.join(strings)\n"}
+{"task_id": "HumanEval/28", "completion": "    return ''.join(strings)\n"}
+{"task_id": "HumanEval/28", "completion": "    return ''.join(strings)\n"}
+{"task_id": "HumanEval/28", "completion": "    return ''.join(strings)\n"}
+{"task_id": "HumanEval/28", "completion": "    return ''.join(strings)\n"}
+{"task_id": "HumanEval/28", "completion": "    return ''.join(strings)\n"}
+{"task_id": "HumanEval/29", "completion": "    return [s for s in strings if s.startswith(prefix)]\n"}
+{"task_id": "HumanEval/29", "completion": "    return [s for s in strings if s.startswith(prefix)]\n"}
+{"task_id": "HumanEval/29", "completion": "    return [s for s in strings if s.startswith(prefix)]\n"}
+{"task_id": "HumanEval/29", "completion": "    return [s for s in strings if s.startswith(prefix)]\n"}
+{"task_id": "HumanEval/29", "completion": "    return [s for s in strings if s.startswith(prefix)]\n"}
+{"task_id": "HumanEval/29", "completion": "    return [s for s in strings if s.startswith(prefix)]\n"}
+{"task_id": "HumanEval/3", "completion": "    return sum(operations) < 0\n"}
+{"task_id": "HumanEval/3", "completion": "    return sum(operations) < 0\n"}
+{"task_id": "HumanEval/3", "completion": "    return sum(operations) < 0\n"}
+{"task_id": "HumanEval/3", "completion": "    return sum(operations) < 0\n"}
+{"task_id": "HumanEval/3", "completion": "    return sum(operations) < 0\n"}
+{"task_id": "HumanEval/3", "completion": "    return sum(operations) < 0\n"}
+{"task_id": "HumanEval/30", "completion": "    return [x for x in l if x > 0]\n"}
+{"task_id": "HumanEval/30", "completion": "    return [x for x in l if x > 0]\n"}
+{"task_id": "HumanEval/30", "completion": "    return [x for x in l if x > 0]\n"}
+{"task_id": "HumanEval/30", "completion": "    return [x for x in l if x > 0]\n"}
+{"task_id": "HumanEval/30", "completion": "    return [x for x in l if x > 0]\n"}
+{"task_id": "HumanEval/30", "completion": "    return [x for x in l if x > 0]\n"}
+{"task_id": "HumanEval/31", "completion": "    return n > 1 and all(n % i != 0 for i in range(2, int(n**0.5) + 1))\n"}
+{"task_id": "HumanEval/31", "completion": "    return n > 1 and all(n % i != 0 for i in range(2, int(n**0.5) + 1))\n"}
+{"task_id": "HumanEval/31", "completion": "    return n > 1 and all(n % i != 0 for i in range(2, int(n**0.5) + 1))\n"}
+{"task_id": "HumanEval/31", "completion": "    return n > 1 and all(n % i != 0 for i in range(2, int(n**0.5) + 1))\n"}
+{"task_id": "HumanEval/31", "completion": "    return n > 1 and all(n % i != 0 for i in range(2, int(n**0.5) + 1))\n"}
+{"task_id": "HumanEval/31", "completion": "    return n > 1 and all(n % i != 0 for i in range(2, int(n**0.5) + 1))\n"}
+{"task_id": "HumanEval/32", "completion": "    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n"}
+{"task_id": "HumanEval/32", "completion": "    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n"}
+{"task_id": "HumanEval/32", "completion": "    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n"}
+{"task_id": "HumanEval/32", "completion": "    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n"}
+{"task_id": "HumanEval/32", "completion": "    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n"}
+{"task_id": "HumanEval/32", "completion": "    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n"}
+{"task_id": "HumanEval/33", "completion": "    return sorted(l[i] for i in range(len(l)) if i % 3 != 0)\n"}
+{"task_id": "HumanEval/33", "completion": "    return sorted(l[i] for i in range(len(l)) if i % 3 != 0)\n"}
+{"task_id": "HumanEval/33", "completion": "    return [x if i % 3 != 0 else sorted(x) for i, x in enumerate(l)]\n"}
+{"task_id": "HumanEval/33", "completion": "    l.sort()\n    return l\n"}
+{"task_id": "HumanEval/33", "completion": "    l.sort()\n    return l\n"}
+{"task_id": "HumanEval/33", "completion": "    l.sort()\n"}
+{"task_id": "HumanEval/34", "completion": "    return sorted(set(l))\n"}
+{"task_id": "HumanEval/34", "completion": "    return sorted(set(l))\n"}
+{"task_id": "HumanEval/34", "completion": "    return sorted(set(l))\n"}
+{"task_id": "HumanEval/34", "completion": "    return sorted(set(l))\n"}
+{"task_id": "HumanEval/34", "completion": "    return sorted(set(l))\n"}
+{"task_id": "HumanEval/34", "completion": "    return sorted(set(l))\n"}
+{"task_id": "HumanEval/35", "completion": "    return max(l)\n"}
+{"task_id": "HumanEval/35", "completion": "    return max(l)\n"}
+{"task_id": "HumanEval/35", "completion": "    return max(l)\n"}
+{"task_id": "HumanEval/35", "completion": "    return max(l)\n"}
+{"task_id": "HumanEval/35", "completion": "    return max(l)\n"}
+{"task_id": "HumanEval/35", "completion": "    return max(l)\n"}
+{"task_id": "HumanEval/37", "completion": "    return [l[i] if i % 2 else sorted(l[i]) for i in range(len(l))]\n"}
+{"task_id": "HumanEval/37", "completion": "    return [l[i] if i % 2 else sorted(l[i+1:i+2])[0] for i in range(len(l))]\n"}
+{"task_id": "HumanEval/37", "completion": "    return sorted(l[::2]) + l[1::2]\n"}
+{"task_id": "HumanEval/37", "completion": "    return sorted(l[::2]) + l[1::2]\n"}
+{"task_id": "HumanEval/37", "completion": "    return sorted(l[::2]) + l[1::2]\n"}
+{"task_id": "HumanEval/37", "completion": "    return sorted(l[::2]) + l[1::2]\n"}
+{"task_id": "HumanEval/38", "completion": "    return ''.join([s[i:i+3][::-1] if len(s[i:i+3]) == 3 else s[i:i+3] for i in range(0, len(s), 3)])\n"}
+{"task_id": "HumanEval/38", "completion": "    return ''.join([s[i:i+3][::-1] if i % 3 != 2 else s[i:i+3] for i in range(len(s))])\n"}
+{"task_id": "HumanEval/38", "completion": "    return ''.join([s[i:i+3][::-1] if len(s[i:i+3]) == 3 else s[i:i+3] for i in range(0, len(s), 3)])\n"}
+{"task_id": "HumanEval/38", "completion": "    return \"\".join([s[i:i+3][::-1] for i in range(0, len(s), 3)])\n"}
+{"task_id": "HumanEval/38", "completion": "    return \"\".join([s[(i % 3) : min(i % 3 + 3, len(s))] for i in range(len(s))])\n"}
+{"task_id": "HumanEval/38", "completion": "    return \"\".join([s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)][::-1])\n"}
+{"task_id": "HumanEval/4", "completion": "    return sum(abs(x - sum(numbers) / len(numbers)) for x in numbers) / len(numbers)\n"}
+{"task_id": "HumanEval/4", "completion": "    return sum(abs(x - sum(numbers) / len(numbers)) for x in numbers) / len(numbers)\n"}
+{"task_id": "HumanEval/4", "completion": "    return sum(abs(x - sum(numbers) / len(numbers)) for x in numbers) / len(numbers)\n"}
+{"task_id": "HumanEval/4", "completion": "    import math\n"}
+{"task_id": "HumanEval/4", "completion": "    import math\n"}
+{"task_id": "HumanEval/4", "completion": "    import math\n"}
+{"task_id": "HumanEval/41", "completion": "    return n**2\n"}
+{"task_id": "HumanEval/41", "completion": "    return n ** 2\n"}
+{"task_id": "HumanEval/41", "completion": "    return n ** 2\n"}
+{"task_id": "HumanEval/41", "completion": "    return n**2\n"}
+{"task_id": "HumanEval/41", "completion": "    return n**2\n"}
+{"task_id": "HumanEval/41", "completion": "    return n * n\n"}
+{"task_id": "HumanEval/42", "completion": "    return [x + 1 for x in l]\n"}
+{"task_id": "HumanEval/42", "completion": "    return [x + 1 for x in l]\n"}
+{"task_id": "HumanEval/42", "completion": "    return [x + 1 for x in l]\n"}
+{"task_id": "HumanEval/42", "completion": "    return [x + 1 for x in l]\n"}
+{"task_id": "HumanEval/42", "completion": "    return [x + 1 for x in l]\n"}
+{"task_id": "HumanEval/42", "completion": "    return [x + 1 for x in l]\n"}
+{"task_id": "HumanEval/43", "completion": "    return len(set(l)) < len(l)\n"}
+{"task_id": "HumanEval/43", "completion": "    return len(set(l)) < len(l)\n"}
+{"task_id": "HumanEval/43", "completion": "    return len(set(l)) < len(l)\n"}
+{"task_id": "HumanEval/43", "completion": "    return len(set(l)) < len(l)\n"}
+{"task_id": "HumanEval/43", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/43", "completion": "    from typing import List\n"}
+{"task_id": "HumanEval/44", "completion": "    return ''.join(str(x % base) for x in reversed(bin(x)[2:]))\n"}
+{"task_id": "HumanEval/44", "completion": "    return ''.join(str(x % base) for x in reversed(list(str(x))))\n"}
+{"task_id": "HumanEval/44", "completion": "    return format(x, f\"b\") if base == 2 else str(int(format(x, f\"o\"), base))\n"}
+{"task_id": "HumanEval/44", "completion": "    return format(x, f\"b\") if base == 2 else str(int(str(x), base))\n"}
+{"task_id": "HumanEval/44", "completion": "    return format(x, f\"b\") if base == 2 else str(int(str(x), base))\n"}
+{"task_id": "HumanEval/44", "completion": "    return f\"{x:b}\"\n"}
+{"task_id": "HumanEval/45", "completion": "    return 0.5 * a * h\n"}
+{"task_id": "HumanEval/45", "completion": "    return 0.5 * a * h\n"}
+{"task_id": "HumanEval/45", "completion": "    return 0.5 * a * h\n"}
+{"task_id": "HumanEval/45", "completion": "    return 0.5 * a * h\n"}
+{"task_id": "HumanEval/45", "completion": "    return 0.5 * a * h\n"}
+{"task_id": "HumanEval/45", "completion": "    return 0.5 * a * h\n"}
+{"task_id": "HumanEval/47", "completion": "    return sorted(l)[len(l)//2]\n"}
+{"task_id": "HumanEval/47", "completion": "    return sorted(l)[len(l)//2]\n"}
+{"task_id": "HumanEval/47", "completion": "    return sorted(l)[len(l)//2]\n"}
+{"task_id": "HumanEval/47", "completion": "    return sorted(l)[len(l)//2]\n"}
+{"task_id": "HumanEval/47", "completion": "    return sorted(l)[len(l)//2]\n"}
+{"task_id": "HumanEval/47", "completion": "    return sorted(l)[len(l)//2]\n"}
+{"task_id": "HumanEval/48", "completion": "    return text == text[::-1]\n"}
+{"task_id": "HumanEval/48", "completion": "    return text == text[::-1]\n"}
+{"task_id": "HumanEval/48", "completion": "    return text == text[::-1]\n"}
+{"task_id": "HumanEval/48", "completion": "    return text == text[::-1]\n"}
+{"task_id": "HumanEval/48", "completion": "    return text == text[::-1]\n"}
+{"task_id": "HumanEval/48", "completion": "    return text == text[::-1]\n"}
+{"task_id": "HumanEval/49", "completion": "    return pow(n, 2, p)\n"}
+{"task_id": "HumanEval/49", "completion": "    return pow(n, 2, p)\n"}
+{"task_id": "HumanEval/49", "completion": "    return pow(n, 2, p)\n"}
+{"task_id": "HumanEval/49", "completion": "    return pow(n, 2, p)\n"}
+{"task_id": "HumanEval/49", "completion": "    return pow(n, 2, p)\n"}
+{"task_id": "HumanEval/49", "completion": "    return pow(n, 2, p)\n"}
+{"task_id": "HumanEval/5", "completion": "    return [numbers[i] if i % 2 == 0 else delimeter for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/5", "completion": "    return [numbers[i] if i == len(numbers) - 1 else numbers[i] + delimeter for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/5", "completion": "    return [numbers[i] if i == len(numbers) - 1 else numbers[i] + delimeter for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/5", "completion": "    return [numbers[i] for i in range(len(numbers)) if i % 2 == 0] + [delimeter] + [numbers[i] for i in range(len(numbers)) if i % 2 != 0]\n"}
+{"task_id": "HumanEval/5", "completion": "    return [numbers[i] if i == len(numbers) - 1 else numbers[i] + delimeter for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/5", "completion": "    return [numbers[i] if i == len(numbers) - 1 else numbers[i] + delimeter for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/50", "completion": "    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n"}
+{"task_id": "HumanEval/50", "completion": "    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n"}
+{"task_id": "HumanEval/50", "completion": "    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n"}
+{"task_id": "HumanEval/50", "completion": "    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n"}
+{"task_id": "HumanEval/50", "completion": "    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n"}
+{"task_id": "HumanEval/50", "completion": "    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n"}
+{"task_id": "HumanEval/51", "completion": "    return ''.join(c for c in text if c.lower() not in 'aeiou')\n"}
+{"task_id": "HumanEval/51", "completion": "    return ''.join(c for c in text if c.lower() not in 'aeiou')\n"}
+{"task_id": "HumanEval/51", "completion": "    return ''.join(c for c in text if c.lower() not in 'aeiou')\n"}
+{"task_id": "HumanEval/51", "completion": "    return ''.join(c for c in text if c.lower() not in 'aeiou')\n"}
+{"task_id": "HumanEval/51", "completion": "    return ''.join(c for c in text if c.lower() not in 'aeiou')\n"}
+{"task_id": "HumanEval/51", "completion": "    return ''.join(c for c in text if c.lower() not in 'aeiou')\n"}
+{"task_id": "HumanEval/52", "completion": "    return all(x < t for x in l)\n"}
+{"task_id": "HumanEval/52", "completion": "    return all(x < t for x in l)\n"}
+{"task_id": "HumanEval/52", "completion": "    return all(x < t for x in l)\n"}
+{"task_id": "HumanEval/52", "completion": "    return all(x < t for x in l)\n"}
+{"task_id": "HumanEval/52", "completion": "    return all(x < t for x in l)\n"}
+{"task_id": "HumanEval/52", "completion": "    return all(x < t for x in l)\n"}
+{"task_id": "HumanEval/53", "completion": "    return x + y\n"}
+{"task_id": "HumanEval/53", "completion": "    return x + y\n"}
+{"task_id": "HumanEval/53", "completion": "    return x + y\n"}
+{"task_id": "HumanEval/53", "completion": "    return x + y\n"}
+{"task_id": "HumanEval/53", "completion": "    return x + y\n"}
+{"task_id": "HumanEval/53", "completion": "    return x + y\n"}
+{"task_id": "HumanEval/54", "completion": "    return set(s0) == set(s1)\n"}
+{"task_id": "HumanEval/54", "completion": "    return set(s0) == set(s1)\n"}
+{"task_id": "HumanEval/54", "completion": "    return set(s0) == set(s1)\n"}
+{"task_id": "HumanEval/54", "completion": "    return set(s0) == set(s1)\n"}
+{"task_id": "HumanEval/54", "completion": "    from collections import Counter\n"}
+{"task_id": "HumanEval/54", "completion": "    from collections import Counter\n"}
+{"task_id": "HumanEval/55", "completion": "    return n if n <= 1 else fib(n-1) + fib(n-2)\n"}
+{"task_id": "HumanEval/55", "completion": "    return n if n <= 1 else fib(n-1) + fib(n-2)\n"}
+{"task_id": "HumanEval/55", "completion": "    return n if n <= 1 else fib(n-1) + fib(n-2)\n"}
+{"task_id": "HumanEval/55", "completion": "    return n if n <= 1 else fib(n-1) + fib(n-2)\n"}
+{"task_id": "HumanEval/55", "completion": "    return n if n <= 1 else fib(n-1) + fib(n-2)\n"}
+{"task_id": "HumanEval/55", "completion": "    return n if n <= 1 else fib(n-1) + fib(n-2)\n"}
+{"task_id": "HumanEval/56", "completion": "    return len(brackets) % 2 == 0 and all(brackets[i] == '>' for i in range(0, len(brackets), 2)) and all(brackets[i] == '<' for i in range(1, len(brackets), 2))\n"}
+{"task_id": "HumanEval/56", "completion": "    return len(brackets) % 2 == 0 and all(brackets[i] == '>' for i in range(0, len(brackets), 2)) and all(brackets[i] == '<' for i in range(1, len(brackets), 2))\n"}
+{"task_id": "HumanEval/56", "completion": "    return len(brackets) % 2 == 0 and all(brackets[i] == '>' for i in range(0, len(brackets), 2)) and all(brackets[i] == '<' for i in range(1, len(brackets), 2))\n"}
+{"task_id": "HumanEval/56", "completion": "    return len(brackets) % 2 == 0 and all(brackets[i] == '>' for i in range(0, len(brackets), 2)) and all(brackets[i] == '<' for i in range(1, len(brackets), 2))\n"}
+{"task_id": "HumanEval/56", "completion": "    return len(brackets) % 2 == 0 and brackets.count('<') == brackets.count('>')\n"}
+{"task_id": "HumanEval/57", "completion": "    return all(x <= y for x, y in zip(l, l[1:]))\n"}
+{"task_id": "HumanEval/57", "completion": "    return all(x <= y for x, y in zip(l, l[1:]))\n"}
+{"task_id": "HumanEval/57", "completion": "    return all(x <= y for x, y in zip(l, l[1:]))\n"}
+{"task_id": "HumanEval/57", "completion": "    return all(x <= y for x, y in zip(l, l[1:]))\n"}
+{"task_id": "HumanEval/57", "completion": "    return all(x <= y for x, y in zip(l, l[1:]))\n"}
+{"task_id": "HumanEval/57", "completion": "    return all(x <= y for x, y in zip(l, l[1:])) or all(x >= y for x, y in zip(l, l[1:]))\n"}
+{"task_id": "HumanEval/58", "completion": "    return sorted(set(l1) & set(l2))\n"}
+{"task_id": "HumanEval/58", "completion": "    return sorted(set(l1) & set(l2))\n"}
+{"task_id": "HumanEval/58", "completion": "    return sorted(set(l1).intersection(l2))\n"}
+{"task_id": "HumanEval/58", "completion": "    return sorted(set(l1) & set(l2))\n"}
+{"task_id": "HumanEval/58", "completion": "    return sorted(set(l1) & set(l2))\n"}
+{"task_id": "HumanEval/58", "completion": "    return sorted(set(l1) & set(l2))\n"}
+{"task_id": "HumanEval/6", "completion": "    import re\n"}
+{"task_id": "HumanEval/6", "completion": "    import re\n"}
+{"task_id": "HumanEval/6", "completion": "    import re\n"}
+{"task_id": "HumanEval/6", "completion": "    import re\n"}
+{"task_id": "HumanEval/6", "completion": "    import re\n"}
+{"task_id": "HumanEval/6", "completion": "    import re\n"}
+{"task_id": "HumanEval/60", "completion": "    return n * (n + 1) // 2\n"}
+{"task_id": "HumanEval/60", "completion": "    return n * (n + 1) // 2\n"}
+{"task_id": "HumanEval/60", "completion": "    return sum(range(1, n + 1))\n"}
+{"task_id": "HumanEval/60", "completion": "    return n * (n + 1) // 2\n"}
+{"task_id": "HumanEval/60", "completion": "    return sum(range(1, n + 1))\n"}
+{"task_id": "HumanEval/60", "completion": "    return n * (n + 1) // 2\n"}
+{"task_id": "HumanEval/62", "completion": "    return [i * xs[i] for i in range(1, len(xs))]\n"}
+{"task_id": "HumanEval/62", "completion": "    return [i * xs[i] for i in range(1, len(xs))]\n"}
+{"task_id": "HumanEval/62", "completion": "    return [i * xs[i] for i in range(1, len(xs))]\n"}
+{"task_id": "HumanEval/62", "completion": "    return [i * xs[i] for i in range(1, len(xs))]\n"}
+{"task_id": "HumanEval/62", "completion": "    return [i * xs[i] for i in range(1, len(xs))]\n"}
+{"task_id": "HumanEval/62", "completion": "    return [i*xs[i+1] for i in range(len(xs)-1)]\n"}
+{"task_id": "HumanEval/64", "completion": "    return sum(1 for char in s.lower() if char in \"aeiou\" or (char == \"y\" and len(s) > 1))\n"}
+{"task_id": "HumanEval/64", "completion": "    return sum(1 for char in s.lower() if char in \"aeiou\" or (char == \"y\" and len(s) > 1))\n"}
+{"task_id": "HumanEval/64", "completion": "    return sum(1 for c in s.lower() if c in \"aeiou\" or (c == \"y\" and len(s) > 1))\n"}
+{"task_id": "HumanEval/64", "completion": "    return sum(1 for c in s.lower() if c in \"aeiou\" or (c == \"y\" and len(s) > 1))\n"}
+{"task_id": "HumanEval/64", "completion": "    return sum(1 for char in s.lower() if char in \"aeiou\" or (char == \"y\" and len(s) > 1))\n"}
+{"task_id": "HumanEval/64", "completion": "    return sum(1 for char in s.lower() if char in 'aeiou')\n"}
+{"task_id": "HumanEval/65", "completion": "    return str(int(str(x)[shift:] + str(x)[:shift]))\n"}
+{"task_id": "HumanEval/65", "completion": "    return str(int(str(x)[shift:] + str(x)[:shift]))\n"}
+{"task_id": "HumanEval/65", "completion": "    return str(int(str(x)[shift:] + str(x)[:shift]))\n"}
+{"task_id": "HumanEval/65", "completion": "    return str(int(str(x)[shift:] + str(x)[:shift]))\n"}
+{"task_id": "HumanEval/65", "completion": "    return str(int(str(x)[shift:] + str(x)[:shift]))\n"}
+{"task_id": "HumanEval/65", "completion": "    return str(int(str(x)[shift:] + str(x)[:shift]))\n"}
+{"task_id": "HumanEval/66", "completion": "    return sum(ord(c) for c in s if c.isupper())\n"}
+{"task_id": "HumanEval/66", "completion": "    return sum(ord(c) for c in s if c.isupper())\n"}
+{"task_id": "HumanEval/66", "completion": "    return sum(ord(c) for c in s if c.isupper())\n"}
+{"task_id": "HumanEval/66", "completion": "    return sum(ord(c) for c in s if c.isupper())\n"}
+{"task_id": "HumanEval/66", "completion": "    return sum(ord(c) for c in s if c.isupper())\n"}
+{"task_id": "HumanEval/66", "completion": "    return sum(ord(c) for c in s if c.isupper())\n"}
+{"task_id": "HumanEval/67", "completion": "    return n - int(s.split()[0]) - int(s.split()[2])\n"}
+{"task_id": "HumanEval/67", "completion": "    return n - int(s.split()[0]) - int(s.split()[2])\n"}
+{"task_id": "HumanEval/67", "completion": "    return n - int(s.split()[0]) - int(s.split()[2])\n"}
+{"task_id": "HumanEval/67", "completion": "    return n - int(s.split()[0]) - int(s.split()[2])\n"}
+{"task_id": "HumanEval/67", "completion": "    return n - int(s.split()[0]) - int(s.split()[2])\n"}
+{"task_id": "HumanEval/67", "completion": "    return n - int(s.split()[0]) - int(s.split()[2])\n"}
+{"task_id": "HumanEval/68", "completion": "    return [min([node for node in arr if node % 2 == 0], key=lambda x: (x[0], x[1])) if arr else []]\n"}
+{"task_id": "HumanEval/68", "completion": "    return min((val, idx) for idx, val in enumerate(arr) if val % 2 == 0), [min(val, idx) for idx, val in enumerate(arr) if val % 2 == 0][0]\n"}
+{"task_id": "HumanEval/68", "completion": "    return min((val, idx) for idx, val in enumerate(arr) if val % 2 == 0), [min(val, idx) for idx, val in enumerate(arr) if val % 2 == 0][0]\n"}
+{"task_id": "HumanEval/68", "completion": "    return [min([node for node in arr if node % 2 == 0], default=[]) + [arr.index(min([node for node in arr if node % 2 == 0]))]]\n"}
+{"task_id": "HumanEval/68", "completion": "    return [min([node for node in arr if node % 2 == 0], key=lambda x: (x[0], x[1])), min([i for i, node in enumerate(arr) if node % 2 == 0])]\n"}
+{"task_id": "HumanEval/68", "completion": "    return [(min(filter(lambda x: x % 2 == 0, arr), key=lambda x: arr.index(x)))]\n"}
+{"task_id": "HumanEval/7", "completion": "    return [s for s in strings if substring in s]\n"}
+{"task_id": "HumanEval/7", "completion": "    return [s for s in strings if substring in s]\n"}
+{"task_id": "HumanEval/7", "completion": "    return [s for s in strings if substring in s]\n"}
+{"task_id": "HumanEval/7", "completion": "    return [s for s in strings if substring in s]\n"}
+{"task_id": "HumanEval/7", "completion": "    return [s for s in strings if substring in s]\n"}
+{"task_id": "HumanEval/7", "completion": "    return [s for s in strings if substring in s]\n"}
+{"task_id": "HumanEval/70", "completion": "    lst.sort()\n    return lst[::-1]\n"}
+{"task_id": "HumanEval/70", "completion": "    return sorted(lst, key=lambda x: (x % 2, -abs(x)))\n"}
+{"task_id": "HumanEval/70", "completion": "    return sorted(lst)[::-1] + sorted(lst)[1::2]\n"}
+{"task_id": "HumanEval/70", "completion": "    return sorted(lst, key=lambda x: (x % 2, -abs(x)))\n"}
+{"task_id": "HumanEval/70", "completion": "    return sorted(lst, key=lambda x: (x % 2, -abs(x)))\n"}
+{"task_id": "HumanEval/70", "completion": "    return sorted(lst, key=lambda x: (x % 2, -abs(x)))\n"}
+{"task_id": "HumanEval/72", "completion": "    return q == q[::-1] and sum(q) <= w\n"}
+{"task_id": "HumanEval/72", "completion": "    return q == q[::-1] and sum(q) <= w\n"}
+{"task_id": "HumanEval/72", "completion": "    return q == q[::-1] and sum(q) <= w\n"}
+{"task_id": "HumanEval/72", "completion": "    return len(q) == len(str(q)) and sum(q) <= w\n"}
+{"task_id": "HumanEval/72", "completion": "    return q == q[::-1] and sum(q) <= w\n"}
+{"task_id": "HumanEval/72", "completion": "    return q == q[::-1] and sum(q) <= w\n"}
+{"task_id": "HumanEval/73", "completion": "    return sum(1 for i in range(len(arr)//2) if arr[i] != arr[-i-1])\n"}
+{"task_id": "HumanEval/73", "completion": "    return sum(abs(x - y) for x, y in zip(arr, reversed(arr)))\n"}
+{"task_id": "HumanEval/73", "completion": "    return sum(abs(a - b) for a, b in zip(arr, reversed(arr)))\n"}
+{"task_id": "HumanEval/73", "completion": "    return sum(abs(x - y) for x, y in zip(arr, reversed(arr)))\n"}
+{"task_id": "HumanEval/73", "completion": "    return sum(abs(x - y) for x, y in zip(arr, reversed(arr)))\n"}
+{"task_id": "HumanEval/73", "completion": "    return sum(abs(a - b) for a, b in zip(arr, reversed(arr)))\n"}
+{"task_id": "HumanEval/74", "completion": "    return [s for s in lst1 if len(s) < len(lst2[0])]\n"}
+{"task_id": "HumanEval/74", "completion": "    return [s for s in lst1 if sum(len(s) for s in lst1) < sum(len(s) for s in lst2)]\n"}
+{"task_id": "HumanEval/74", "completion": "    return [s for s in lst1 if sum(len(s) for s in lst1) < sum(len(s) for s in lst2)]\n"}
+{"task_id": "HumanEval/74", "completion": "    return [s for s in lst1 if len(s) < len(lst2[0])]\n"}
+{"task_id": "HumanEval/74", "completion": "    return [s for s in lst1 if len(s) < sum(len(t) for t in lst2)]\n"}
+{"task_id": "HumanEval/74", "completion": "    return [s for s in lst1 if sum(len(s) for s in lst1) < sum(len(s) for s in lst2)]\n"}
+{"task_id": "HumanEval/76", "completion": "    return x == n ** int(x ** 0.5)\n"}
+{"task_id": "HumanEval/76", "completion": "    return x == n ** int(x ** 0.5)\n"}
+{"task_id": "HumanEval/76", "completion": "    return x == n ** int(x.bit_length() - 1)\n"}
+{"task_id": "HumanEval/76", "completion": "    return x == n ** int(x ** 0.5)\n"}
+{"task_id": "HumanEval/76", "completion": "    return x == n ** int(x.bit_length() - 1)\n"}
+{"task_id": "HumanEval/76", "completion": "    return x == n ** int(x.bit_length() - 1)\n"}
+{"task_id": "HumanEval/77", "completion": "    return abs(a)**(1/3) % 1 == 0\n"}
+{"task_id": "HumanEval/77", "completion": "    return abs(a)**(1/3).is_integer()\n"}
+{"task_id": "HumanEval/77", "completion": "    return abs(a)**(1/3).is_integer()\n"}
+{"task_id": "HumanEval/77", "completion": "    return abs(a)**(1/3).is_integer()\n"}
+{"task_id": "HumanEval/77", "completion": "    return abs(a)**(1/3).is_integer()\n"}
+{"task_id": "HumanEval/77", "completion": "    return abs(a)**(1/3) % 1 == 0\n"}
+{"task_id": "HumanEval/78", "completion": "    return sum(1 for char in num if char in {'2', '3', '5', '7', 'B', 'D'})\n"}
+{"task_id": "HumanEval/78", "completion": "    return sum(1 for char in num if char in {'2', '3', '5', '7', 'B', 'D'})\n"}
+{"task_id": "HumanEval/78", "completion": "    return sum(1 for c in num if c in {'2', '3', '5', '7', 'B', 'D'})\n"}
+{"task_id": "HumanEval/78", "completion": "    return sum(1 for c in num if c in {'2', '3', '5', '7', 'B', 'D'})\n"}
+{"task_id": "HumanEval/78", "completion": "    return sum(1 for char in num if char in {'2', '3', '5', '7', 'B', 'D'})\n"}
+{"task_id": "HumanEval/78", "completion": "    return sum(1 for c in num if c in {'2', '3', '5', '7', 'B', 'D'})\n"}
+{"task_id": "HumanEval/79", "completion": "    return f\"db{bin(decimal)[2:].zfill(8)}db\"\n"}
+{"task_id": "HumanEval/79", "completion": "    return f\"db{bin(decimal)[2:]}.db\"\n"}
+{"task_id": "HumanEval/79", "completion": "    return f\"db{bin(decimal)[2:]}.db\"\n"}
+{"task_id": "HumanEval/79", "completion": "    return f\"db{bin(decimal)[2:]}.db\"\n"}
+{"task_id": "HumanEval/79", "completion": "    return f\"db{bin(decimal)[2:]}.db\"\n"}
+{"task_id": "HumanEval/79", "completion": "    return f\"db{bin(decimal)[2:]}.db\"\n"}
+{"task_id": "HumanEval/8", "completion": "    return sum(numbers), prod(numbers)\n"}
+{"task_id": "HumanEval/8", "completion": "    return sum(numbers), reduce(lambda x, y: x * y, numbers, 1)\n"}
+{"task_id": "HumanEval/8", "completion": "    return sum(numbers), reduce(lambda x, y: x * y, numbers, 1)\n"}
+{"task_id": "HumanEval/8", "completion": "    return sum(numbers), reduce(lambda x, y: x * y, numbers, 1)\n"}
+{"task_id": "HumanEval/8", "completion": "    return sum(numbers), reduce(lambda x, y: x * y, numbers, 1)\n"}
+{"task_id": "HumanEval/8", "completion": "    return sum(numbers), prod(numbers)\n"}
+{"task_id": "HumanEval/80", "completion": "    return len(s) >= 3 and all(len(set(s[i:i+3])) == 3 for i in range(len(s)-2))\n"}
+{"task_id": "HumanEval/80", "completion": "    return len(s) >= 3 and all(len(set(s[i:i+3])) == 3 for i in range(len(s)-2))\n"}
+{"task_id": "HumanEval/80", "completion": "    return len(s) >= 3 and all(len(set(s[i:i+3])) == 3 for i in range(len(s)-2))\n"}
+{"task_id": "HumanEval/80", "completion": "    return len(s) >= 3 and all(len(set(s[i:i+3])) == 3 for i in range(len(s)-2))\n"}
+{"task_id": "HumanEval/80", "completion": "    return len(s) >= 3 and all(len(set(s[i:i+3])) == 3 for i in range(len(s)-2))\n"}
+{"task_id": "HumanEval/80", "completion": "    return len(s) >= 3 and all(len(set(s[i:i+3])) == 3 for i in range(len(s)-2))\n"}
+{"task_id": "HumanEval/81", "completion": "    return [\n    \"A+\" if g >= 4.0 else\n    \"A\" if g > 3.7 else\n    \"A-\" if g > 3.3 else\n    \"B+\" if g > 3.0 else\n    \"B\" if g > 2.7 else\n    \"B-\" if g > 2.3 else\n    \"C+\" if g > 2.0 else\n    \"C\" if g > 1.7 else\n    \"C-\" if g > 1.3 else\n    \"D+\" if g > 1.0 else\n    \"D\" if g > 0.7 else\n    \"D-\" if g > 0.0 else\n    \"E\"\n    for g in grades\n    ]\n"}
+{"task_id": "HumanEval/81", "completion": "    return [\n    \"A+\" if g >= 4.0 else\n    \"A\" if g > 3.7 else\n    \"A-\" if g > 3.3 else\n    \"B+\" if g > 3.0 else\n    \"B\" if g > 2.7 else\n    \"B-\" if g > 2.3 else\n    \"C+\" if g > 2.0 else\n    \"C\" if g > 1.7 else\n    \"C-\" if g > 1.3 else\n    \"D+\" if g > 1.0 else\n    \"D\" if g > 0.7 else\n    \"D-\" if g > 0.0 else\n    \"E\"\n    for g in grades\n    ]\n"}
+{"task_id": "HumanEval/81", "completion": "    return [\n    \"A+\" if g >= 4.0 else\n    \"A\" if g > 3.7 else\n    \"A-\" if g > 3.3 else\n    \"B+\" if g > 3.0 else\n    \"B\" if g > 2.7 else\n    \"B-\" if g > 2.3 else\n    \"C+\" if g > 2.0 else\n    \"C\" if g > 1.7 else\n    \"C-\" if g > 1.3 else\n    \"D+\" if g > 1.0 else\n    \"D\" if g > 0.7 else\n    \"D-\" if g > 0.0 else\n    \"E\"\n    for g in grades\n    ]\n"}
+{"task_id": "HumanEval/81", "completion": "    return [\n    \"A+\" if g >= 4.0 else\n    \"A\" if g > 3.7 else\n    \"A-\" if g > 3.3 else\n    \"B+\" if g > 3.0 else\n    \"B\" if g > 2.7 else\n    \"B-\" if g > 2.3 else\n    \"C+\" if g > 2.0 else\n    \"C\" if g > 1.7 else\n    \"C-\" if g > 1.3 else\n    \"D+\" if g > 1.0 else\n    \"D\" if g > 0.7 else\n    \"D-\" if g > 0.0 else\n    \"E\"\n    for g in grades\n    ]\n"}
+{"task_id": "HumanEval/81", "completion": "    return [\n    \"A+\" if g >= 4 else\n    \"A\" if g > 3.7 else\n    \"A-\" if g > 3.3 else\n    \"B+\" if g > 3.0 else\n    \"B\" if g > 2.7 else\n    \"B-\" if g > 2.3 else\n    \"C+\" if g > 2.0 else\n    \"C\" if g > 1.7 else\n    \"C-\" if g > 1.3 else\n    \"D+\" if g > 1.0 else\n    \"D\" if g > 0.7 else\n    \"D-\" if g > 0.0 else\n    \"E\"\n    for g in grades\n    ]\n"}
+{"task_id": "HumanEval/81", "completion": "    return [\n    \"A+\" if g >= 4.0 else\n    \"A\" if g > 3.7 else\n    \"A-\" if g > 3.3 else\n    \"B+\" if g > 3.0 else\n    \"B\" if g > 2.7 else\n    \"B-\" if g > 2.3 else\n    \"C+\" if g > 2.0 else\n    \"C\" if g > 1.7 else\n    \"C-\" if g > 1.3 else\n    \"D+\" if g > 1.0 else\n    \"D\" if g > 0.7 else\n    \"D-\" if g > 0.0 else\n    \"E\"\n    for g in grades\n    ]\n"}
+{"task_id": "HumanEval/82", "completion": "    n = len(string)\n    return n > 1 and all(n % i != 0 for i in range(2, int(n**0.5) + 1))\n"}
+{"task_id": "HumanEval/82", "completion": "    n = len(s)\n    return n > 1 and all(n % i for i in range(2, int(n**0.5) + 1))\n"}
+{"task_id": "HumanEval/82", "completion": "    length = len(string)\n    return length > 1 and all(length % i for i in range(2, int(length**0.5) + 1))\n"}
+{"task_id": "HumanEval/82", "completion": "    n = len(s)\n    return n in [2, 3, 5, 7]\n"}
+{"task_id": "HumanEval/82", "completion": "    return len(string) in [2, 3, 5, 7]\n"}
+{"task_id": "HumanEval/82", "completion": "    return len(string) in [2, 3, 5, 7]\n"}
+{"task_id": "HumanEval/83", "completion": "    return sum(1 for i in range(1, n+1) if str(i).startswith('1') or str(i).endswith('1'))\n"}
+{"task_id": "HumanEval/83", "completion": "    return sum(1 for i in range(1, n+1) if str(i).startswith('1') or str(i).endswith('1'))\n"}
+{"task_id": "HumanEval/83", "completion": "    return sum(1 for i in range(1, n+1) if str(i)[0] == '1' or str(i)[-1] == '1')\n"}
+{"task_id": "HumanEval/83", "completion": "    return sum(1 for i in range(1, n+1) if str(i)[0] == '1' or str(i)[-1] == '1')\n"}
+{"task_id": "HumanEval/83", "completion": "    return sum(1 for i in range(1, n+1) if str(i)[0] == '1' or str(i)[-1] == '1')\n"}
+{"task_id": "HumanEval/83", "completion": "    return sum(1 for i in range(1, n+1) if str(i).startswith('1') or str(i).endswith('1'))\n"}
+{"task_id": "HumanEval/84", "completion": "    return bin(sum(int(digit) for digit in str(N)))[2:]\n"}
+{"task_id": "HumanEval/84", "completion": "    return bin(sum(int(digit) for digit in str(N)))[2:]\n"}
+{"task_id": "HumanEval/84", "completion": "    return bin(sum(int(digit) for digit in str(N)))[2:]\n"}
+{"task_id": "HumanEval/84", "completion": "    return bin(sum(int(digit) for digit in str(N)))[2:]\n"}
+{"task_id": "HumanEval/84", "completion": "    return bin(sum(int(digit) for digit in str(N)))[2:]\n"}
+{"task_id": "HumanEval/84", "completion": "    return bin(sum(int(digit) for digit in str(N)))[2:]\n"}
+{"task_id": "HumanEval/85", "completion": "    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)\n"}
+{"task_id": "HumanEval/85", "completion": "    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)\n"}
+{"task_id": "HumanEval/85", "completion": "    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)\n"}
+{"task_id": "HumanEval/85", "completion": "    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)\n"}
+{"task_id": "HumanEval/85", "completion": "    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)\n"}
+{"task_id": "HumanEval/85", "completion": "    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)\n"}
+{"task_id": "HumanEval/86", "completion": "    return ''.join(sorted(word) for word in s.split())\n"}
+{"task_id": "HumanEval/86", "completion": "    return ''.join(sorted(word) for word in s.split())\n"}
+{"task_id": "HumanEval/86", "completion": "    return ''.join(sorted(word) for word in s.split())\n"}
+{"task_id": "HumanEval/86", "completion": "    return ' '.join(sorted(word) for word in s.split())\n"}
+{"task_id": "HumanEval/86", "completion": "    return ''.join(sorted(word) for word in s.split())\n"}
+{"task_id": "HumanEval/86", "completion": "    return ' '.join(sorted(word) for word in s.split())\n"}
+{"task_id": "HumanEval/87", "completion": "    return sorted([(i, j) for i, row in enumerate(lst) for j, val in enumerate(row) if val == x], key=lambda x: (x[0], -x[1]))\n"}
+{"task_id": "HumanEval/87", "completion": "    return sorted([(i, j) for i, row in enumerate(lst) for j, val in enumerate(row) if val == x], key=lambda t: (-t[0], t[1]))\n"}
+{"task_id": "HumanEval/87", "completion": "    return sorted([(i, j) for i, row in enumerate(lst) for j, val in enumerate(row) if val == x], key=lambda x: (x[0], -x[1]))\n"}
+{"task_id": "HumanEval/87", "completion": "    return sorted([(i, j) for i, row in enumerate(lst) for j, val in enumerate(row) if val == x], key=lambda t: (t[0], -t[1]))\n"}
+{"task_id": "HumanEval/87", "completion": "    return sorted([(i, j) for i, row in enumerate(lst) for j, val in enumerate(row) if val == x], key=lambda x: (x[0], -x[1]))\n"}
+{"task_id": "HumanEval/87", "completion": "    return sorted([(i, j) for i, row in enumerate(lst) for j, val in enumerate(row) if val == x], key=lambda x: (x[0], -x[1]))\n"}
+{"task_id": "HumanEval/88", "completion": "    return sorted(array, reverse=(array[0] + array[-1]) % 2 == 0)\n"}
+{"task_id": "HumanEval/88", "completion": "    return sorted(array, reverse=(array[0] + array[-1]) % 2 == 0)\n"}
+{"task_id": "HumanEval/88", "completion": "    return sorted(array, reverse=(array[0] + array[-1]) % 2 == 0)\n"}
+{"task_id": "HumanEval/88", "completion": "    return sorted(array, reverse=(array[0] + array[-1]) % 2 == 0)\n"}
+{"task_id": "HumanEval/88", "completion": "    return sorted(array, reverse=(array[0] + array[-1]) % 2 == 0)\n"}
+{"task_id": "HumanEval/88", "completion": "    return sorted(array, reverse=(array[0] + array[-1]) % 2 == 0)\n"}
+{"task_id": "HumanEval/89", "completion": "    s = s.lower()\n    encrypted = ''.join(chr((ord(c) - ord('a') + 2 * 2) % 26 + ord('a')) for c in s)\n    return encrypted\n"}
+{"task_id": "HumanEval/89", "completion": "    s = s.lower()\n    encrypted = ''.join([chr((ord(c) - ord('a') + 2 * 2) % 26 + ord('a')) for c in s])\n    return encrypted\n"}
+{"task_id": "HumanEval/89", "completion": "    s = s.translate(str.maketrans('', '', 'abcdefghijklmnopqrstuvwxyz'))\n    return ''.join([chr((ord(c) - ord('a') + 2 * 2) % 26 + ord('a')) for c in s])\n"}
+{"task_id": "HumanEval/89", "completion": "    s = s.translate(str.maketrans('', '', 'abcdefghijklmnopqrstuvwxyz'))\n    return ''.join([chr((ord(c) - ord('a') + 2 * 2) % 26 + ord('a')) for c in s])\n"}
+{"task_id": "HumanEval/89", "completion": "    s = s.replace(\"a\", \"c\").replace(\"b\", \"d\").replace(\"e\", \"g\").replace(\"f\", \"i\").replace(\"g\", \"k\").replace(\"h\", \"m\").replace(\"i\", \"o\").replace(\"j\", \"q\").replace(\"k\", \"r\").replace(\"l\", \"t\").replace(\"m\", \"v\").replace(\"n\", \"x\").replace(\"o\", \"y\").replace(\"p\", \"z\").replace(\"q\", \"A\").replace(\"r\", \"B\").replace(\"s\", \"C\").replace(\"t\", \"D\").replace(\"u\", \"E\").replace(\"v\", \"F\").replace(\"w\", \"G\").replace(\"x\", \"H\").replace(\"y\", \"I\").replace(\"z\", \"J\")\n    return s\n"}
+{"task_id": "HumanEval/89", "completion": "    return ''.join(chr((ord(c) - ord('a') + 2 * 2) % 26 + ord('a')) for c in s)\n"}
+{"task_id": "HumanEval/9", "completion": "    return [max(numbers[:i+1]) for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/9", "completion": "    return [max(numbers[:i+1]) for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/9", "completion": "    return [max(numbers[:i+1]) for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/9", "completion": "    return [max(numbers[:i+1]) for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/9", "completion": "    return [max(numbers[:i+1]) for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/9", "completion": "    return [max(numbers[:i+1]) for i in range(len(numbers))]\n"}
+{"task_id": "HumanEval/90", "completion": "    return sorted(lst)[1] if len(lst) >= 2 else None\n"}
+{"task_id": "HumanEval/90", "completion": "    return sorted(lst)[1] if len(lst) >= 2 else None\n"}
+{"task_id": "HumanEval/90", "completion": "    return sorted(lst)[1] if len(lst) >= 2 else None\n"}
+{"task_id": "HumanEval/90", "completion": "    return sorted(lst)[1] if len(lst) > 1 else None\n"}
+{"task_id": "HumanEval/90", "completion": "    return sorted(lst)[1] if len(lst) > 1 else None\n"}
+{"task_id": "HumanEval/90", "completion": "    return sorted(lst)[1] if len(lst) > 1 else None\n"}
+{"task_id": "HumanEval/91", "completion": "    sentences = re.split(r'[.?!]', S)\n    return sum(1 for s in sentences if s.strip().startswith('I'))\n"}
+{"task_id": "HumanEval/91", "completion": "    sentences = re.split(r'[.?!]', S)\n    return sum(1 for s in sentences if s.strip().startswith('I'))\n"}
+{"task_id": "HumanEval/91", "completion": "    sentences = re.split(r'[.?!]', S)\n    return sum(1 for sentence in sentences if sentence.strip().startswith('I'))\n"}
+{"task_id": "HumanEval/91", "completion": "    sentences = re.split(r'[.?!]', S)\n    return sum(1 for s in sentences if s.strip().startswith('I'))\n"}
+{"task_id": "HumanEval/91", "completion": "    return len(re.findall(r'^I\\s.*', S, re.MULTILINE))\n"}
+{"task_id": "HumanEval/91", "completion": "    return len(re.findall(r'^I\\s', S, re.MULTILINE))\n"}
+{"task_id": "HumanEval/92", "completion": "    return x + y == z or x + z == y or y + z == x\n"}
+{"task_id": "HumanEval/92", "completion": "    return x + y == z or x + z == y or y + z == x\n"}
+{"task_id": "HumanEval/92", "completion": "    return x == y + z or y == x + z or z == x + y\n"}
+{"task_id": "HumanEval/92", "completion": "    return x == y + z or y == x + z or z == x + y\n"}
+{"task_id": "HumanEval/92", "completion": "    return x + y == z or x + z == y or y + z == x\n"}
+{"task_id": "HumanEval/92", "completion": "    return x + y == z or x + z == y or y + z == x\n"}
+{"task_id": "HumanEval/93", "completion": "    vowels = {'a': 'c', 'e': 'g', 'i': 'k', 'o': 'q', 'u': 'w'}\n    return ''.join([vowels.get(c.lower(), c.swapcase()) for c in message])\n"}
+{"task_id": "HumanEval/93", "completion": "    vowels = {'a': 'c', 'e': 'g', 'i': 'k', 'o': 'q', 'u': 'w'}\n    return ''.join([vowels.get(c.lower(), c.swapcase()) for c in message])\n"}
+{"task_id": "HumanEval/93", "completion": "    return ''.join([chr((ord(c) - ord('a') + 2) % 26 + ord('a')) if c.lower() in 'aeiou' else chr(ord(c).swapcase()) for c in message])\n"}
+{"task_id": "HumanEval/93", "completion": "    return ''.join(c.swapcase() if c.isalpha() else c for c in message).translate(str.maketrans('aeiou', 'cgikmo'))\n"}
+{"task_id": "HumanEval/93", "completion": "    return ''.join(c.swapcase() if c.isalpha() else c for c in message).translate(str.maketrans('aeiou', 'cgikmo'))\n"}
+{"task_id": "HumanEval/93", "completion": "    return ''.join([chr((ord(c) - ord('a') + 26) % 26 + ord('a')) if c.lower() in 'aeiou' else chr(ord(c).swapcase()) for c in message])\n"}
+{"task_id": "HumanEval/94", "completion": "    max_prime = max([num for num in lst if is_prime(num)])\n    return sum(int(digit) for digit in str(max_prime))\n"}
+{"task_id": "HumanEval/94", "completion": "    max_prime = max([num for num in lst if is_prime(num)])\n    return sum(int(digit) for digit in str(max_prime))\n"}
+{"task_id": "HumanEval/94", "completion": "    max_prime = max([num for num in lst if is_prime(num)])\n    return sum(int(digit) for digit in str(max_prime))\n"}
+{"task_id": "HumanEval/94", "completion": "    max_prime = max([num for num in lst if is_prime(num)])\n    return sum(int(digit) for digit in str(max_prime))\n"}
+{"task_id": "HumanEval/94", "completion": "    max_prime = max([num for num in lst if is_prime(num)])\n    return sum(int(digit) for digit in str(max_prime))\n"}
+{"task_id": "HumanEval/94", "completion": "    max_prime = max([num for num in lst if is_prime(num)])\n    return sum(int(digit) for digit in str(max_prime))\n"}
+{"task_id": "HumanEval/95", "completion": "    return all(isinstance(key, str) for key in dict.keys()) == all(isinstance(key, str) for key in dict.keys())\n"}
+{"task_id": "HumanEval/95", "completion": "    return all(isinstance(k, str) for k in dict.keys()) == all(isinstance(k, str) for k in dict.keys())\n"}
+{"task_id": "HumanEval/95", "completion": "    return all(isinstance(key, str) for key in dict.keys()) == all(isinstance(key, str) for key in dict.keys())\n"}
+{"task_id": "HumanEval/95", "completion": "    return all(isinstance(key, str) for key in dict.keys())\n"}
+{"task_id": "HumanEval/95", "completion": "    return all(isinstance(key, str) for key in dict.keys())\n"}
+{"task_id": "HumanEval/95", "completion": "    return all(isinstance(k, str) for k in dict.keys()) and all(isinstance(v, str) for v in dict.values())\n"}
+{"task_id": "HumanEval/97", "completion": "    return abs(a % 10) * abs(b % 10)\n"}
+{"task_id": "HumanEval/97", "completion": "    return abs(a % 10) * abs(b % 10)\n"}
+{"task_id": "HumanEval/97", "completion": "    return abs(a % 10) * abs(b % 10)\n"}
+{"task_id": "HumanEval/97", "completion": "    return abs(a % 10) * abs(b % 10)\n"}
+{"task_id": "HumanEval/97", "completion": "    return abs(a % 10) * abs(b % 10)\n"}
+{"task_id": "HumanEval/97", "completion": "    return abs(a % 10) * abs(b % 10)\n"}
+{"task_id": "HumanEval/98", "completion": "    return sum(1 for i, char in enumerate(s) if i % 2 == 0 and char in 'AEIOU')\n"}
+{"task_id": "HumanEval/98", "completion": "    return sum(1 for i, c in enumerate(s) if i % 2 == 0 and c in 'AEIOU')\n"}
+{"task_id": "HumanEval/98", "completion": "    return sum(1 for i, c in enumerate(s) if i % 2 == 0 and c in 'AEIOU')\n"}
+{"task_id": "HumanEval/98", "completion": "    return sum(1 for i, char in enumerate(s) if i % 2 == 0 and char in \"AEIOU\")\n"}
+{"task_id": "HumanEval/98", "completion": "    return sum(1 for i, c in enumerate(s) if i % 2 == 0 and c in 'AEIOU')\n"}
+{"task_id": "HumanEval/98", "completion": "    return sum(1 for i, c in enumerate(s) if i % 2 == 0 and c in 'AEIOU')\n"}
+{"task_id": "HumanEval/99", "completion": "    return int(round(float(value)))\n"}
+{"task_id": "HumanEval/99", "completion": "    return int(round(float(value)))\n"}
+{"task_id": "HumanEval/99", "completion": "    return int(round(float(value)))\n"}
+{"task_id": "HumanEval/99", "completion": "    return int(round(float(value)))\n"}
+{"task_id": "HumanEval/99", "completion": "    return int(round(float(value)))\n"}
+{"task_id": "HumanEval/99", "completion": "    return int(round(float(value)))\n"}

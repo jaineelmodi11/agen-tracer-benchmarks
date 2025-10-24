@@ -10,26 +10,24 @@ def smallest_change(arr):
     smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
     smallest_change([1, 2, 3, 2, 1]) == 0
     """
+    """
+    Given an array arr of integers, find the minimum number of elements that need to be changed
+    to make the array palindromic. A palindromic array is an array that is read the same backwards and forwards.
+    In one change, you can change one element to any other element.
+
+    For example:
+    smallest_change([1,2,3,5,4,7,9,6]) == 4
+    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
+    smallest_change([1, 2, 3, 2, 1]) == 0
+    """
     n = len(arr)
-    if n < 2:
-        return 0
+    left, right = 0, n - 1
+    changes = 0
 
-    # Find the first differing pair
-    for i in range(n // 2):
-        if arr[i] != arr[n - 1 - i]:
-            break
+    while left < right:
+    if arr[left] != arr[right]:
+        changes += 1
+    left += 1
+    right -= 1
 
-    # If no differences are found, all elements are already in order
-    if i == n // 2:
-        return 0
-
-    # Count the number of changes needed
-    count = 0
-    for i in range(n // 2):
-        if arr[i] != arr[n - 1 - i]:
-            count += 1
-
-    return count
-
-    # Example usage
-    print(smallest_change([1,2,3,5,4,7,9,6]))  # Output:
+    return changes

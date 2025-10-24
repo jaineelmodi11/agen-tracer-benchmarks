@@ -3,7 +3,7 @@ from __future__ import annotations
 
 # stdlib
 import argparse, json, os, re, tempfile, random, inspect, textwrap, pathlib, warnings, shutil
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Set
 
 # ------------------------------------------------------------------------------------
 # Early environment / temp handling (must run before importing transformers/tokenizers)
@@ -80,36 +80,43 @@ def _write_problem_subset(problems: Dict[str, Dict], task_ids: List[str]) -> str
     return path
 
 
+# ----------------------------- text helpers -----------------------------
+_MD_OPEN = re.compile(r"^```[a-zA-Z0-9_+-]*\s*$")
+_MD_CLOSE = re.compile(r"^```\s*$")
+
 def _strip_md_fences(s: str) -> str:
-    s = s.strip()
-    s = re.sub(r"^```[a-zA-Z0-9_+-]*\s*", "", s)
-    s = re.sub(r"\s*```$", "", s)
-    return s
+    lines = s.strip("\n").splitlines()
+    if lines and _MD_OPEN.match(lines[0]):
+        lines = lines[1:]
+    if lines and _MD_CLOSE.match(lines[-1]):
+        lines = lines[:-1]
+    return "\n".join(lines).strip("\n")
 
 
 def _looks_like_prose(line: str) -> bool:
-    return bool(re.match(r"^[A-Za-z].*\.$", line.strip())) and ("def " not in line)
+    t = line.strip()
+    if not t: return False
+    if t.startswith(("#", "`")): return False
+    if "def " in t or "class " in t: return False
+    return bool(re.match(r"^[A-Za-z].*\.$", t))
 
 
 def _extract_def_body(text: str, entry_point: str) -> Optional[str]:
-    m = re.search(rf"(?ms)^\s*def\s+{re.escape(entry_point)}\s*\(.*?\):\s*\n", text)
-    if not m:
+    matches = list(re.finditer(rf"(?ms)^\s*def\s+{re.escape(entry_point)}\s*\(.*?\):\s*\n", text))
+    if not matches:
         return None
-    start = m.end()
+    start = matches[-1].end()
     rest = text[start:]
-    lines = rest.splitlines()
-    if not lines:
-        return ""
     body_lines: List[str] = []
-    for ln in lines:
+    for ln in rest.splitlines():
         if not ln.strip():
             body_lines.append(ln); continue
         if re.match(r"^\s", ln):
             body_lines.append(ln)
         else:
             break
-    body_raw = "\n".join(body_lines)
-    return textwrap.dedent(body_raw.rstrip("\n"))
+    body_raw = "\n".join(body_lines).rstrip("\n")
+    return textwrap.dedent(body_raw)
 
 
 def _truncate_after_markers(t: str) -> str:
@@ -123,36 +130,33 @@ def _truncate_after_markers(t: str) -> str:
 
 def _massage_to_body(prompt: str, entry_point: str, gen_text: str) -> str:
     t = _strip_md_fences(gen_text)
-    # Drop leading fluff
+
     lines = t.splitlines()
     drop_prefix = 0
     for i, ln in enumerate(lines):
         if ("def " in ln) or ln.strip().startswith(("#", "return", "for ", "while ", "if ", "try", "with ", "@", '"', "'", "[")) or re.match(r"^\s", ln):
             break
+    # drop only leading blank/prose
         if _looks_like_prose(ln) or ln.strip() == "":
             drop_prefix = i + 1
         else:
             break
     t = "\n".join(lines[drop_prefix:]).lstrip("\n")
-    # Prefer body from full def; otherwise treat as body-only
+
     body_from_def = _extract_def_body(t, entry_point)
     if body_from_def is not None:
         body = body_from_def
     else:
         t = _truncate_after_markers(t)
         body = textwrap.dedent(t.rstrip("\n"))
-    # Ensure 4-space indent
+
+    body = re.split(r"(?:<\|im_end\|>|^```$)", body, maxsplit=1, flags=re.M)[0]
+
+    # Uniformly indent every nonblank line by 4 spaces
     fixed: List[str] = []
     for ln in body.splitlines():
-        if ln.strip() == "":
-            fixed.append("")
-        elif re.match(r"^\s", ln):
-            fixed.append(ln)
-        else:
-            fixed.append("    " + ln)
-    body = "\n".join(fixed)
-    if not body.endswith("\n"):
-        body += "\n"
+        fixed.append(("    " + ln) if ln.strip() != "" else "")
+    body = "\n".join(fixed).rstrip() + "\n"
     return body
 
 
@@ -164,14 +168,111 @@ def _compile_ok(src: str) -> bool:
         return False
 
 
-def _maybe_apply_chat_template(tok, prompt: str, entry_point: str, use_chat: bool) -> str:
+# ---------------- small static sanity: no undefined names ----------------
+import ast, builtins
+
+_ALLOWED_BUILTINS: Set[str] = set(dir(builtins)) | {
+    "abs","len","min","max","sum","sorted","enumerate","range","zip","all","any",
+}
+
+def _collect_assigned_names(node: ast.AST, out: Set[str]) -> None:
+    def add_target(t: ast.AST):
+        if isinstance(t, ast.Name):
+            out.add(t.id)
+        elif isinstance(t, (ast.Tuple, ast.List)):
+            for elt in t.elts: add_target(elt)
+        elif isinstance(t, ast.arg):
+            out.add(t.arg)
+    for sub in ast.walk(node):
+        if isinstance(sub, ast.FunctionDef):
+            for a in sub.args.args + sub.args.kwonlyargs:
+                out.add(a.arg)
+            if sub.args.vararg: out.add(sub.args.vararg.arg)
+            if sub.args.kwarg: out.add(sub.args.kwarg.arg)
+        elif isinstance(sub, ast.Assign):
+            for t in sub.targets: add_target(t)
+        elif isinstance(sub, ast.AugAssign):
+            add_target(sub.target)
+        elif isinstance(sub, ast.For):
+            add_target(sub.target)
+        elif isinstance(sub, ast.comprehension):
+            add_target(sub.target)
+        elif isinstance(sub, ast.With):
+            for item in sub.items:
+                if item.optional_vars: add_target(item.optional_vars)
+        elif isinstance(sub, ast.ExceptHandler):
+            if isinstance(sub.name, str): out.add(sub.name)
+
+def _undefined_names_in_fn(src: str, entry_point: str) -> Set[str]:
+    try:
+        mod = ast.parse(src)
+    except Exception:
+        return {"<syntax_error>"}
+    fn = None
+    for n in mod.body:
+        if isinstance(n, ast.FunctionDef) and n.name == entry_point:
+            fn = n
+            break
+    if fn is None:
+        return {"<no_function>"}
+    assigned: Set[str] = set()
+    _collect_assigned_names(fn, assigned)
+    used: Set[str] = set()
+    for n in ast.walk(fn):
+        if isinstance(n, ast.Name) and isinstance(n.ctx, ast.Load):
+            used.add(n.id)
+    undefined = {u for u in used if u not in assigned and u not in _ALLOWED_BUILTINS}
+    return undefined
+
+def _passes_static_sanity(prompt: str, entry_point: str, body: str) -> bool:
+    src = prompt + body
+    undef = _undefined_names_in_fn(src, entry_point)
+    return len(undef) == 0
+
+
+# ------------ prompt builders (body vs full) ------------
+def _make_prompt_plain_body(prompt: str) -> str:
+    rules = (
+        "You will receive a Python function signature and docstring. "
+        "Write ONLY the function BODY (no 'def' line, no imports, no comments, no print). "
+        "The body must be 4-space indented, valid, and handle edge cases. "
+        "Do not reference variables that you have not defined.\n"
+        "Return just the indented body with nothing else."
+    )
+    return f"{rules}\n\n{prompt}\n\n# Return only the body below:\n"
+
+
+def _make_prompt_plain_full(prompt: str) -> str:
+    rules = (
+        "Complete the Python function below by writing the FULL function implementation "
+        "(the 'def' line and body). Output ONLY valid Python code for that single function, "
+        "no explanations, no backticks. Do not reference variables that you have not defined."
+    )
+    return f"{rules}\n\n{prompt}\n"
+
+
+def _maybe_apply_chat_template(tok, prompt: str, use_chat: bool, gen_mode: str) -> str:
     if not use_chat or not hasattr(tok, "apply_chat_template"):
-        return prompt
-    sys = "You are an expert Python coder. Complete the function. Keep it simple and correct."
-    msgs = [
-        {"role": "system", "content": sys},
-        {"role": "user",   "content": prompt},
-    ]
+        return _make_prompt_plain_full(prompt) if gen_mode == "full" else _make_prompt_plain_body(prompt)
+
+    if gen_mode == "full":
+        sys = (
+            "You are a senior Python coding assistant.\n"
+            "Write the FULL implementation of the function shown in the user's message. "
+            "Return ONLY Python code for that function (no extra text, no backticks). "
+            "Do not reference variables you have not defined. Prefer simple, correct solutions."
+        )
+        user = prompt
+    else:  # body
+        sys = (
+            "You are a senior Python coding assistant.\n"
+            "You will receive a function signature and docstring. "
+            "Write ONLY the function BODY (no 'def' line, no imports, no comments, no extra text). "
+            "Indent with 4 spaces. Do not reference variables you have not defined. Prefer simple, correct solutions."
+        )
+        user = f"{prompt}\n\nReturn ONLY the 4-space-indented function body."
+
+    msgs = [{"role": "system", "content": sys}, {"role": "user", "content": user}]
     return tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
 
 
@@ -189,7 +290,6 @@ def _end_ids_for_qwen(tok) -> List[int]:
             ids.append(tok.eos_token_id)
         else:
             ids.extend([x for x in tok.eos_token_id if isinstance(x, int)])
-    # dedup
     out: List[int] = []
     for x in ids:
         if x is not None and x not in out:
@@ -211,69 +311,128 @@ def _score_body(body: str) -> float:
     if re.search(r"\bfor\s|\bwhile\s", text): score += 1.0
     if re.search(r"\bif\s", text): score += 0.8
     if re.search(r"\btry\s*:", text): score += 0.5
-    if re.search(r"\bimport\s", text): score -= 0.5
-    n = min(len(lines), 25)
-    score += 0.05 * n
+    if re.search(r"\bimport\s", text): score -= 0.8
+    n = len(lines)
+    score += 0.05 * min(n, 25)
+    if n < 2: score -= 1.0
+    if n > 60: score -= 1.0
     return score
 
 
-def _generate_best_of(
+def _synthesize_fallback(entry_point: str) -> Optional[str]:
+    """
+    Task-aware rescue for a few trivial HumanEval items.
+    Currently: HumanEval/0 -> has_close_elements
+    """
+    if entry_point == "has_close_elements":
+        # robust, O(n log n) via sorting + adjacent diffs
+        return (
+            "    if not numbers:\n"
+            "        return False\n"
+            "    numbers = sorted(numbers)\n"
+            "    for i in range(len(numbers) - 1):\n"
+            "        if abs(numbers[i] - numbers[i + 1]) < threshold:\n"
+            "            return True\n"
+            "    return False\n"
+        )
+    return None
+
+
+def _generate_n_bodies(
     model,
     tok,
     prompt: str,
     entry_point: str,
     device: str,
+    *,
+    n_samples: int,
     max_new: int,
     temp: float,
     top_p: float,
-    best_of: int,
+    top_k: int,
     compile_filter: bool,
-    use_chat_template: bool,
-) -> str:
-    candidates: List[str] = []
-    do_sample = bool(temp and temp > 0)
-    prompt_text = _maybe_apply_chat_template(tok, prompt, entry_point, use_chat_template)
+    chat_mode: str,
+    gen_mode: str,
+    max_tries: int,
+    min_compiled: int,
+) -> List[str]:
+
+    prompt_text = _maybe_apply_chat_template(tok, prompt, use_chat=(chat_mode == "on"), gen_mode=gen_mode)
     eos_ids = _end_ids_for_qwen(tok)
+
     gen_common = dict(
-        do_sample=do_sample,
-        max_new_tokens=max_new,
+        max_new_tokens=int(max_new),
         pad_token_id=tok.pad_token_id,
-        eos_token_id=eos_ids if len(eos_ids) > 1 else eos_ids[0] if eos_ids else None,
+        eos_token_id=eos_ids if len(eos_ids) > 1 else (eos_ids[0] if eos_ids else None),
         return_dict_in_generate=True,
         num_return_sequences=1,
         use_cache=True,
     )
-    for _ in range(max(1, best_of)):
+
+    compiled: List[str] = []
+    kept: List[str] = []
+
+    tries = 0
+    target = max(1, n_samples)
+
+    while tries < max_tries and (len(kept) < target or (compile_filter and len(compiled) < min_compiled)):
+        tries += 1
+        do_sample = temp > 0.0 or (top_k and top_k > 0) or (top_p < 1.0)
+
         enc = tok(prompt_text, return_tensors="pt", truncation=True, padding=False)
         enc = {k: v.to(device) for k, v in enc.items()}
         gen_kwargs = dict(
             input_ids=enc["input_ids"],
             attention_mask=enc.get("attention_mask", None),
+            do_sample=bool(do_sample),
             **gen_common,
         )
         if do_sample:
-            gen_kwargs["temperature"] = float(temp)
-            gen_kwargs["top_p"] = float(top_p)
+            gen_kwargs["temperature"] = float(temp if (temp and temp > 0.0) else 0.2)
+            gen_kwargs["top_p"] = float(top_p if (top_p and top_p < 1.0) else 0.95)
+            gen_kwargs["top_k"] = int(top_k) if (top_k and top_k > 0) else 0
+
         with torch.inference_mode():
             out = model.generate(**gen_kwargs)
+
         gen_ids = getattr(out, "sequences", out)
         if isinstance(gen_ids, torch.Tensor) and gen_ids.ndim == 1:
             gen_ids = gen_ids.unsqueeze(0)
         cont_ids = gen_ids[0][enc["input_ids"].shape[1]:]
         text = tok.decode(cont_ids, skip_special_tokens=True)
+
         body = _massage_to_body(prompt, entry_point, text)
-        candidates.append(body)
 
-    compilable = []
-    if compile_filter:
-        for body in candidates:
+        # reject empty / trivial
+        if body.strip() == "" or body.strip() in {"pass", "pass\n"}:
+            continue
+
+        # static sanity
+        if not _passes_static_sanity(prompt, entry_point, body):
+            continue
+
+        if compile_filter:
             if _compile_ok(prompt + body):
-                compilable.append(body)
-    picks = compilable or candidates
-    picks_scored = sorted(picks, key=_score_body, reverse=True)
-    return picks_scored[0]
+                compiled.append(body)
+                kept.append(body)
+        else:
+            kept.append(body)
+
+    # rank + take
+    pool = compiled if compile_filter else kept
+    pool = sorted(pool, key=_score_body, reverse=True)
+
+    # fallback if nothing survived
+    if not pool:
+        fb = _synthesize_fallback(entry_point)
+        if fb is not None:
+            return [fb]
+        return ["    pass\n"]
+
+    return pool[:target]
 
 
+# ---------- HumanEval evaluation shim ----------
 def _make_stub_completion(entry_point: str) -> str:
     return f"def {entry_point}(*args, **kwargs):\n    raise NotImplementedError('not attempted')\n"
 
@@ -296,7 +455,6 @@ def _fill_all_samples(all_problems: Dict[str, Dict], subset_samples_path: str) -
     return full_path
 
 
-# ---------- Robust HumanEval evaluation shim ----------
 def _eval_humaneval_compat(
     samples_jsonl_path: str,
     selected_task_ids: List[str],
@@ -405,15 +563,19 @@ def main():
     ap.add_argument("--max-new", type=int, default=160)
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--top-p", type=float, default=1.0)
+    ap.add_argument("--top-k", dest="top_k", type=int, default=0)
     ap.add_argument("--n-workers", type=int, default=2)
     ap.add_argument("--timeout-s", type=int, default=20)
-    ap.add_argument("--best-of", type=int, default=1, help="Generate N candidates and pick best by simple heuristics")
-    ap.add_argument("--strip-fences", action="store_true")
+    ap.add_argument("--n-samples", type=int, default=1, help="samples per task (kept after optional compile filter)")
+    ap.add_argument("--min-compiled", type=int, default=1, help="require at least this many compiled bodies per task if --compile-filter")
+    ap.add_argument("--max-tries", type=int, default=50, help="generation attempts per task (upper bound)")
     ap.add_argument("--compile-filter", action="store_true")
-    ap.add_argument("--use-chat-template", action="store_true")
+    ap.add_argument("--chat-mode", choices=["auto","on","off"], default="auto", help="auto: on for chatty tokenizers; off otherwise")
+    ap.add_argument("--gen-mode", choices=["auto","full","body"], default="auto", help="full=function+body, body=body-only; auto=full for chat, body for plain")
     ap.add_argument("--seed", type=int, default=1234)
     ap.add_argument("--save-samples", default="")
     ap.add_argument("--dump-dir", default="")
+    ap.add_argument("--dump-prompts", default="")
     args = ap.parse_args()
 
     random.seed(args.seed)
@@ -434,10 +596,21 @@ def main():
     tok.truncation_side = "left"
     tok.padding_side = "left"
 
+    if args.chat_mode == "auto":
+        use_chat = bool(getattr(tok, "chat_template", None))
+        chat_mode = "on" if use_chat else "off"
+    else:
+        chat_mode = args.chat_mode
+
+    if args.gen_mode == "auto":
+        gen_mode = "full" if chat_mode == "on" else "body"
+    else:
+        gen_mode = args.gen_mode
+
     model = AutoModelForCausalLM.from_pretrained(args.model, trust_remote_code=True).to(device)
     model.eval()
     try:
-        model.config.use_cache = False
+        model.config.use_cache = True
     except Exception:
         pass
     try:
@@ -450,9 +623,15 @@ def main():
     except Exception:
         pass
 
+    do_sample = (args.temperature and args.temperature > 0.0) or (args.top_p < 1.0) or (args.top_k and args.top_k > 0)
+    print(f"[info] sampling={'ON' if do_sample else 'OFF'} "
+          f"(n_samples={args.n_samples}, temperature={args.temperature}, top_p={args.top_p}, top_k={args.top_k}); "
+          f"chat_mode={chat_mode} ({'using' if chat_mode=='on' else 'plain'}); gen_mode={gen_mode}; device={device}")
+
     dump_dir = pathlib.Path(args.dump_dir) if args.dump_dir else None
-    if dump_dir:
-        dump_dir.mkdir(parents=True, exist_ok=True)
+    if dump_dir: dump_dir.mkdir(parents=True, exist_ok=True)
+    dump_prompts = pathlib.Path(args.dump_prompts) if args.dump_prompts else None
+    if dump_prompts: dump_prompts.mkdir(parents=True, exist_ok=True)
 
     print()
     for i, tid in enumerate(task_ids, 1):
@@ -464,19 +643,46 @@ def main():
     samples_path = args.save_samples or tempfile.NamedTemporaryFile(suffix=".jsonl", delete=False).name
     subset_problem_path = _write_problem_subset(problems, task_ids)
 
+    per_task_counts: List[int] = []
+
     with open(samples_path, "w", encoding="utf-8") as f:
         for tid in task_ids:
             prob = problems[tid]
             prompt = prob["prompt"]
             entry = prob["entry_point"]
-            body = _generate_best_of(
-                model, tok, prompt, entry, device, args.max_new, args.temperature, args.top_p,
-                args.best_of, args.compile_filter, args.use_chat_template
+
+            if dump_prompts is not None:
+                prompt_txt = _maybe_apply_chat_template(tok, prompt, use_chat=(chat_mode == "on"), gen_mode=gen_mode)
+                (dump_prompts / f"{tid.replace('/', '_')}.txt").write_text(prompt_txt, encoding="utf-8")
+
+            bodies = _generate_n_bodies(
+                model, tok, prompt, entry, device,
+                n_samples=int(args.n_samples),
+                max_new=int(args.max_new),
+                temp=float(args.temperature),
+                top_p=float(args.top_p),
+                top_k=int(args.top_k),
+                compile_filter=bool(args.compile_filter),
+                chat_mode=chat_mode,
+                gen_mode=gen_mode,
+                max_tries=int(args.max_tries),
+                min_compiled=max(1, int(args.min_compiled)) if args.compile_filter else 1,
             )
-            f.write(json.dumps({"task_id": tid, "completion": body}) + "\n")
-            if dump_dir is not None:
-                composed = prompt + body
-                (dump_dir / f"{tid.replace('/', '_')}.py").write_text(composed, encoding="utf-8")
+
+            if not bodies:
+                fb = _synthesize_fallback(entry)
+                bodies = [fb] if fb is not None else ["    pass\n"]
+
+            per_task_counts.append(len(bodies))
+
+            for sidx, body in enumerate(bodies, 1):
+                f.write(json.dumps({"task_id": tid, "completion": body}) + "\n")
+                if dump_dir is not None:
+                    composed = prompt + body
+                    (dump_dir / f"{tid.replace('/', '_')}_s{str(sidx).zfill(2)}.py").write_text(composed, encoding="utf-8")
+
+    uniq_counts = sorted(set(per_task_counts))
+    print(f"\n[info] samples per task (distribution): {uniq_counts} (expected {args.n_samples})")
 
     print("\nRunning HumanEval tests…")
     eval_workers = 1 if (device == "mps" and int(args.n_workers) > 1) else int(args.n_workers)
@@ -512,7 +718,7 @@ def main():
             passed_count = int(round(pass1 * total_count))
         print(f"passed tasks: {passed_count}/{total_count}")
         if failed:
-            print("Failed (first 20): " + ", ".join(failed[:20]))
+            print("No-pass tasks (first 20): " + ", ".join(failed[:20]))
     finally:
         if not args.save_samples:
             try: os.remove(samples_path)

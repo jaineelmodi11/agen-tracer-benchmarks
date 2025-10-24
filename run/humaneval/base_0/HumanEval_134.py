@@ -12,13 +12,9 @@ def check_if_last_char_is_a_letter(txt):
     check_if_last_char_is_a_letter("apple pi e ") ➞ False
     check_if_last_char_is_a_letter("") ➞ False 
     '''
-    # Your code here
+    # Check if the string is empty
+    if not txt:
+    return False
 
-    # Test cases to verify the correctness of your function
-    print(check_if_last_char_is_a_letter("apple pie"))  # ➞ False
-    print(check_if_last_char_is_a_letter("apple pi e"))  # ➞ True
-    print(check_if_last_char_is_a_letter("apple pi e "))  # ➞ False
-    print(check_if_last_char_is_a_letter(""))  # ➞ False
-    ```
-
-    This solution uses Python's string slicing feature (`txt[-1:]`) to access the last character of the string. It then checks if this character is an alphabetical character using the `isalpha()` method. If it is, it further checks if it is not part of any word by comparing it with each word in the provided list. The function returns
+    # Check if the last character is an alphabetical character and not part of a word
+    return txt[-1].isalpha() and not any(char.isalpha() and char not in txt[:-1] for char in txt[:-1])

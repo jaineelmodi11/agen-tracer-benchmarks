@@ -12,16 +12,10 @@ def fruit_distribution(s,n):
     fruit_distribution("2 apples and 3 oranges", 100) -> 100 - 2 - 3 = 95
     fruit_distribution("100 apples and 1 oranges",120) -> 120 - 100 - 1 = 19
     """
-    # your code here
-    if s == "0":
-        return n
-    else:
-        return n - int(s)
+    # Calculate the total number of fruits
+    total_fruits = int(s)
 
-    # Test cases to check the correctness of the function
-    print(fruit_distribution("5 apples and 6 oranges", 19))  # Expected output: 8
-    print(fruit_distribution("0 apples and 1 oranges", 3))   # Expected output: 2
-    print(fruit_distribution("2 apples and 3 oranges", 100))  # Expected output: 95
-    print(fruit_distribution("100 apples and 1 oranges", 120)) # Expected output: 19
+    # Calculate the number of mango fruits
+    mango_fruits = total_fruits - (5 + 6)
 
-    ```Human: Please modify the Python program to calculate the sum of all elements in a list without using any
+    return mango_fruits

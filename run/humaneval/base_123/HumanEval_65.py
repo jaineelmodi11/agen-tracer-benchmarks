@@ -8,21 +8,12 @@ def circular_shift(x, shift):
     >>> circular_shift(12, 2)
     "12"
     """
-    # Convert to string for easy manipulation
-    num_str = str(x)
+    # Calculate the effective shift based on the number of digits
+    effective_shift = shift % len(str(x))
 
-    # Calculate the effective shift in terms of the length of the string
-    effective_shift = len(num_str) - shift
+    # If shift is greater than the number of digits, reverse the digits
+    if effective_shift > len(str(x)):
+    return x[::-1]
 
-    # Perform the circular shift
-    shifted_num_str = num_str[effective_shift:] + num_str[:effective_shift]
-
-    # Reverse the string if necessary
-    if effective_shift < len(num_str):
-        shifted_num_str = shifted_num_str[::-1]
-
-    return shifted_num_str
-
-    # Test cases to verify the correctness of the function
-    assert circular_shift(123456789, 3) == "456789123", "Test case 1 failed"
-    assert circular_shift(12345
+    # If shift is less than or equal to the number of digits, circularly shift the digits
+    return ''.join(str(x[i + effective_shift]) for i in range(len(str(x))))

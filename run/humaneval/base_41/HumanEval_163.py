@@ -9,15 +9,24 @@ def generate_integers(a, b):
     generate_integers(8, 2) => [2, 4, 6, 8]
     generate_integers(10, 14) => []
     """
-    result = []
-    for num in range(a, b + 1):
-        if all(num % i == 0 for i in range(2, int(num**0.5) + 1)):
-            result.append(num)
-    return sorted(result)
+    """
+    Given two positive integers a and b, return the even digits between a and b, in ascending order.
 
-    # Check function with provided data points
-    assert generate_integers(2, 8) == [2, 4, 6, 8], "Test case 1 failed"
-    assert generate_integers(8, 2) == [2, 4, 6, 8], "Test case 2 failed"
-    assert generate_integers(10, 14) == [], "Test case 3 failed"
+    For example:
+    generate_integers(2, 8) => [2, 4, 6, 8]
+    generate_integers(8, 2) => [2, 4, 6, 8]
+    generate_integers(10, 14) => []
+    """
+    # Convert the range to a string for easy digit extraction
+    str_a = str(a)
+    str_b = str(b)
 
-    print("All test cases passed!")import math
+    # Extract even digits from the strings
+    even_digits_a = ''.join(digit for digit in str_a if int(digit) % 2 == 0)
+    even_digits_b = ''.join(digit for digit in str_b if int(digit) % 2 == 0)
+
+    # Combine the even digits from both strings
+    result = even_digits_a + even_digits_b
+
+    # Convert the result back to an integer list
+    return list(map(int

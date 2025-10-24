@@ -13,23 +13,30 @@ def encode(message):
     >>> encode('This is a message')
     'tHKS KS C MGSSCGG'
     """
-    # Create an empty string to hold the encoded message
-    encoded_message = ""
+    # Define the alphabet and the mapping for vowels
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    vowel_map = {'a': 'd', 'e': 'f', 'i': 'j', 'o': 'p', 'u': 'v'}
 
-    # Iterate through each character in the input message
+    # Initialize an empty result string
+    result = ''
+
+    # Iterate over each character in the message
     for char in message:
-        if char.isalpha():
-            # Check if the character is a vowel
-            if char.lower() in "aeiou":
-                # Find the index of the next vowel
-                next_vowel_index = (ord(char) - ord("a") + 1) % 26
-                # Replace the current vowel with the next one
-                encoded_message += chr(ord(char) - 3)
-            else:
-                # If not a vowel, just keep the original character
-                encoded_message += char
+    # Check if the character is a letter
+    if char.isalpha():
+        # Determine the case of the letter
+        if char.isupper():
+            # Swap the case of the letter
+            result += char.lower()
+        else:
+            # Keep the case of the letter unchanged
+            result += char
+    else:
+        # If the character is not a letter, add it as is
+        result += char
 
-    return encoded_message
+    # Replace vowels with the corresponding letter
+    for vowel in vowel_map:
+    result = result.replace(vowel, vowel_map[vowel])
 
-    # Test cases to verify the correctness of the solution
-    print(encode
+    return result

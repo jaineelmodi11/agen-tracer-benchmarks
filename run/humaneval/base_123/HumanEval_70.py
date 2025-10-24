@@ -10,28 +10,24 @@ def strange_sort_list(lst):
     strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]
     strange_sort_list([]) == []
     '''
+    # If the list is empty, return it as is
     if not lst:
-        return []
+    return lst
 
-    # Initialize variables to keep track of the current min and max values
-    min_val = float('inf')
-    max_val = -float('inf')
+    # Sort the list in ascending order
+    sorted_lst = sorted(lst)
 
-    for num in lst:
-        if num < min_val:
-            min_val = num
-        elif num > max_val:
-            max_val = num
+    # If the sorted list has only one element, return it as is
+    if len(sorted_lst) == 1:
+    return sorted_lst
 
-    # Create a new list with the same length as the input list
-    result = [min_val] * len(lst)
+    # Initialize the result list with the first element
+    result = [sorted_lst[0]]
 
-    # Fill the result list with the sorted elements
-    for i in range(len(result)):
-        result[i] = max_val if i % 2 else min_val
+    # Iterate through the sorted list starting from the second element
+    for i in range(1, len(sorted_lst)):
+    # Append the maximum of the remaining elements to the result list
+    result.append(max(sorted_lst[i-1:i+1]))
 
+    # Return the result list
     return result
-
-
-    # Test cases
-    print(strange_sort_list([1, 2, 3, 4]))  #

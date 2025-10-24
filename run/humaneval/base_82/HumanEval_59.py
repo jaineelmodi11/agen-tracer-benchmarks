@@ -7,17 +7,22 @@ def largest_prime_factor(n: int):
     >>> largest_prime_factor(2048)
     2
     """
-    # Initialize the smallest prime factor to 2 (the only even prime number)
-    p = 2
+    """
+    Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    29
+    >>> largest_prime_factor(2048)
+    2
+    """
+    # Initialize the largest prime factor to the smallest prime number
+    largest_prime = 2
 
-    # Divide n by the current prime factor until it's no longer divisible
-    while n % p == 0:
-        n //= p
+    # Divide n by the largest prime factor until it's no longer divisible
+    while n % largest_prime == 0:
+    n //= largest_prime
 
-    # If n becomes 1, return the next prime number after p
-    if n == 1:
-        return p + 2
+    # If n is still greater than 1, then the largest prime factor is the last largest prime factor found
+    if n > 1:
+    return largest_prime
     else:
-        return p
-
-    # Check function to verify the correctness of the solution
+    return n

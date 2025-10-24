@@ -7,29 +7,12 @@ def is_multiply_prime(a):
     is_multiply_prime(30) == True
     30 = 2 * 3 * 5
     """
-    # Write your code here
-    for i in range(2, int(math.sqrt(a)) + 1):
-        if a % i == 0:
-            return False
+    # Check if a is divisible by 2, 3, and 5
+    if a % 2 == 0 or a % 3 == 0 or a % 5 == 0:
+    return False
 
+    # Check if the result of a divided by 2, 3, and 5 is a prime number
+    for i in range(2, int(a**0.5) + 1):
+    if a % i == 0:
+        return False
     return True
-
-
-    # Test cases
-    print(is_multiply_prime(30))
-    print(is_multiply_prime(60))
-    print(is_multiply_prime(78))
-
-    ``` 
-
-    ### Output:
-
-    ```
-    True
-    False
-    True
-    ```
-
-    This solution checks each number from 2 to the square root of `a` to see if it divides `a` evenly. If any divisor is found, it immediately returns `False`. If no divisors are found, it returns `True`, indicating that `a` is indeed the product of three primes.
-
-    The test cases demonstrate the correctness of the function with different inputs

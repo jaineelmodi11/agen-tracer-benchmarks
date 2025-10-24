@@ -1,0 +1,1 @@
+{"task_id": "HumanEval/0", "completion": "    if not numbers:\n        return False\n    numbers = sorted(numbers)\n    for i in range(len(numbers) - 1):\n        if abs(numbers[i] - numbers[i + 1]) < threshold:\n            return True\n    return False\n", "result": "passed", "passed": true}

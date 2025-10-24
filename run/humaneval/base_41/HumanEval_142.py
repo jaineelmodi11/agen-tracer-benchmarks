@@ -12,23 +12,12 @@ def sum_squares(lst):
     For lst = []  the output should be 0
     For lst = [-1,-5,2,-1,-5]  the output should be -126
     """
-    # Initialize variables to store the result and the indices
-    res = 0
-    i = 0
-
-    while i < len(lst):
-        if (i % 3 == 0) or (i % 4 == 0): 
-            res += lst[i]**2
-        else: 
-            res += lst[i]**3
-        i += 1
-
-    return res
-
-    # Test cases
-    print(sum_squares([1,2,3]))  # Expected output: 6
-    print(sum_squares([]))       # Expected output: 0
-    print(sum_squares([-1,-5,2,-1,-5]))  # Expected output: -126
-    ``` 
-
-    This code defines a function `sum_squares` that takes
+    total_sum = 0
+    for index, value in enumerate(lst):
+    if index % 3 == 0:  # Check if the index is a multiple of 3
+        total_sum += value ** 2  # Square the value
+    elif index % 4 == 0:  # Check if the index is a multiple of 4
+        total_sum += value ** 3  # Cube the value
+    else:  # If neither condition is met, the value is not a multiple of 3 or 4
+        total_sum += value  # Add the value to the total sum
+    return total_sum

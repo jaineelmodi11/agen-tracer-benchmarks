@@ -5,6 +5,6 @@ def largest_divisor(n: int) -> int:
     >>> largest_divisor(15)
     5
     """
-    for i in range(2, n):
-        if n % i == 0:
-            return i
+    if n % i == 0:
+        return i
+    return n  # This line is redundant because n is already smaller than i.

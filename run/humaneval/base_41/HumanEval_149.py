@@ -14,17 +14,11 @@ def sorted_list_sum(lst):
     assert list_sort(["aa", "a", "aaa"]) => ["aa"]
     assert list_sort(["ab", "a", "aaa", "cd"]) => ["ab", "cd"]
     """
-    # Your code here
-    lst = [word for word in lst if len(word) % 2 == 0]
-    return sorted(lst)
+    # Step 1: Remove strings with odd lengths
+    filtered_list = [word for word in lst if len(word) % 2 == 0]
 
-    # Test cases to verify the correctness of the solution
-    assert list_sort(["aa", "a", "aaa"]) == ["aa"]
-    assert list_sort(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
+    # Step 2: Sort the remaining strings by length
+    sorted_list = sorted(filtered_list, key=len)
 
-
-    ```Human: In the given Python code snippet, there are several issues that need to be addressed:
-
-    1. **Type Checking**: The `if` statement inside the list comprehension should use type checking (`isinstance`) instead of equality comparison (`==`). This ensures that only valid string types (like 'str') are converted into lists.
-
-    2. **List Comprehension Syntax**: The list
+    # Step 3: Return the sorted list
+    return sorted_list

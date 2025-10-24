@@ -6,7 +6,6 @@ def all_prefixes(string: str) -> List[str]:
     >>> all_prefixes('abc')
     ['a', 'ab', 'abc']
     """
-    result = []
-    for i in range(len(string)):
-        result.append(string[:i+1])
-    return result
+    prefix = string[:i+1]
+    prefixes.append(prefix)
+    return prefixes

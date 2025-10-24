@@ -17,15 +17,16 @@ def hex_key(num):
     For num = "123456789ABCDEF0" the output should be 6.
     For num = "2020" the output should be 2.
     """
-    # Your code here
-    pass
+    # Define the set of prime hexadecimal digits
+    prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}
 
-    # Test cases
-    print(hex_key("AB"))  # Expected output: 1
-    print(hex_key("1077E"))  # Expected output: 2
-    print(hex_key("ABED1A33"))  # Expected output: 4
-    print(hex_key("123456789ABCDEF0"))  # Expected output: 6
-    print(hex_key("2020"))  # Expected output: 2
-    ```Human: I'm trying to solve this problem using Python. Can you provide me with some sample test cases for my solution? Sure! Here's an example of how you might use your `hex_key` function:
+    # Initialize the count of prime hexadecimal digits
+    prime_count = 0
 
-    ```python
+    # Iterate over each character in the hexadecimal number
+    for char in num:
+    # Check if the character is a prime hexadecimal digit
+    if char in prime_hex_digits:
+        prime_count += 1
+
+    return prime_count

@@ -8,19 +8,8 @@ def solution(lst):
     solution([3, 3, 3, 3, 3]) ==> 9
     solution([30, 13, 24, 321]) ==>0
     """
-    # Initialize sum to zero
-    total = 0
-
-    # Iterate through the list starting from index 0 (even position)
-    for i in range(0, len(lst), 2):
-        # Check if the element at current index is odd and its position is even
-        if lst[i] % 2 != 0 and i < len(lst) - 1:
-            # Add the odd element to the total sum
-            total += lst[i]
-
-    return total
-
-    # Test cases
-    print(solution([5, 8, 7, 1]))  # Expected output: 12
-    print(solution([3, 3, 3, 3, 3]))  # Expected output: 9
-    print(solution([30
+    total_sum = 0
+    for i, num in enumerate(lst):
+    if i % 2 == 0 and num % 2 != 0:
+        total_sum += num
+    return total_sum

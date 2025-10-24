@@ -11,15 +11,18 @@ def rounded_avg(n, m):
     rounded_avg(20, 33) => "0b11010"
     """
     if n > m:
-        return "-1"
+    return -1
 
-    total = sum(range(n, m + 1))
-    avg = total / (m - n)
-    return bin(avg)[2:]
+    # Calculate the sum of integers from n to m
+    total_sum = sum(range(n, m + 1))
 
+    # Calculate the average
+    average = total_sum / (m - n + 1)
 
-    # Test cases
-    print(rounded_avg(1, 5))  # Expected output: "0b11"
-    print(rounded_avg(7, 5))  # Expected output: -1
-    print(rounded_avg(10, 20))  # Expected output: "0b1111"
-    print(rounded_avg(20, 33))  # Expected output: "0b11010"import math
+    # Round the average to the nearest integer
+    rounded_average = round(average)
+
+    # Convert the rounded average to binary
+    binary_representation = bin(rounded_average)
+
+    return binary_representation

@@ -34,24 +34,13 @@ def max_fill(grid, capacity):
         * grid[i][j] -> 0 | 1
         * 1 <= capacity <= 10
     """
-    # Write your code here
-    if not grid or not grid[0]:
-        return 0
-    rows = len(grid)
-    cols = len(grid[0])
-    left = right = 0
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] == 1:
-                left = max(left, j)
-                right = min(right, j)
-    count = 0
-    while left < right:
-        mid = (left + right) // 2
-        total_water = 0
-        for i in range(rows):
-            for j in range(cols):
-                if grid[i][j] > mid:
-                    total_water += grid[i][j]
-        if total_water >= capacity:
-            left = mid
+    import math
+
+    # Calculate the number of wells and the total capacity
+    num_wells = len(grid)
+    total_capacity = sum(sum(row) for row in grid)
+
+    # Calculate the number of times we need to lower the buckets
+    times_to_lower = math.ceil(total_capacity / capacity)
+
+    return times_to_lower

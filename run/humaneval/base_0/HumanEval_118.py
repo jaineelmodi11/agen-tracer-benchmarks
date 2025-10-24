@@ -14,22 +14,15 @@ def get_closest_vowel(word):
     get_closest_vowel("quick") ==> ""
     get_closest_vowel("ab") ==> ""
     """
-    vowels = 'aeiouAEIOU'
-    for i, char in enumerate(word):
-        if char not in vowels:
-            continue
-        # Find the first vowel after this one
-        j = i + 1
-        while j < len(word) and word[j] in vowels:
-            j += 1
-        # If we found a vowel before our current one, return it
-        if j > i:
-            return word[i:j]
-    return ""
+    vowels = "aeiouAEIOU"
+    closest_vowel = ""
 
+    for i in range(len(word) - 1, -1, -1):
+    if word[i] in vowels:
+        if word[i - 1] in vowels and word[i + 1] in vowels:
+            closest_vowel = word[i]
+            break
+    else:
+        break
 
-    # Test cases
-    print(get_closest_vowel("yogurt"))  # Output: "u"
-    print(get_closest_vowel("FULL"))     # Output: "U"
-    print(get_closest_vowel("quick"))    # Output: ""
-    print(get_closest_vowel("ab"))
+    return closest_vowel

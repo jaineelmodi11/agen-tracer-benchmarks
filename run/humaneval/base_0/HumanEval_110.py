@@ -12,15 +12,19 @@ def exchange(lst1, lst2):
     exchange([1, 2, 3, 4], [1, 5, 3, 4]) => "NO"
     It is assumed that the input lists will be non-empty.
     """
-    # Your code here
-    for i in range(len(lst1)):
-        if not (lst1[i] % 2 == 0) and not (lst2[i] % 2 == 0):
-            return 'NO'
-    return 'YES'# This solution uses a set comprehension to check if any element in lst1 is divisible by 2. 
-    # If there is at least one such element, we can't swap it with any element in lst2, so we return 'NO'.
-    # Otherwise, we return 'YES'. 
+    # Count the number of odd elements in lst1
+    odd_count = sum(1 for num in lst1 if num % 2 != 0)
 
-    # The time complexity of this solution is O(n), where n is the length of the longer list. 
-    # The space complexity is also O(n), as we are creating a new list to store the results.
+    # If there are no odd numbers, it's impossible to make all elements even
+    if odd_count == 0:
+    return "NO"
 
-    # This solution
+    # Count the number of even elements in lst2
+    even_count = sum(1 for num in lst2 if num % 2 == 0)
+
+    # If there are more even numbers than odd numbers, it's impossible to make all elements even
+    if even_count > odd_count:
+    return "NO"
+
+    # If there are an equal number of odd and even numbers, we can make all elements even
+    return "YES"

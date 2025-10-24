@@ -29,20 +29,26 @@ def minPath(grid, k):
         Input: grid = [ [5,9,3], [4,1,6], [7,8,2]], k = 1
         Output: [1]
     """
-    # Your code here
-    def dfs(i, j, k, visited):
-        if k == 0:
-            return []
+    N = len(grid)
+    if N < 2:
+    return []
 
-        res = []
-        for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:
-            if 0 <= x < len(visited) and 0 <= y < len(visited[0]) and (x, y) not in visited:
-                visited[x][y] = True
-                res.append(grid[x][y])
-                res += dfs(x, y, k - 1, visited)
-                visited[x][y] = False
+    # Initialize the DP array
+    dp = [[0] * N for _ in range(N)]
 
-        return res
+    # Fill the first row and first column
+    for i in range(N):
+    dp[i][0] = grid[i][0]
 
-    n = len(grid)
-    visited = [[False]*n for _
+    for j in range(1, N):
+    dp[0][j] = grid[0][j]
+
+    # Fill the rest of the DP array
+    for i in range(1, N):
+    for j in range(1, N):
+        # If the current cell is not on the edge, take the minimum value from the two neighbors
+        dp[i][j] = min(grid[i][j], grid[i-1][j], grid[i][j-1])
+
+    # Find the minimum path of length k
+    min_path = []
+    for

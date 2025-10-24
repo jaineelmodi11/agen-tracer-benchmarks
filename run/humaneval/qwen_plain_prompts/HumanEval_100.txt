@@ -1,0 +1,21 @@
+You will receive a Python function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no print). The body must be 4-space indented, valid, and handle edge cases. Do not reference variables that you have not defined.
+Return just the indented body with nothing else.
+
+
+def make_a_pile(n):
+    """
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones in the next level is:
+        - the next odd number if n is odd.
+        - the next even number if n is even.
+    Return the number of stones in each level in a list, where element at index
+    i represents the number of stones in the level (i+1).
+
+    Examples:
+    >>> make_a_pile(3)
+    [3, 5, 7]
+    """
+
+
+# Return only the body below:

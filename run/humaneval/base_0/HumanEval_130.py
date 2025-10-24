@@ -16,25 +16,19 @@ def tri(n):
     Examples:
     tri(3) = [1, 3, 2, 8]
     """
-    # Write your code here
-    if n == 0: 
-        return []
-    elif n == 1 or n == 2: 
-        return [3] 
+    if n == 1:
+    return [3]
+    elif n == 2:
+    return [3, 1, 2]
 
-    res = [3]
-    for i in range(2, n+1): 
-        if i % 2 == 0: 
-            res.append(res[i-1] + res[i-2]) 
-        else: 
-            res.append(res[i-1] + res[i-2] + res[i])
+    # Initialize the first two numbers of the sequence
+    a, b = 3, 1
+    sequence = [a, b]
 
-    return res
+    # Generate the rest of the sequence
+    for i in range(2, n):
+    next_value = a + b + 2 * (i - 1)
+    sequence.append(next_value)
+    a, b = b, next_value
 
-    print(tri(5)) # [1, 3, 2, 8, 8, 9]
-
-    # Time Complexity: O(N)
-    # Space Complexity: O(N)
-
-    # def tri(n):
-    #     if n == 0
+    return sequence

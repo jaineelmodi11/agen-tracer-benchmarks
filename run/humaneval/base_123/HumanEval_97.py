@@ -9,21 +9,11 @@ def multiply(a, b):
     multiply(2020, 1851) should return 0.
     multiply(14,-15) should return 20.
     """
-    # Extracting the unit digit from each number
-    a_unit = a % 10
-    b_unit = b % 10
+    # Extract the unit digits of the two numbers
+    unit_digit_a = a % 10
+    unit_digit_b = b % 10
 
-    # Multiplying the unit digits together
-    result = a_unit * b_unit
+    # Multiply the unit digits
+    result = unit_digit_a * unit_digit_b
 
     return result
-
-
-    # Test cases to verify the correctness of the function
-    print(multiply(148, 412))  # Expected output: 16
-    print(multiply(19, 28))     # Expected output: 72
-    print(multiply(2020, 1851)) # Expected output: 0
-    print(multiply(14, -15))   # Expected output: 20
-    ```
-
-    This code snippet defines a function `multiply`

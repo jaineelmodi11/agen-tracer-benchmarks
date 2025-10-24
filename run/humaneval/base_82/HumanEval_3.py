@@ -10,11 +10,7 @@ def below_zero(operations: List[int]) -> bool:
     >>> below_zero([1, 2, -4, 5])
     True
     """
-    balance = 0
+    To solve this problem, we need to keep track of the balance of the bank account and check if the balance ever falls below zero. Here's a Python implementation that addresses the given requirements:
 
-    for op in operations:
-        balance += op
-        if balance < 0:
-            return True
-
-    return False
+    ```python
+    from typing import List

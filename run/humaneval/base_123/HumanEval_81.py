@@ -24,10 +24,24 @@ def numerical_letter_grade(grades):
     Example:
     grade_equation([4.0, 3, 1.7, 2, 3.5]) ==> ['A+', 'B', 'C-', 'C', 'A-']
     """
-    # Your code here
-    pass
+    # Mapping GPA values to letter grades
+    letter_grades = {
+    4.0: 'A+', 
+    4.1: 'A',
+    4.2: 'A-', 
+    4.3: 'B+', 
+    4.4: 'B',
+    4.5: 'B-', 
+    4.6: 'C+', 
+    4.7: 'C',
+    4.8: 'C-', 
+    4.9: 'D+', 
+    5.0: 'D',
+    5.1: 'D-', 
+    5.2: 'F'
+    }
 
-    # Test cases
-    print(numerical_letter_grade([4.0, 3, 1.7, 2, 3.5]))  # Expected: ['A+', 'B', 'C-', 'C', 'A-']
-    print(numerical_letter_grade([6.0, 8.5, 9.0, 7.5, 5.5]))  # Expected: ['A+', 'A-', 'A+', 'A-', 'A']
-    print(numerical_letter_grade([1.0, 2.0, 3.0, 4.0, 5.0]))  # Expected: ['E', 'D', 'C', 'B', 'A']
+    # Convert the list of GPAs to a list of letter grades
+    letter_grades_list = [letter_grades.get(gpa, 'E') for gpa in grades]
+
+    return letter_grades_list

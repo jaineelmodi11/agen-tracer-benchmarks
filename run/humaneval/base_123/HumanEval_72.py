@@ -17,18 +17,19 @@ def will_it_fly(q,w):
     will_it_fly([3], 5) ➞ True
     # 3 is less than the maximum possible weight, and it's balanced.
     '''
-    # Your code here
+    # Check if the list is balanced
+    if not q or q == q[::-1]:
+    return True
 
-    # Test cases to verify the correctness of your solution
-    test_cases = [
-    ([1, 2], 5),  # False
-    ([3, 2, 3], 1),  # False
-    ([3, 2, 3], 9),  # True
-    ([3], 5),  # True
-    ]
+    # Calculate the sum of the elements
+    total_sum = sum(q)
 
-    for q, w in test_cases:
-    result = will_it_fly(q, w)
-    print(f"will_it_fly({q}, {w}) ➞ {result}")
-    assert result == will_it_fly(q, w), f"Test failed for input: {q} with weight {w}"
-    print("All tests passed!")import math
+    # Check if the sum is within the maximum possible weight
+    if total_sum > w:
+    return False
+
+    # Check if the list is balanced
+    if len(q) % 2 == 0:
+    return True
+    else:
+    return False

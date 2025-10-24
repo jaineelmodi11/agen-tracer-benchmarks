@@ -7,23 +7,31 @@ def minSubArraySum(nums):
     minSubArraySum([2, 3, 4, 1, 2, 4]) == 1
     minSubArraySum([-1, -2, -3]) == -6
     """
-    # Initialize variables to store the maximum and second maximum sums found so far
-    max_sum = float('-inf')
-    second_max_sum = float('-inf')
+    """
+    Given an array of integers nums, find the minimum sum of any non-empty sub-array
+    of nums.
+    Example
+    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1
+    minSubArraySum([-1, -2, -3]) == -6
+    """
+    min_sum = float('inf')
+    current_sum = 0
+    start = 0
+    end = 0
+    temp_start = 0
 
-    for num in nums:
-        if num > max_sum:
-            max_sum = num
+    for i in range(len(nums)):
+    current_sum += nums[i]
 
-        if num > second_max_sum:
-            second_max_sum = num
+    if current_sum < min_sum:
+        min_sum = current_sum
 
-    return max_sum + second_max_sum
+    if current_sum < 0:
+        temp_start = start
+        current_sum = 0
+        start = temp_start + 1
 
+    if current_sum > 0:
+        end = i
 
-    # Test cases
-    print(minSubArraySum([2, 3, 4, 1, 2, 4]))  # Output: 1
-    print(minSubArraySum([-1, -2, -3]))       # Output: -6
-    ```
-
-    This code snippet defines a function `minSubArraySum` that calculates the minimum sum of any non-empty sub-array within the given list
+    return min_sum

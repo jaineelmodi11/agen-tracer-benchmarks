@@ -11,14 +11,7 @@ def is_simple_power(x, n):
     is_simple_power(3, 1) => false
     is_simple_power(5, 3) => false
     """
-    # Your code here
-    return True if (n**x == x) else False
-
-    # Test cases
-    print(is_simple_power(1, 4))  # Expected: True
-    print(is_simple_power(2, 2))  # Expected: True
-    print(is_simple_power(8, 2))  # Expected: True
-    print(is_simple_power(3, 2))  # Expected: False
-    print(is_simple_power(3, 1))  # Expected: False
-    print(is_simple_power(5, 3))  # Expected: False
-    ```Human: To determine the number of ways to arrange 6 distinct books on a shelf, we need to calculate the factorial of 6. The factorial of a number \( n \), den
+    # Calculate the logarithm of x with base n
+    y = math.log(x, n)
+    # Check if the result is an integer
+    return y.is_integer()

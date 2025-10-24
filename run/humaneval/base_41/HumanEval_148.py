@@ -15,10 +15,21 @@ def bf(planet1, planet2):
     bf("Earth", "Mercury") ==> ("Venus")
     bf("Mercury", "Uranus") ==> ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
     '''
-    # Your code here
+    # List of all planets in our solar system
+    planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
 
-    # Test cases
-    print(bf("Jupiter", "Neptune"))  # Should print: ('Saturn', 'Uranus')
-    print(bf("Earth", "Mercury"))   # Should print: ('Venus')
-    print(bf("Mercury", "Uranus"))  # Should print: ('Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn')import math
-    from collections import Counter
+    # Check if the given planet names are correct
+    if planet1 not in planets or planet2 not in planets:
+    return ()
+
+    # Initialize an empty list to store planets whose orbits are between the given planet names
+    orbits_between = []
+
+    # Iterate through the list of planets
+    for i in range(len(planets)):
+    if planets[i] == planet1 or planets[i] == planet2:
+        # Add the planet to the list if it's between the given planet names
+        orbits_between.append(planets[i])
+
+    # Return a tuple containing all planets whose orbits are between the given planet names
+    return tuple(or

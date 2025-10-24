@@ -19,25 +19,21 @@ def intersection(interval1, interval2):
     intersection((-1, 1), (0, 4)) ==> "NO"
     intersection((-3, -1), (-5, 5)) ==> "YES"
     """
-    # Write your code here
-    if interval1[1] >= interval2[0]:
-        return "NO"
+    # Check if the intervals are valid
+    if not (isinstance(interval1, tuple) and isinstance(interval2, tuple) and len(interval1) == 2 and len(interval2) == 2):
+    return "NO"
 
-    left = max(interval1[0], interval2[0])
-    right = min(interval1[1], interval2[1])
+    # Check if the intervals intersect
+    if interval1[1] < interval2[0] or interval2[1] < interval1[0]:
+    return "NO"
 
-    for i in range(left, right + 1):
-        if i == left or i == right:
-            continue
+    # Calculate the length of the intersection
+    intersection_length = max(interval1[1], interval2[1]) - min(interval1[0], interval2[0])
 
-        if i % 2 == 0:
-            if i % 3 == 0:
-                continue
-            else:
-                return "NO"
-        elif i % 3 == 0:
-            continue
-        else:
-            return "NO"
-
-    return "YES"# This solution uses the fact that the sum of all numbers from 1 to n is n*(n+1)/
+    # Check if the length is a prime number
+    if intersection_length == 1:
+    return "YES"
+    elif intersection_length > 1:
+    return "NO"
+    else:
+    return "YES"

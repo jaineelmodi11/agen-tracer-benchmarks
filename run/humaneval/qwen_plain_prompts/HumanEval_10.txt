@@ -1,0 +1,25 @@
+You will receive a Python function signature and docstring. Write ONLY the function BODY (no 'def' line, no imports, no comments, no print). The body must be 4-space indented, valid, and handle edge cases. Do not reference variables that you have not defined.
+Return just the indented body with nothing else.
+
+
+
+def is_palindrome(string: str) -> bool:
+    """ Test if given string is a palindrome """
+    return string == string[::-1]
+
+
+def make_palindrome(string: str) -> str:
+    """ Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+    >>> make_palindrome('')
+    ''
+    >>> make_palindrome('cat')
+    'catac'
+    >>> make_palindrome('cata')
+    'catac'
+    """
+
+
+# Return only the body below:
